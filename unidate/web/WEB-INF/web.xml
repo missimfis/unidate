@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <listener>
+        <listener-class>bean.JdbcPoolListener</listener-class>
+    </listener>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <jsp-config>
+        <jsp-property-group>
+            <description>header and footer settings</description>
+            <url-pattern>/WEB-INF/view/*</url-pattern>
+            <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
+            <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <description>headerLoggerOff and footerLoggedOff</description>
+            <url-pattern>/index.jsp</url-pattern>
+            <include-prelude>/WEB-INF/jspf/headerLoggedOut.jspf</include-prelude>
+            <include-coda>/WEB-INF/jspf/footerLoggedOut.jspf</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <description>headerLoggerOff and footerLoggedOff</description>
+            <url-pattern>/rejectLogin.jsp</url-pattern>
+            <include-prelude>/WEB-INF/jspf/headerLoggedOut.jspf</include-prelude>
+            <include-coda>/WEB-INF/jspf/footerLoggedOut.jspf</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <description>headerLoggerOff and footerLoggedOff</description>
+            <url-pattern>/logout.jsp</url-pattern>
+            <include-prelude>/WEB-INF/jspf/headerLoggedOut.jspf</include-prelude>
+            <include-coda>/WEB-INF/jspf/footerLoggedOut.jspf</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <description>headerLoggerOff and footerLoggedOff</description>
+            <url-pattern>/rejectRegistration.jsp</url-pattern>
+            <include-prelude>/WEB-INF/jspf/headerLoggedOut.jspf</include-prelude>
+            <include-coda>/WEB-INF/jspf/footerLoggedOut.jspf</include-coda>
+        </jsp-property-group>
+        <jsp-property-group>
+            <description>headerLoggerOff and footerLoggedOff</description>
+            <url-pattern>/sdm.jsp</url-pattern>
+            <include-prelude>/WEB-INF/jspf/headerLoggedOut.jspf</include-prelude>
+            <include-coda>/WEB-INF/jspf/footerLoggedOut.jspf</include-coda>
+        </jsp-property-group>
+    </jsp-config>
+</web-app>

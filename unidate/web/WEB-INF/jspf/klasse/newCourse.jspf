@@ -1,0 +1,17 @@
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Eine neue Klasse gründen</h2>
+                </div>
+            </div>
+            <div class="row">    
+                <form id="Klassegruenden" action="administration" method="post">
+                    <div class="small-3 columns">
+                        <input id="Klassegruenden" type="text" name="Klasse" size="15" 
+                               placeholder="Benutzername" />
+                    </div>
+                    <div class="small-9 columns">
+                        <A HREF="administration"><input id="loginbutton" 
+                                                            class="button tiny" type="submit" value="Klasse gründen"/></A>
+                    </div>
+                </form>                          
+            </div> 

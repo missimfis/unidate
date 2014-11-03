@@ -1,0 +1,17 @@
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Die Klasse verlassen</h2>
+                </div>
+            </div>
+            <div class="row">   
+
+                <FORM ACTION="administration" METHOD="post">
+                    <div class="small-4 columns">
+                        <INPUT TYPE="CHECKBOX" NAME="austreten" VALUE="check1" UNCHECKED>
+                        Ich will aus der Klasse austreten!
+                    </div>
+                    <div class="small-8 columns">    
+                        <INPUT TYPE="SUBMIT" class="button tiny"  VALUE="Austreten">
+                    </div>
+                </FORM>
+            </div>

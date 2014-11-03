@@ -1,0 +1,49 @@
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Offene Einladungen</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="200">Klassenname</th>
+                                <th width="200" >Klassenadministrator</th>
+                                <th width="200">E-Mail Adresse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%  List<User> einladungen = klasse.getUserInvitations(user.getId());
+                               
+                             for(User aktuell:einladungen){      
+                                out.print("<tr><td>" + aktuell.getCourseName() + "</td>");
+                                out.print("<td>" + aktuell.getUsername() + "</td>");                                
+                                out.print("<td>" + aktuell.getEmail() + "</td></tr>");                            
+                              } %>                  
+                        </tbody>
+                    </table>
+                </div>
+            </div>                         
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Einladung annehmen</h2>
+                </div>
+            </div>
+            <div class="row">
+                <label>
+                    <form action="administration" method="post">
+                        <div class="small-3 columns">
+                            <select name="Einladungwaehlen">
+                                <option>Einladung wählen</option>
+                                <%  List<User> offeneEinladungen = klasse.getUserInvitations(user.getId());
+                                    for(User aktuell:offeneEinladungen){      
+                                   %><option value="<%out.print(aktuell.getCourseName());%>"><%out.print(aktuell.getCourseName());%></option><%                                                                        
+                } %>
+                            </select>
+                        </div>
+                        <div class="small-9 columns">
+                            <A HREF="administration"><input id="choosebutton"
+                                                                class="button tiny" type="submit" value="Annehmen"/></A>
+                        </div>
+                    </form>
+                </label>
+            </div> 

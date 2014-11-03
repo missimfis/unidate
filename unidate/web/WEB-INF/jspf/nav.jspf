@@ -1,0 +1,11 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>            
+<nav class="row">
+    <div class="small-12 columns">
+        <dl class="sub-nav">
+            <dd><a href="klasse">Klasse</a></dd>
+            <dd><a href="nachrichten">Nachrichten</a></dd>
+            <dd><a href="kalender">Kalender</a></dd>
+            <dd><a href="dateien">Dateien</a></dd>
+        </dl>
+    </div>
+</nav>

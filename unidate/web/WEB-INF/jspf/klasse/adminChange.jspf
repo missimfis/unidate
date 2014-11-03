@@ -1,0 +1,35 @@
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Antrag auf Klassen-Administrator-Wechsel</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="200">Klassenname</th>
+                                <th width="200">Klassenadministrator</th>
+                                <th width="200">E-Mail Adresse</th>
+                            </tr>
+                        </thead>
+                        <tbody>                             
+                            <%  List<User> adminRequestInfos = klasse.getAdminRequests(user.getId());
+                               
+                             for(User aktuell:adminRequestInfos){      
+                                out.print("<tr><td>" + aktuell.getCourseName() + "</td>");
+                                out.print("<td>" + aktuell.getUsername() + "</td>");                                
+                                out.print("<td>" + aktuell.getEmail() + "</td></tr>");
+                                }                            
+
+                     %>				
+                        </tbody>
+                    </table>
+                </div>                    
+            </div> 
+
+            <FORM ACTION="administration" METHOD="post">
+                <div class="small-4 columns">
+                    <INPUT TYPE="CHECKBOX" NAME="Adminwerden" VALUE="check1" UNCHECKED>
+                    Ich will Klassenadministrator werden!
+                </div>
+                <div class="small-8 columns">    
+                    <INPUT class="button tiny" TYPE="SUBMIT" VALUE="Annehmen">
+                </div>
+            </FORM> 

@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="medium-6 columns registration">
                     <h2>Registrierung</h2>
-                    <form id="registrierung" action="registrationProcess" method="post" accept-charset="ISO-8859-1">
+                    <form id="registrierung" action="registrationProcess" method="post">
                         <input class="regform" id="regbenutzername" type="text" name="username" size="15" placeholder="Benutzername" />
                         <input class="regform" id="regvorname" type="text" name="firstname" size="15" placeholder="Vorname" />
                         <input class="regform" id="regnachnahme" type="text" name="surname" size="15" placeholder="Nachname" />

@@ -1,0 +1,47 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="errorText" class="bean.ErrorText" scope="session"/> 
+<html class="no-js" lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>lemas - learning matter assistant</title>
+        <link rel="stylesheet" href="css/foundation.css" />
+        <link rel="stylesheet" href="css/main.css" />
+        <script src="js/vendor/modernizr.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <header class="row">
+                <div class="small-6 columns">
+                    <a class="dashboard" href="index.jsp">
+                    <h1>lemas</h1>
+                    <h2>learning matter assistant</h2>
+                    </a>
+                </div>
+                <div class="small-6 columns">
+                    <form id="login" action="loginProcess" method="post" accept-charset="ISO-8859-1">
+                        <div class="large-3 medium-3 columns loginfields">
+                            &nbsp;
+                        </div>
+                        <div class="large-3 medium-3 columns loginfields">
+                            <input id="benutzername" type="text" name="loginusername" size="15" placeholder="Benutzername" autofocus/>
+                        </div>
+
+                        <div class="large-3 medium-3 columns loginfields">
+                            <input id="passwort" type="password" name="loginpassword" size="15" placeholder="Passwort"/>
+                        </div>
+                        <div class="large-3 medium-3 columns loginfields">
+                            <input id="loginbutton" class="button tiny" type="submit" value="Anmelden" />
+                        </div>
+                    </form>
+                    <div class="loginfehler">
+                        <% if (errorText.getError("login") != null) {%>
+                        <%=errorText.getError("login")%>
+                        <%}%>
+                    </div>
+                </div>
+            </header>
+            <nav class="row">
+                <div class="small-12 columns">
+                </div>
+            </nav>

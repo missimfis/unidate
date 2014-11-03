@@ -1,0 +1,52 @@
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Personen ohne Klasse</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="200">Benutzername</th>
+                                <th width="200">Vorname</th>
+                                <th width="200">Nachname</th>
+                                <th width="200">E-Mail Adresse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%  List<User> ohneKlasse = klasse.getPersonsWithoutCourse();
+                                
+                            for(User aktuell:ohneKlasse){      
+                                out.print("<tr><td>" + aktuell.getUsername() + "</td>");
+                                out.print("<td>" + aktuell.getFirstname() + "</td>");
+                                out.print("<td>" + aktuell.getSurname() + "</td>");
+                                out.print("<td>" + aktuell.getEmail() + "</td></tr>");
+                                                             
+                    } %>                  
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Person einladen</h2>   
+                </div>               
+            </div>               
+            <label>
+                <form action="administration" method="post">
+                    <div class="small-3 columns"> 
+                        <select name="adden">
+                            <option>Person wählen</option>
+                            <%  List<User> klassenlos = klasse.getPersonsWithoutCourse();
+ 
+                                    for(User aktuell:klassenlos){      
+                                   %><option value="<%out.print(aktuell.getUsername());%>"><%out.print(aktuell.getUsername());%></option><%                                                                                           
+                                    }                          
+                            %>
+                        </select>
+                    </div>
+                    <div class="small-9 columns">
+                        <A HREF="administration"><input id="choosebutton" 
+                                                            class="button tiny" type="submit" value="Einladen" /></A>
+                    </div>
+                </form>
+            </label> 

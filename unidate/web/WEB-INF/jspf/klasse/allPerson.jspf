@@ -1,0 +1,57 @@
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Ihr Profil</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="200">Benutzername</th>
+                                <th width="200">Vorname</th>
+                                <th width="200">Nachname</th>
+                                <th width="200">E-Mail Adresse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <%  User myUser = user.getUserInfos(user.getId());
+                                    out.print("<td>" + myUser.getUsername() + "</td>");
+                                    out.print("<td>" + myUser.getFirstname() + "</td>");
+                                    out.print("<td>" + myUser.getSurname() + "</td>");
+                                    out.print("<td>" + myUser.getEmail() + "</td>");
+                                %></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>              
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Mein Profil bearbeiten</h2>
+                </div>
+            </div>    
+            <div class="row">                  
+                <form id="editMyProfil" action="administration" method="post">
+                    <div class="small-3 columns">
+                        <input class="editmyform" id="MeinVorname" type="text" 
+                         name="myNewFirstName" size="15" placeholder="Neuer Vorname" />
+                    </div>
+                    <div class="small-3 columns">
+                        <input class="editmyform" id="MeinNachname" type="text"
+                         name="myLastName" size="15" placeholder="Neuer Nachname" />
+                    </div>
+                    <div class="small-3 columns">                                
+                        <input class="editmyform" id="MeinEmail" type="text" 
+                         name="myEmail" size="15" placeholder="Neue Email Adresse"/>
+                    </div>
+                    <div class="small-3 columns">                                
+                        <input class="editmyform" id="MeinPasswort" type="text" 
+                          name="myPassword1" size="15" placeholder="Neues Passwort"/>
+                    </div>
+                    <div class="small-3 columns">                                
+                        <input class="editmyform" id="MeinPasswort" type="text" 
+                          name="myPassword2" size="15" placeholder="Neues Passwort"/>
+                    </div>                                    
+                    <div class="small-9 columns">
+                        <A HREF="administration"><input class="button tiny" 
+                           id="editbutton" type="submit" value="Ändern" /></A>						
+                    </div>                               
+                </form> 
+            </div> 

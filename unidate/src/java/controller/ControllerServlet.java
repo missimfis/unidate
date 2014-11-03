@@ -15,26 +15,12 @@ import javax.servlet.http.HttpServletResponse;
             "/loginProcess",
             "/registrationProcess",
             "/dashboard",
-            "/klasse",
-            "/administration",
-            "/nachrichten",
             "/nachrichten_detail",
             "/nachrichten_senden",
             "/nachrichtenProcess",
-            "/kalender",
-            "/kalender_eintrag_bearbeiten",
-            "/kalender_neuereintrag",
-            "/terminbearbeiten",
-            "/terminloeschen",
-            "/terminneu",
-            "/reminderadministration",
-            "/reminderloeschen",
-            "/dateien",
-            "/registriert",
-            "/terminset",
-            "/dateiProcess",
-            "/datei_upload",
-            "/sdm"})
+            "/administration",
+            "/nachrichten",
+            "/registriert"})
 
 public class ControllerServlet extends HttpServlet {
 
@@ -43,35 +29,15 @@ public class ControllerServlet extends HttpServlet {
 
     public ControllerServlet() {
         // fillup doGetMap data
-        doGetMap.put("/dashboard", "/view/dashboard");
-        doGetMap.put("/klasse", "/view/klasse");
         doGetMap.put("/nachrichten", "/view/nachrichten");
         doGetMap.put("/nachrichten_detail", "/view/nachrichten_detail");
         doGetMap.put("/nachrichten_senden", "/view/nachrichten_senden");
-        doGetMap.put("/kalender", "/view/kalender");
-        doGetMap.put("/kalender_eintrag_bearbeiten", "/view/kalender_eintrag_bearbeiten");
-        doGetMap.put("/dateien", "/view/dateien");
-        doGetMap.put("/dateiProcess", "/controller/dateiProcess");
-        doGetMap.put("/datei_upload", "/view/datei_upload");
-        doGetMap.put("/registriert", "/view/registriert");
-        doGetMap.put("/terminset", "/controller/terminset");
-        doGetMap.put("/sdm", "/view/sdm");
 
         // fillup doPostMap data
         doPostMap.put("/loginProcess", "/controller/loginProcess");
         doPostMap.put("/registrationProcess", "/controller/registrationProcess");
         doPostMap.put("/nachrichten_senden", "/view/nachrichten_senden");
         doPostMap.put("/nachrichtenProcess", "/controller/nachrichtenProcess");
-        doPostMap.put("/dateiProcess", "/controller/dateiProcess");
-        doPostMap.put("/datei_upload", "/view/datei_upload");
-        doPostMap.put("/kalender", "/view/kalender");
-        doPostMap.put("/kalender_neuereintrag", "/view/kalender_neuereintrag");
-        doPostMap.put("/terminneu", "/controller/terminneu");
-        doPostMap.put("/terminbearbeiten", "/controller/terminbearbeiten");
-        doPostMap.put("/terminloeschen", "/controller/terminloeschen");
-        doPostMap.put("/terminneu", "/controller/terminneu");
-        doPostMap.put("/reminderadministration", "/controller/reminderadministration");
-        doPostMap.put("/reminderloeschen", "/controller/reminderloeschen");
         doPostMap.put("/administration", "/controller/administration");
     }
 

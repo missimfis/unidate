@@ -1,0 +1,90 @@
+           <div class="row">
+                <div class="small-12 columns">
+                    <h2>Ein Mitglied entfernen</h2>
+                </div>
+            </div>
+            <div class="row">
+                <label>
+                    <form action="administration" method="post">
+                        <div class="small-3 columns">
+                            <select name="Personloeschen">
+                                <option>Person wählen</option>
+                                <%  List<User> loeschoption = klasse.getCourseMembersWithoutAdmin(
+                                            klasse.getCourseIdFromUserId(user.getId()), user.getId());
+                               for(User aktuell:loeschoption){      
+                                   %><option value="<%out.print(aktuell.getUsername());%>"><%out.print(aktuell.getUsername());%></option><%
+                               } %>
+                            </select>
+                        </div>
+                        <div class="small-9 columns">
+                            <A HREF="administration"><input id="choosebutton" 
+                                                                class="button tiny" type="submit" value="Entfernen" /></A>
+                        </div>
+                    </form>
+                </label>
+            </div> 
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Ein Profil bearbeiten</h2>
+                </div>
+            </div>
+            <form id="editProfil" action="administration" method="post">
+                <div class="row">
+                    <div class="small-3 columns">
+                        <select name="PersonBearbeiten">
+                            <option>Person wählen</option>
+                            <%  List<User> bearbeiten = klasse.getCourseMembersWithoutAdmin(
+                                        klasse.getCourseIdFromUserId(user.getId()), klasse.getAdminIdForUserId(user.getId()));
+                               for(User aktuell:bearbeiten){      
+                                   %><option value="<%out.print(aktuell.getUsername());%>"><%out.print(aktuell.getUsername());%></option><%
+                } %>
+                        </select>  
+                    </div>
+                    <div class="small-3 columns ">
+                        <input class="editform" id="edituser" type="text" 
+                               name="EditEmail" size="15" placeholder="Neue Email Adresse"/>
+                    </div>
+                    <div class="small-3 columns ">
+                        <input class="editform" id="editmail" type="text" 
+                               name="EditPassword1" size="15" placeholder="Neues Passwort"/>
+                    </div>
+                    <div class="small-3 columns ">                                
+                        <input class="editform" id="editpasswort" type="text" 
+                               name="EditPassword2" size="15" placeholder="Neues Passwort"/>
+                    </div>
+                </div>
+                <div class="row">                           
+                    <div class="small-12 columns ">
+                        <A HREF="administration"><input class="button tiny" 
+                                                            id="regbutton" type="submit" value="Abschicken" /></A>					
+                    </div>
+                </div>
+            </form>              
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2>Klassenadministrator wechseln</h2>
+                </div>
+            </div>
+            <div class="row">    
+                <label>
+                    <form action="administration" method="post">
+                        <div class="small-3 columns">
+                            <select name="neuerAdmin">
+                                <option>Person wählen</option>
+                                <%  List<User> klasseOhneAdmin = klasse.getCourseMembersWithoutAdmin(
+                                            klasse.getCourseIdFromUserId(user.getId()), klasse.getAdminIdForUserId(user.getId()));
+                                    
+                                for(User aktuell:klasseOhneAdmin){      
+                                   %><option value="<%out.print(aktuell.getUsername());%>"><%out.print(aktuell.getUsername());%></option><%
+                } %>
+                            </select>
+                        </div>
+                        <div class="small-9 columns">
+                            <A HREF="administration"><input id="choosebutton" 
+                                                                class="button tiny" type="submit" value="Als Admin bestimmen"/></A>
+                        </div>
+                    </form>
+                </label>
+            </div>
