@@ -1,0 +1,3 @@
+WELCOME TEXT IN GERMAN
+<h1>unidate</h1>
+<p>unidate ist eine Plattform f&uuml;r Studierende.</p>

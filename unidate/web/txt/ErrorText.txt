@@ -1,0 +1,21 @@
+ERRORTYPE__________________________REFERENCE_______________ERRORTEXT
+email______________________________email___________________Email: Geben Sie eine gültige Email Adresse ein
+emailEmpty_________________________email___________________Email: Keine leere Eingabe erlaubt
+emailExistsAlready_________________email___________________Email: Bereits registriert
+firstName__________________________firstName_______________Vorname: Keine Sonderzeichen ausser !&quot;#$%&'()*+,-./:<=>?_ erlaubt
+firstNameEmpty_____________________firstName_______________Vorname: Keine leere Eingabe erlaubt
+loginFailed________________________login___________________Ungültige Login Daten
+password___________________________password________________Keine Sonderzeichen ausser !&quot;#$%&'()*+,-./:<=>?_ erlaubt
+passwordEmpty______________________password________________Keine leere Eingabe erlaubt
+surName____________________________surName_________________Nachname: Keine Sonderzeichen ausser !&quot;#$%&'()*+,-./:<=>?_ erlaubt
+surNameEmpty_______________________surName_________________Nachname: Keine leere Eingabe erlaubt
+userName___________________________userName________________Benutzername: Keine Sonderzeichen ausser !&quot;#$%&'()*+,-./:<=>?_ erlaubt
+userNameEmpty______________________userName________________Benutzername: Keine leere Eingabe erlaubt
+usernameExistsAlready______________userName________________Benutzernamen: Nicht mehr verfügbar
+default____________________________default_________________Es ist ein Fehler aufgetreten
+file_upload_success________________filehandling____________Datei wurde erfolgreich hochgeladen!<br /><a href=dateien>Zurück zur Datei-Übersicht</a>
+file_upload_fail___________________filehandling____________Datei konnte NICHT hochgeladen werden!<br /><a href=dateien>Zurück zur Datei-Übersicht</a>
+file_delete_success________________filehandling____________Datei wurde erfolgreich gelöscht!<br/><a href=dateien>Zurück zur Datei-Übersicht</a>
+file_delete_fail___________________filehandling____________Datei konnte NICHT gelöscht werden!<br /><a href=dateien>Zurück zur Datei-Übersicht</a>
+folder_creation_success____________filehandling____________Ordner wurde erfolgreich erstellt!<br /><a href=dateien>Zurück zur Datei-Übersicht</a>
+folder_creation_fail_______________filehandling____________Ordner konnte NICHT erstellt werden!<br /><a href=dateien>Zurück zur Datei-Übersicht</a>
