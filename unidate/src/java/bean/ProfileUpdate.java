@@ -23,7 +23,7 @@ public class ProfileUpdate extends HttpServlet{
 
 	    //creating connection with the database 
         Connection  con=DriverManager.getConnection
-                     ("jdbc:mysql://localhost/TEST","root","root");	
+                     ("jdbc:mysql://localhost/unidate","unidate","unidatepw");	
         
         
         
