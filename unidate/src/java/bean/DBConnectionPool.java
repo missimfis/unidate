@@ -18,7 +18,7 @@ public class DBConnectionPool {
     private static Connection con = null;
     private static DataSource datasource;
     private static javax.sql.DataSource ds;
-    private static final String PATH = "webapps/lemas/WEB-INF/cfg/db_credentials.txt";
+    private static final String PATH = "webapps/unidate/WEB-INF/cfg/db_credentials.txt";
     private static String driver;
     private static String connection_url;
     private static String db;
@@ -29,14 +29,14 @@ public class DBConnectionPool {
     
     public static void initaliseForJUnitTests() {
         testing = true;
-        ds = new SimpleDataSource("jdbc:mysql://localhost:3306/lemas","lemas","lemaspw");
+        ds = new SimpleDataSource("jdbc:mysql://localhost:8080/unidate","unidate","unidatepw");
         try {
-            ds.getConnection().prepareStatement("DROP DATABASE lemas").execute();
+            ds.getConnection().prepareStatement("DROP DATABASE unidate").execute();
         } catch (SQLException ex) {
             Logger.getLogger(DBConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String cmd1 = "mysql --user=lemas --password=lemaspw <web\\" + File.separator + "sql\\" + File.separator + "lemas.sql";
-        String cmd2 = "mysql --user=lemas --password=lemaspw lemas <web\\" + File.separator + "sql\\" + File.separator + "inserts.sql";
+        String cmd1 = "mysql --user=unidate --password=unidatepw <web\\" + File.separator + "sql\\" + File.separator + "lemas.sql";
+        String cmd2 = "mysql --user=unidate --password=unidatepw lemas <web\\" + File.separator + "sql\\" + File.separator + "inserts.sql";
 
         try {
             Process child = Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"" + cmd1 + " && " + cmd2 + " && exit");
@@ -48,7 +48,7 @@ public class DBConnectionPool {
         } catch (InterruptedException ex) {
             Logger.getLogger(DBConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ds = new SimpleDataSource("jdbc:mysql://localhost:3306/lemas","lemas","lemaspw");
+        ds = new SimpleDataSource("jdbc:mysql://localhost:3306/lemas","unidate","unidatepw");
     }
     
     public static void initalise() {
@@ -56,12 +56,12 @@ public class DBConnectionPool {
         loadParameters();
         PoolProperties p = new PoolProperties();
         p.setUrl(connection_url + ":" + port + "/" + db);
-        p.setUrl("jdbc:mysql://localhost:3306/lemas");
+        p.setUrl("jdbc:mysql://localhost:3306/unidate");
         p.setDriverClassName(driver);
         p.setUsername(username);
-        p.setUsername("lemas");
+        p.setUsername("unidate");
         p.setPassword(password);
-        p.setPassword("lemaspw");
+        p.setPassword("unidatepw");
         p.setJmxEnabled(true);
         p.setTestWhileIdle(false);
         p.setTestOnBorrow(true);
