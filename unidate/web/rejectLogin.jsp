@@ -1,7 +1,7 @@
 <%@page import="bean.TextFileReader"%>
 <div class="row">
     <div class="medium-6 columns">
-        <%= TextFileReader.parse("webapps/lemas/txt/WelcomeTextDE.txt")%>
+        <%= TextFileReader.parse("webapps/unidate/txt/WelcomeTextDE.txt")%>
     </div>
     <div class="medium-6 columns registration">
         <h2>Registrierung</h2>

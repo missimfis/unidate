@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>lemas - learning matter assistant</title>
+        <title>unidate</title>
         <link rel="stylesheet" href="css/foundation.css" />
         <link rel="stylesheet" href="css/main.css" />
         <script src="js/vendor/modernizr.js"></script>
@@ -14,8 +14,7 @@
             <header class="row">
                 <div class="small-6 columns">
                     <a class="dashboard" href="index.jsp">
-                    <h1>lemas</h1>
-                    <h2>learning matter assistant</h2>
+                    <h1>unidate</h1>
                     </a>
                 </div>
                 <div class="small-6 columns">

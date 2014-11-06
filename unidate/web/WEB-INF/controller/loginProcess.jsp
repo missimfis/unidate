@@ -1,10 +1,6 @@
 <%@page import="bean.*"%>
 <%@page import="java.util.ArrayList"%>
 <jsp:useBean id="user" class="bean.User" scope="session"/> 
-<jsp:useBean id="klasse" class="bean.Klasse" scope="session"/>
-<jsp:useBean id="message" class="bean.Message" scope="session"/> 
-<jsp:useBean id="reminder" class="bean.Reminder" scope="session"/>
-<jsp:useBean id="event" class="bean.Event" scope="session"/>
 
 
 <jsp:setProperty property="*" name="user"/>  

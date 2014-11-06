@@ -1,7 +1,6 @@
 <%-- controller to register a user --%>
 <%@page import="bean.*"%>  
 <jsp:useBean id="user" class="bean.User" scope="session"/>
-<jsp:useBean id="klasse" class="bean.Klasse" scope="session"/>
 <jsp:setProperty property="*" name="user"/>  
 <%
     if (user.register()) { // if user registration is successful

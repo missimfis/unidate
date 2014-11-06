@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * associated error texts into a hashmap that can be asked if certain errors
  * occured and if so will return the concerning error texts.
  * <p>
- * The defined Errors are saved in lemas/txt/ErrorText.txt and are read with the
+ * The defined Errors are saved in unidate/txt/ErrorText.txt and are read with the
  * HelperClass ErrorTextFileReader.
  *
  * @author missimfis
@@ -22,7 +22,7 @@ public class ErrorText {
     private static final HashMap<String, String> errorMap = new HashMap<>();
     private static final ErrorText INSTANCE = new ErrorText();
     private static List<String[]> errorList = new ArrayList<>();
-    private static String filePath = "webapps/lemas/txt/ErrorText.txt";
+    private static String filePath = "webapps/unidate/txt/ErrorText.txt";
 
     public static void setFilePathForJUnitTesting(){
         filePath = "web/txt/ErrorText.txt";
@@ -41,7 +41,7 @@ public class ErrorText {
     /**
      * Makes an entry into the error hashmap. For this the ErrorTextFileReader
      * matches the error that is to be set with the defined Errors in
-     * lemas/txt/ErrorText.txt
+     * unidate/txt/ErrorText.txt
      *
      * @param string the error that is to be set.
      */
