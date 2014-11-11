@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class User {
+public class Student {
 
     private int id;
     private String firstname;
@@ -14,11 +14,8 @@ public class User {
     private String username;
     private String loginusername;
     private String loginpassword;
-    private String coursename;
     private String stmt;
     private PreparedStatement pstmt;
-    private int course;
-    private boolean admin;
      
     /**
       *Creates a new User Object 
@@ -34,7 +31,7 @@ public class User {
       * @param course course id of the course
       * @param admin boolean if user is admin
       */
-    public User(int userId, String firstname, String surname, String email,
+    public Student(int userId, String firstname, String surname, String email,
             String password, String username, String loginpassword, String loginusername,
             String coursename, int course, boolean admin){
         this.id = userId;
@@ -43,9 +40,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.username = username;
-        this.coursename = coursename;
-        this.course = course;
-        this.admin = admin;
         this.loginusername = loginusername;
         this.loginpassword = loginpassword;
     }
@@ -53,7 +47,7 @@ public class User {
     /**
      * empty constructor of new user. Creates new User Object
      */
-    public User(){  
+    public Student(){  
     }
     
     /**
@@ -201,60 +195,6 @@ public class User {
     }
 
     /**
-     * Get Coursename
-     *
-     * @return coursename
-     */
-    public String getCourseName() {
-        return coursename;
-    }
-
-    /**
-     * Set Coursename
-     *
-     * @param coursename
-     */
-    public void setCourseName(String coursename) {
-        this.coursename = coursename;
-    }
-
-    /**
-     * Get Klasse of User
-     *
-     * @return id of Klasse
-     */
-    public int getCourse() {
-        return course;
-    }
-
-    /**
-     * Set Klasse
-     *
-     * @param course
-     */
-    public void setCourse(int course) {
-        this.course = course;
-    }
-
-    /**
-     * Get Admin
-     *
-     * @return admin
-     */
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    /**
-     * Set Admin
-     *
-     * @param admin
-     */
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
-
-    /**
      * Checks whether the registration was correct or not. If the person is
      * already registred the return values is false. If the person was added to
      * the database the return value is true.
@@ -317,62 +257,13 @@ public class User {
                 return true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(
+            Logger.getLogger(Student.class.getName()).log(
                     Level.SEVERE, "Failure while trying to register new User", ex);
         } finally {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
         }
         return false;
-    }
-
-    /**
-     * Takes the userId and sets the corresponding course number acc to the
-     * database.
-     */
-    public void setCourse() {
-        stmt = "SELECT K FROM Mitglied WHERE P='" + getId() + "'";
-        try {
-            pstmt = DBConnectionPool.getStmt(stmt);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    setCourse(rs.getInt("K"));
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to set course for a Member", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
-    }
-
-    /**
-     * Checks in the database whether the person is a administrator or not. If
-     * the person is an administrator the variable admin is set true otherwise
-     * false.
-     */
-    public void setAdmin() {
-        stmt = "SELECT K FROM Klassenadministrator WHERE P='" + getId() + "'";
-        try {
-            pstmt = DBConnectionPool.getStmt(stmt);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                if (rs.getInt("K") != 0) {
-                    setAdmin(true);
-                } else {
-                    setAdmin(false);
-                }
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(User.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to check DB if user is admin", e);
-            setAdmin(false);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
     }
 
     /**
@@ -396,15 +287,13 @@ public class User {
                     setSurname(rs.getString("Pnachname"));
                     setEmail(rs.getString("email"));
                     setPassword(rs.getString("Pw"));
-                    setCourse();
-                    setAdmin();
                 } else {
                     ErrorText errors = ErrorText.getInstance();
                     errors.setError("loginFailed");
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(
+            Logger.getLogger(Student.class.getName()).log(
                     Level.SEVERE, "Failure while checking in DB if user exists", ex);
         } finally {
             DBConnectionPool.closeStmt(pstmt);
@@ -432,7 +321,7 @@ public class User {
                     }
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(User.class.getName()).log(
+                Logger.getLogger(Student.class.getName()).log(
                         Level.SEVERE, "Failure while trying to get the id from a user", ex);
             } finally {
                 DBConnectionPool.closeStmt(pstmt);
@@ -448,8 +337,8 @@ public class User {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public User getUserInfos(int userId) {
-        User user = new User();
+    public Student getUserInfos(int userId) {
+        Student user = new Student();
         stmt = "SELECT "
                 + "Person.Pusername,"
                 + "Person.Pvorname,"
@@ -467,7 +356,7 @@ public class User {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(
+            Logger.getLogger(Student.class.getName()).log(
                     Level.SEVERE, "Failure while trying to get user infos from DB", ex);
         } finally {
             DBConnectionPool.closeStmt(pstmt);
@@ -525,7 +414,7 @@ public class User {
                 pstmt.executeUpdate();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(
+            Logger.getLogger(Student.class.getName()).log(
                     Level.SEVERE, "Failure while trying to access user infos from DB", ex);
         } finally {
             DBConnectionPool.closeStmt(pstmt);
