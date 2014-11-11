@@ -1,31 +1,26 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% if (session.getAttribute("session") == "TRUE"){ %>
-<html class="no-js" lang="de">
+<!doctype html>
+<html class="no-js" lang="en">
   <head>
-    <meta charset="ISO-8859-1" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>unidate</title>
+    <title>Foundation | Welcome</title>
     <link rel="stylesheet" href="css/foundation.css" />
-	 <link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/main.css" />
     <script src="js/vendor/modernizr.js"></script>
   </head>
   <body>
-   <div id="container">
-    <header class="row">
-      <div class="small-6 columns">
-        <a class="dashboard" href="dashboard">
-			<h1>unidate</h1>
-			<h2>learning matter assistant</h2>
-		</a>
-      </div>
-	  <div class="small-6 columns">
-		<form id="logout" action="logout.jsp" method="post" accept-charset="UTF-8">
-			<div class="loginfields">
-				<a href="logout.jsp"><input id="logoutbutton" class="button tiny" type="submit" value="Abmelden" /></a>
-			</div>
-		</form>
+    <div class="line">&nbsp;
+	</div>
+	
+    <div class="row">
+      <div class="large-12 columns">
+		<div class="logo">
+			<img src="img/logo_v2_1.jpg" alt="Unidate">
+		</div>
 	  </div>
-    </header>
+    </div>
     <%@include file="../jspf/nav.jspf" %>
     <%} else {
 %>

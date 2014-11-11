@@ -18,7 +18,7 @@ public class DBConnectionPool {
     private static Connection con = null;
     private static DataSource datasource;
     private static javax.sql.DataSource ds;
-    private static final String PATH = "webapps/unidate/WEB-INF/cfg/db_credentials.txt";
+    private static final String PATH = "../webapps/unidate/WEB-INF/cfg/db_credentials.txt";
     private static String driver;
     private static String connection_url;
     private static String db;
@@ -86,8 +86,14 @@ public class DBConnectionPool {
      * Loads necessary parameters for DB connection
      */
     private static void loadParameters() {
-        try {
-            String input = TextFileReader.parse(PATH);
+        //try {
+            //String input = TextFileReader.parse(PATH);
+            String input = "DRIVER¦¦¦¦org.gjt.mm.mysql.Driver\n" +
+"<<>>CONNECTION_URL¦¦¦¦jdbc:mysql://localhost\n" +
+"<<>>DB¦¦¦¦unidate\n" +
+"<<>>USERNAME¦¦¦¦unidate\n" +
+"<<>>PASSWORD¦¦¦¦unidatepw\n" +
+"<<>>PORT¦¦¦¦3306";
             String[] lines = input.split("<<>>");
             for (String line : lines) {
                 String[] fields = line.split("¦¦¦¦");
@@ -113,10 +119,10 @@ public class DBConnectionPool {
                         break;
                 }
             }
-        } catch (IOException ex) {
+       /* } catch (IOException ex) {
             Logger.getLogger(DBConnectionPool.class.getName())
                     .log(Level.SEVERE, "Failure while getting parameters for DB connection", ex);
-        }
+        }*/
     }
 
     /**
