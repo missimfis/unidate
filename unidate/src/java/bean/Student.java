@@ -15,6 +15,8 @@ public class Student {
     private String loginusername;
     private String loginpassword;
     private String stmt;
+    private boolean registrated;
+    private boolean completedProfile;
     private PreparedStatement pstmt;
      
     /**
@@ -27,13 +29,12 @@ public class Student {
       * @param username username of the user
       * @param loginpassword password for the user to log in
       * @param loginusername username for the user ot log in
-      * @param coursename coursename of the user
-      * @param course course id of the course
-      * @param admin boolean if user is admin
+     * @param registrated
+     * @param completedProfile
       */
     public Student(int userId, String firstname, String surname, String email,
             String password, String username, String loginpassword, String loginusername,
-            String coursename, int course, boolean admin){
+            boolean registrated, boolean completedProfile){
         this.id = userId;
         this.firstname = firstname;
         this.surname = surname;
@@ -42,6 +43,8 @@ public class Student {
         this.username = username;
         this.loginusername = loginusername;
         this.loginpassword = loginpassword;
+        this.registrated = registrated;
+        this.completedProfile = completedProfile;
     }
     
     /**
@@ -221,7 +224,7 @@ public class Student {
                 result = false;
             }
             if (result) {
-                stmt = "SELECT * FROM Person WHERE Pusername='" + getUsername() + "'";
+                stmt = "SELECT * FROM student WHERE username='" + getUsername() + "'";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 try (ResultSet resultset = pstmt.executeQuery()) {
                     if (resultset.next()) {
@@ -230,7 +233,7 @@ public class Student {
                         return false;
                     }
                 }
-                stmt = "SELECT * FROM Person WHERE Email='" + getEmail() + "'";
+                stmt = "SELECT * FROM student WHERE email='" + getEmail() + "'";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 try (ResultSet emailResult = pstmt.executeQuery()) {
                     if (emailResult.next()) {
@@ -239,7 +242,7 @@ public class Student {
                         return false;
                     }
                 }
-                stmt = "INSERT INTO Person (Pusername,Pvorname,Pnachname,Email,Pw) VALUES (?,?,?,?,?)";
+                stmt = "INSERT INTO student (username,firstname,name,email,pw) VALUES (?,?,?,?,?)";
                 pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
 
                 pstmt.setString(1, getUsername());
@@ -273,7 +276,7 @@ public class Student {
      */
     public boolean validate() {
         boolean status = false;
-        stmt = "SELECT * from Person WHERE Pusername='" + getLoginusername()
+        stmt = "SELECT * from student WHERE username='" + getLoginusername()
                 + "' AND BINARY Pw='" + getLoginpassword() + "'";
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
@@ -281,12 +284,12 @@ public class Student {
                 status = rs.next();
 
                 if (status) {
-                    setId(rs.getInt("P"));
-                    setUsername(rs.getString("Pusername"));
-                    setFirstname(rs.getString("Pvorname"));
-                    setSurname(rs.getString("Pnachname"));
+                    setId(rs.getInt("s"));
+                    setUsername(rs.getString("username"));
+                    setFirstname(rs.getString("firstname"));
+                    setSurname(rs.getString("name"));
                     setEmail(rs.getString("email"));
-                    setPassword(rs.getString("Pw"));
+                    setPassword(rs.getString("pw"));
                 } else {
                     ErrorText errors = ErrorText.getInstance();
                     errors.setError("loginFailed");
@@ -311,7 +314,7 @@ public class Student {
     public int getIdFromUsername(String username) {
         int result = 0;
         if (!"".equals(username)) {
-            stmt = "SELECT P FROM Person WHERE Pusername='" + username + "'";
+            stmt = "SELECT s FROM student WHERE username='" + username + "'";
             try {
                 pstmt = DBConnectionPool.getStmt(stmt);
                 try (ResultSet rs = pstmt.executeQuery()) {
@@ -340,11 +343,11 @@ public class Student {
     public Student getUserInfos(int userId) {
         Student user = new Student();
         stmt = "SELECT "
-                + "Person.Pusername,"
-                + "Person.Pvorname,"
-                + "Person.Pnachname,"
-                + "Person.Email  "
-                + "FROM Person WHERE Person.P=" + userId + "";
+                + "st.Pusername,"
+                + "st.firstname,"
+                + "st.name,"
+                + "st.email  "
+                + "FROM student st WHERE st.s=" + userId + "";
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -386,28 +389,28 @@ public class Student {
     ) {
         try {
             if (!"".equals(firstname)) {
-                stmt = "UPDATE Person SET Pvorname=? WHERE P=?";
+                stmt = "UPDATE student SET firstname=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, firstname);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(surname)) {
-                stmt = "UPDATE Person SET Pnachname=? WHERE P=?";
+                stmt = "UPDATE student SET name=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, surname);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(email)) {
-                stmt = "UPDATE Person SET Email=? WHERE P=?";
+                stmt = "UPDATE student SET email=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, email);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(password1) && !"".equals(password2)) {
-                stmt = "UPDATE Person SET Pw=? WHERE P=?";
+                stmt = "UPDATE student SET pw=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, password1);
                 pstmt.setInt(2, userId);
@@ -420,5 +423,33 @@ public class Student {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
         }
+    }
+
+    /**
+     * @return the registrated
+     */
+    public boolean isRegistrated() {
+        return registrated;
+    }
+
+    /**
+     * @param registrated the registrated to set
+     */
+    public void setRegistrated(boolean registrated) {
+        this.registrated = registrated;
+    }
+
+    /**
+     * @return the completedProfile
+     */
+    public boolean isCompletedProfile() {
+        return completedProfile;
+    }
+
+    /**
+     * @param completedProfile the completedProfile to set
+     */
+    public void setCompletedProfile(boolean completedProfile) {
+        this.completedProfile = completedProfile;
     }
 }
