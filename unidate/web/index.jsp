@@ -60,7 +60,7 @@
 						  <input type="text" placeholder="E-Mail Adresse" />
 						</div>
 						<div class="small-3 columns">
-						  <span class="postfix">.ch</span>
+						  <span class="postfix round">.ch</span>
 						</div>
 					  </div>
 					</div>
