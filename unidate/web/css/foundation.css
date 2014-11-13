@@ -209,9 +209,8 @@ select {
 	height:50px;
 	border-bottom:3px solid #26569a;}
   
-  .bbigpicture img{
-		height:50px;
-		width:auto;
+  .bigpicture img{
+		margin-bottom:20px;
 	}
   
   .bwhite_big_circle{
@@ -234,6 +233,10 @@ select {
 	border-radius:1000px;
   }
   
+	.mediumpicture img{
+		margin-bottom:20px;
+	}
+ 
   .small-push-0 {
     position: relative;
     left: 0%;
