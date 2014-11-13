@@ -14,20 +14,20 @@
     <div class="row">
 		<div class="large-6 medium-6 columns">
 			<h3>Anmelden</h3>
-                        <form action="loginProcess">
+                        <form action="loginProcess" method="POST">
 				<div class="row">
 					<div class="large-6 medium-6 columns">
 					  <label>Benutzername</label>
-					  <input type="text" placeholder="Benutzername" />
+					  <input type="text" placeholder="Benutzername" name="userName" />
 					</div>
 					  <div class="large-6 medium-6  columns">
 					  <label>Passwort</label>
-					  <input type="password" placeholder="Passwort" />
+					  <input type="password" placeholder="Passwort" name="password"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-					 <a href="#" class="small round button">Anmelden</a><br/> 
+                                            <input type="submit" class="small round button" value="Anmelden"><br/> 
 					</div>
 				</div>
 			 </form>
@@ -35,21 +35,21 @@
 
 		<div class="large-6 medium-6 columns">
 			<h3>Registration</h3>
-			<form action="registrationProcess">
+			<form action="registrationProcess" method="POST">
 				<div class="row">
 					<div class="large-6 medium-6 columns">
 					  <label>Vorname</label>
-					  <input type="text" placeholder="Vorname" />
+					  <input type="text" placeholder="Vorname" name="firstName"/>
 					</div>
 					<div class="large-6 medium-6 columns">
 					  <label>Nachname</label>
-					  <input type="text" placeholder="Nachname" />
+					  <input type="text" placeholder="Nachname" name="surname" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
 					  <label>Benutzername</label>
-					  <input type="text" placeholder="Benutzername" />
+					  <input type="text" placeholder="Benutzername" name="userName" />
 					</div>
 				</div>
 				<div class="row">
@@ -57,7 +57,7 @@
 					  <div class="row collapse">
 						<label>Studenten E-Mail Adresse</label>
 						<div class="small-9 columns">
-						  <input type="text" placeholder="E-Mail Adresse" />
+						  <input type="text" placeholder="E-Mail Adresse" name="email" />
 						</div>
 						<div class="small-3 columns">
 						  <span class="postfix round">.ch</span>
@@ -68,22 +68,22 @@
 				<div class="row">
 					<div class="large-12 columns">
 					  <label>Immatrikulations Nummer (zur Überprüfung, wird danacht nicht weiter verwendet)</label>
-					  <input type="text" placeholder="Immatrikulations Nummer" />
+                                          <input type="text" placeholder="Immatrikulations Nummer"name="matrikelnumber" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-6 medium-6  columns">
 					  <label>Passwort</label>
-					  <input type="password" placeholder="Passwort" />
+                                          <input type="password" placeholder="Passwort" name="password" />
 					</div>
 					<div class="large-6 medium-6 columns">
 					  <label>Passwort Wiederholen</label>
-					  <input type="password" placeholder="Passwort Wiederholen" />
+                                          <input type="password" placeholder="Passwort Wiederholen" name="password_repeated" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-						<a href="#" class="small round button">Registrieren</a><br/> 
+                                            <input type="submit" class="small round button" value="Registrieren" name="register"><br/> 
 					</div>
 				</div>
 			</form>

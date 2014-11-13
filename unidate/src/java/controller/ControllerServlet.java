@@ -58,7 +58,7 @@ public class ControllerServlet extends HttpServlet {
 
         // use RequestDispatcher to forward request internally
         String url = "/WEB-INF" + userPath + ".jsp";
-
+        
         request.getRequestDispatcher(url).forward(request, response);
     }
 

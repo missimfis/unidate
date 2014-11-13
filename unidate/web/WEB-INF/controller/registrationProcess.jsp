@@ -1,19 +1,19 @@
 <%-- controller to register a user --%>
 <%@page import="bean.*"%>  
-<jsp:useBean id="user" class="bean.User" scope="session"/>
-<jsp:setProperty property="*" name="user"/>  
+<jsp:useBean id="student" class="bean.Student" scope="session"/>
+<jsp:setProperty property="*" name="student"/>  
 <%
-    if (user.register()) { // if user registration is successful
+    if (student.register()) { // if user registration is successful
             session.setAttribute("session","TRUE"); 
-            session.setAttribute("userData", user);
-            session.setAttribute("userID", user.getId());
+            session.setAttribute("userData", student);
+            session.setAttribute("userID", student.getId());
             response.sendRedirect("registriert");
     } else { // if user registration fails
-           session.setAttribute("userName", user.getUsername());
-           session.setAttribute("firstName", user.getFirstname());
-           session.setAttribute("surName", user.getSurname());
-           session.setAttribute("email", user.getEmail());
-           session.setAttribute("password", user.getPassword());
+           session.setAttribute("userName", student.getUsername());
+           session.setAttribute("firstName", student.getFirstname());
+           session.setAttribute("surName", student.getSurname());
+           session.setAttribute("email", student.getEmail());
+           session.setAttribute("password", student.getPassword());
            response.sendRedirect("rejectRegistration.jsp");
     }
 %>
