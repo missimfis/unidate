@@ -236,6 +236,10 @@ select {
 	.mediumpicture img{
 		margin-bottom:20px;
 	}
+	
+	.icons{
+		margin-top:80%;
+	}
  
   .small-push-0 {
     position: relative;
