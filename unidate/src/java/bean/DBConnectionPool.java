@@ -52,6 +52,8 @@ public class DBConnectionPool {
     }
     
     public static void initalise() {
+
+        
         testing = false;
         loadParameters();
         PoolProperties p = new PoolProperties();
@@ -88,12 +90,12 @@ public class DBConnectionPool {
     private static void loadParameters() {
         //try {
             //String input = TextFileReader.parse(PATH);
-            String input = "DRIVER¦¦¦¦org.gjt.mm.mysql.Driver\n" +
-"<<>>CONNECTION_URL¦¦¦¦jdbc:mysql://localhost\n" +
-"<<>>DB¦¦¦¦unidate\n" +
-"<<>>USERNAME¦¦¦¦unidate\n" +
-"<<>>PASSWORD¦¦¦¦unidatepw\n" +
-"<<>>PORT¦¦¦¦3306";
+            String input =  "DRIVER¦¦¦¦org.gjt.mm.mysql.Driver" +
+                            "<<>>CONNECTION_URL¦¦¦¦jdbc:mysql://localhost" +
+                            "<<>>DB¦¦¦¦unidate" +
+                            "<<>>USERNAME¦¦¦¦root" +
+                            "<<>>PASSWORD¦¦¦¦root" +
+                            "<<>>PORT¦¦¦¦3306";
             String[] lines = input.split("<<>>");
             for (String line : lines) {
                 String[] fields = line.split("¦¦¦¦");
