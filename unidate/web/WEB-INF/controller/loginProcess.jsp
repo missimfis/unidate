@@ -1,9 +1,9 @@
 <%@page import="bean.*"%>
 <%@page import="java.util.ArrayList"%>
-<jsp:useBean id="user" class="bean.User" scope="session"/> 
+<jsp:useBean id="student" class="bean.Student" scope="session"/> 
 
 
-<jsp:setProperty property="*" name="user"/>  
+<jsp:setProperty property="*" name="student"/>  
 
 <!-- If the userinfos are valid the system checks whether open reminders exist or not.
      It will generate new reminders. When the userinfos are not valid the user is 
@@ -11,12 +11,10 @@
 -->
 
 <%
-    if (user.validate()) { // checks if user login is valid
+    if (student.validate()) { // checks if user login is valid
         session.setAttribute("session", "TRUE");
-        session.setAttribute("userData", user);
-        session.setAttribute("userID", user.getId());
-        
-        reminder.checkAndGenerateReminder(event, message);             
+        session.setAttribute("userData", student);
+        session.setAttribute("userID", student.getId());           
         response.sendRedirect("dashboard");
 } else {
         response.sendRedirect("rejectLogin.jsp");
