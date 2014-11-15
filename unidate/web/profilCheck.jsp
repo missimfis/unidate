@@ -28,9 +28,9 @@
 %>
 
 
-<%--
+<%
    // New location to be redirected
    String site = new String("http://localhost:8084/unidate/profil_bearbeiten.jsp");
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", site); 
---%>
+%>
