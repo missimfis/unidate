@@ -5,10 +5,32 @@
  */
 package bean;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author missimfis
  */
 public class Image {
-    
+
+    private String imagepath;
+    private String description;
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean upload(HttpServletRequest request) {
+        return true;
+    }
 }

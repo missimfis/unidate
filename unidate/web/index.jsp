@@ -39,7 +39,7 @@
 				<div class="row">
 					<div class="large-6 medium-6 columns">
 					  <label>Vorname</label>
-					  <input type="text" placeholder="Vorname" name="firstName"/>
+					  <input type="text" placeholder="Vorname" name="firstname"/>
 					</div>
 					<div class="large-6 medium-6 columns">
 					  <label>Nachname</label>
@@ -49,7 +49,7 @@
 				<div class="row">
 					<div class="large-12 columns">
 					  <label>Benutzername</label>
-					  <input type="text" placeholder="Benutzername" name="userName" />
+					  <input type="text" placeholder="Benutzername" name="username" />
 					</div>
 				</div>
 				<div class="row">
@@ -83,7 +83,7 @@
 				</div>
 				<div class="row">
 					<div class="large-12 columns">
-                                            <input type="submit" class="small round button" value="Registrieren" name="register"><br/> 
+                                            <input type="submit" class="small round button" value="Registrieren" /><br/> 
 					</div>
 				</div>
 			</form>

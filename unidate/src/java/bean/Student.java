@@ -1,15 +1,11 @@
 package bean;
 
 import java.sql.*;
-import static java.sql.JDBCType.NULL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Student {
+public class Student extends User {
 
-    private int id;
-    private String firstname;
-    private String surname;
     private String name;
     private String department;
     private String studium;
@@ -23,30 +19,31 @@ public class Student {
     private boolean registrated;
     private boolean completedProfile;
     private PreparedStatement pstmt;
-     
+
     /**
-      *Creates a new User Object 
-      * @param userId identification id of the user
-      * @param firstname firstname of the user
-      * @param surname surname of the user
-      * @param name name of the user
-      * @param department
-      * @param studium
-      * @param about
-      * @param email email of the user
-      * @param password pw of the user
-      * @param username username of the user
-      * @param loginpassword password for the user to log in
-      * @param loginusername username for the user ot log in
-      * @param registrated
-      * @param completedProfile
-      */
-    public Student(int userId,String firstname, String surname, String name, String department,String studium,String about, String email,
+     * Creates a new User Object
+     *
+     * @param userId identification id of the user
+     * @param firstname firstname of the user
+     * @param surname surname of the user
+     * @param name name of the user
+     * @param department
+     * @param studium
+     * @param about
+     * @param email email of the user
+     * @param password pw of the user
+     * @param username username of the user
+     * @param loginpassword password for the user to log in
+     * @param loginusername username for the user ot log in
+     * @param registrated
+     * @param completedProfile
+     */
+    public Student(int userId, String firstname, String surname, String name, String department, String studium, String about, String email,
             String password, String username, String loginpassword, String loginusername,
-            boolean registrated, boolean completedProfile){
-        this.id = userId;
-        this.firstname = firstname;
-        this.surname = surname;
+            boolean registrated, boolean completedProfile) {
+        super.setId(userId);
+        super.setFirstname(firstname);
+        super.setSurname(surname);
         this.name = name;
         this.department = department;
         this.studium = studium;
@@ -59,67 +56,13 @@ public class Student {
         this.registrated = registrated;
         this.completedProfile = completedProfile;
     }
-    
+
     /**
      * empty constructor of new user. Creates new User Object
      */
-    public Student(){  
+    public Student() {
+        super();
     }
-    
-    /**
-     * Returns the ID of the user
-     *
-     * @return ID
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Set the ID for an User
-     *
-     * @param id of the User
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * Get the Firstname of an user
-     *
-     * @return Firstname
-     */
-    public String getFirstname() {
-        return firstname;
-    }
-
-    /**
-     * Set a Firstname of a User
-     *
-     * @param firstname
-     */
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    /**
-     * Get Surname of the User
-     *
-     * @return Surname
-     */
-    public String getSurname() {
-        return surname;
-    }
-
-    /**
-     * Set the Surname of an User
-     *
-     * @param surname
-     */
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
 
     /**
      * Get Surname of the User
@@ -129,18 +72,17 @@ public class Student {
     public String getName() {
         return name;
     }
-            
-    
+
     /**
      * Set the Surname of an User
      *
      * @param name
      */
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
-    
-        /**
+
+    /**
      * Get Surname of the User
      *
      * @return Surname
@@ -148,18 +90,17 @@ public class Student {
     public String getDepartment() {
         return department;
     }
-            
-    
+
     /**
      * Set the Surname of an User
      *
      * @param department
      */
-    public void setDepartment(String department){
+    public void setDepartment(String department) {
         this.department = department;
     }
-    
-        /**
+
+    /**
      * Get Surname of the User
      *
      * @return studium
@@ -167,18 +108,17 @@ public class Student {
     public String getStudium() {
         return studium;
     }
-            
-    
+
     /**
      * Set the Surname of an User
      *
      * @param studium
      */
-    public void setStudium(String studium){
+    public void setStudium(String studium) {
         this.studium = studium;
     }
-    
-            /**
+
+    /**
      * Get Surname of the User
      *
      * @return about
@@ -186,17 +126,16 @@ public class Student {
     public String getAbout() {
         return about;
     }
-            
-    
+
     /**
      * Set the Surname of an User
      *
      * @param about
      */
-    public void setAbout(String about){
+    public void setAbout(String about) {
         this.about = about;
     }
-    
+
     /**
      * Get email of an User
      *
@@ -288,114 +227,6 @@ public class Student {
     }
 
     /**
-     * Checks whether the registration was correct or not. If the person is
-     * already registred the return values is false. If the person was added to
-     * the database the return value is true.
-     *
-     * @return success of registration process
-     */
-    public boolean register() {
-        boolean result = true;
-        try {
-            FormValidator validator = FormValidator.getInstance();
-            if (!validator.checkString(getUsername(), "userName")) {
-                result = false;
-            }
-            if (!validator.checkString(getFirstname(), "firstName")) {
-                result = false;
-            }
-            if (!validator.checkString(getSurname(), "surName")) {
-                result = false;
-            }
-            if (!validator.checkString(getPassword(), "password")) {
-                result = false;
-            }
-            if (!validator.checkEmail(getEmail(), "email")) {
-                result = false;
-            }
-            if (result) {
-                stmt = "SELECT * FROM student WHERE username='" + getUsername() + "'";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                try (ResultSet resultset = pstmt.executeQuery()) {
-                    if (resultset.next()) {
-                        ErrorText errors = ErrorText.getInstance();
-                        errors.setError("usernameExistsAlready");
-                        return false;
-                    }
-                }
-                stmt = "SELECT * FROM student WHERE email='" + getEmail() + "'";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                try (ResultSet emailResult = pstmt.executeQuery()) {
-                    if (emailResult.next()) {
-                        ErrorText errors = ErrorText.getInstance();
-                        errors.setError("emailExistsAlready");
-                        return false;
-                    }
-                }
-                stmt = "INSERT INTO student (username,firstname,name,email,pw) VALUES (?,?,?,?,?)";
-                pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
-
-                pstmt.setString(1, getUsername());
-                pstmt.setString(2, getFirstname());
-                pstmt.setString(3, getSurname());
-                pstmt.setString(4, getEmail());
-                pstmt.setString(5, getPassword());
-
-                pstmt.executeUpdate();
-                try (ResultSet rs = pstmt.getGeneratedKeys()) {
-                    if (rs != null && rs.next()) {
-                        setId(rs.getInt(1));
-                    }
-                }
-                return true;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to register new User", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
-        return false;
-    }
-
-    /**
-     * Sets the user variables.
-     *
-     * @return Success of the validation process
-     */
-    public boolean validate() {
-        boolean status = false;
-        stmt = "SELECT * from student WHERE username='" + getLoginusername()
-                + "' AND BINARY Pw='" + getLoginpassword() + "'";
-        try {
-            pstmt = DBConnectionPool.getStmt(stmt);
-            try (ResultSet rs = pstmt.executeQuery(stmt)) {
-                status = rs.next();
-
-                if (status) {
-                    setId(rs.getInt("s"));
-                    setUsername(rs.getString("username"));
-                    setFirstname(rs.getString("firstname"));
-                    setSurname(rs.getString("name"));
-                    setEmail(rs.getString("email"));
-                    setPassword(rs.getString("pw"));
-                } else {
-                    ErrorText errors = ErrorText.getInstance();
-                    errors.setError("loginFailed");
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while checking in DB if user exists", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
-        return status;
-    }
-
-    /**
      * Returns the identity number of the User with a given username.
      *
      * @return userId
@@ -457,10 +288,7 @@ public class Student {
         }
         return user;
     }
-    
-    
-    
-   
+
     /**
      * Edits the user data in the database but only if the input is not an empty
      * string or null. Both passwords have to be equal.
@@ -518,9 +346,9 @@ public class Student {
         }
     }
 
-     /**
+    /**
      * Edits the user data in the database but only if the input is not an empty
-     * string or null. 
+     * string or null.
      *
      * @param userId
      * @param name
@@ -534,7 +362,6 @@ public class Student {
             String department,
             String studium,
             String about
-
     ) {
         try {
             if (!"".equals(name)) {
@@ -572,9 +399,8 @@ public class Student {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
         }
-    }   
- 
-     
+    }
+
     /**
      * Returns the UserInfos from the database
      *
@@ -582,16 +408,15 @@ public class Student {
      * @return an user object.
      */
     public String getDBName(int userId) {
-         String dbName = null;
+        String dbName = null;
         stmt = "SELECT name FROM student WHERE personID=" + userId;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
-  
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    
-                   dbName = rs.getString("name");
+
+                    dbName = rs.getString("name");
                 }
             }
         } catch (SQLException ex) {
@@ -601,27 +426,26 @@ public class Student {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
         }
-        
+
         return dbName;
     }
-    
-   /**
+
+    /**
      * Returns the UserInfos from the database
      *
      * @param userId to identify the relevant person
      * @return an user object.
      */
     public String getDBDepartment(int userId) {
-         String dbDepartment = null;
+        String dbDepartment = null;
         stmt = "SELECT department FROM student WHERE personID=" + userId;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
-  
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    
-                   dbDepartment = rs.getString("department");
+
+                    dbDepartment = rs.getString("department");
                 }
             }
         } catch (SQLException ex) {
@@ -631,27 +455,26 @@ public class Student {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
         }
-        
+
         return dbDepartment;
     }
-        
-     /**
+
+    /**
      * Returns the UserInfos from the database
      *
      * @param userId to identify the relevant person
      * @return an user object.
      */
     public String getDBStudium(int userId) {
-         String dbStudium = null;
+        String dbStudium = null;
         stmt = "SELECT studium FROM student WHERE personID=" + userId;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
-  
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    
-                   dbStudium = rs.getString("studium");
+
+                    dbStudium = rs.getString("studium");
                 }
             }
         } catch (SQLException ex) {
@@ -661,27 +484,26 @@ public class Student {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
         }
-        
+
         return dbStudium;
     }
-    
-            /**
+
+    /**
      * Returns the UserInfos from the database
      *
      * @param userId to identify the relevant person
      * @return an user object.
      */
     public String getDBAbout(int userId) {
-         String dbAbout = "asdsad";
+        String dbAbout = "asdsad";
         stmt = "SELECT about FROM student WHERE personID=" + userId;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
-  
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    
-                   dbAbout = rs.getString("about");
+
+                    dbAbout = rs.getString("about");
                 }
             }
         } catch (SQLException ex) {
@@ -694,7 +516,7 @@ public class Student {
 
         return dbAbout;
     }
-    
+
     /**
      * @return the registrated
      */
@@ -721,5 +543,17 @@ public class Student {
      */
     public void setCompletedProfile(boolean completedProfile) {
         this.completedProfile = completedProfile;
+    }
+
+    public boolean checkNewMesage() {
+        return true;
+    }
+
+    public boolean checkNewLikes() {
+        return true;
+    }
+
+    public boolean blockStudent() {
+        return true;
     }
 }
