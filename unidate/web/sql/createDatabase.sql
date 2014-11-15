@@ -1,1 +1,1 @@
-CREATE DATABASE dbname;
+CREATE DATABASE unidate;
