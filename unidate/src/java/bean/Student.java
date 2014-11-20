@@ -16,6 +16,7 @@ public class Student extends User {
     private String loginusername;
     private String loginpassword;
     private String stmt;
+    private Date birthday;
     private boolean registrated;
     private boolean completedProfile;
     private PreparedStatement pstmt;
@@ -555,5 +556,19 @@ public class Student extends User {
 
     public boolean blockStudent() {
         return true;
+    }
+
+    /**
+     * @return the birthday
+     */
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    /**
+     * @param birthday the birthday to set
+     */
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }

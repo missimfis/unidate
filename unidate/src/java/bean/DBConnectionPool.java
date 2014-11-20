@@ -35,8 +35,8 @@ public class DBConnectionPool {
         } catch (SQLException ex) {
             Logger.getLogger(DBConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String cmd1 = "mysql --user=" + username + " --password=" + password + " <web\\" + File.separator + "sql\\" + File.separator + db + ".sql";
-        String cmd2 = "mysql --user=" + username + " --password=" + password + " " + db + " <web\\" + File.separator + "sql\\" + File.separator + "inserts.sql";
+        String cmd1 = "mysql --user=" + username + " --password=" + password + " <web\\" + File.separator + "sql\\" + File.separator + "createDatabase.sql";
+        String cmd2 = "mysql --user=" + username + " --password=" + password + " " + db + " <web\\" + File.separator + "sql\\" + File.separator + "insertsForDatabse.sql";
 
         try {
             Process child = Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"" + cmd1 + " && " + cmd2 + " && exit");
@@ -54,7 +54,7 @@ public class DBConnectionPool {
     public static void initalise() {
 
         
-        testing = false;
+        testing = true;
         loadParameters();
         PoolProperties p = new PoolProperties();
         p.setUrl(connection_url + ":" + port + "/" + db);
