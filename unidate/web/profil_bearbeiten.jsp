@@ -5,6 +5,16 @@
 <% String department = userinfo.getDBDepartment(1);%>
 <% String studium = userinfo.getDBStudium(1);%>
 <% String about = userinfo.getDBAbout(1);%>
+<%@ page import="java.util.*" %>
+
+
+<script>
+// this function must be defined in the global scope
+window.fadeIn = function(obj) {
+    $(obj).fadeIn(1000);
+}?
+</script>
+  
 
 
 <!doctype html>
@@ -19,6 +29,17 @@
   </head>
 
   <body>
+ <%--ShowImage image = new ShowImage();--%>
+ <%Image image = new Image(); %>
+<% 
+    if(request.getParameter("submit") != null) {
+%>
+    <%String value = request.getParameter("submit"); 
+    image.deleteImage(value);%>
+<%
+    }
+%> 
+      
     <div class="line">&nbsp;
 	</div>
 	
@@ -48,7 +69,7 @@
     <div class="row">
       <div class="large-12 columns">
 	        <h2>Profil</h2>
-	        <p>Herzlich Willkommen auf unidate. Die Registration ist abgeschlossen, bevor jedoch begonnen werden kann. Bitten Wir dich ein paar Einstellungen zu machen. Damit wir dir erste VorschlÃ¤ge senden kÃ¶nnen.</p>
+	        <p>Herzlich Willkommen auf unidate. Die Registration ist abgeschlossen, bevor jedoch begonnen werden kann. Bitten Wir dich ein paar Einstellungen zu machen. Damit wir dir erste Vorschläge senden können.</p>
       </div>
     </div>
 	
@@ -74,14 +95,14 @@
 					<div class="large-12 medium-12 columns">
 					  <label>Department</label>
 					  <select class="radius" name="department">
-						<option value="Angewandte Linguistik">Angewandte Linguistik</option>
-						<option value="Angewandte Psychologie">Angewandte Psychologie</option>
-						<option value="rchitektur, Gestaltung und Bauinginieurwesen">Architektur, Gestaltung und Bauinginieurwesen</option>
-						<option value="Gesundheit">Gesundheit</option>
-						<option value="School of Engineering">School of Engineering</option>
-						<option value="Life Sciences und Facility Management">Life Sciences und Facility Management</option>
-						<option value="Soziale Arbeit">Soziale Arbeit</option>
-						<option value="School of Management and Law">School of Management and Law</option>
+						<option <%if ("Angewandte Linguistik".equals(department)) {%> selected="selected" <%} %> value="Angewandte Linguistik">Angewandte Linguistik</option>
+						<option <%if ("Angewandte Psychologie".equals(department)) {%> selected="selected" <%} %> value="Angewandte Psychologie">Angewandte Psychologie</option>
+						<option <%if ("Architektur, Gestaltung und Bauinginieurwesen".equals(department)) {%> selected="selected" <%} %> value="Architektur, Gestaltung und Bauinginieurwesen">Architektur, Gestaltung und Bauinginieurwesen</option>
+						<option <%if ("Gesundheit".equals(department)) {%> selected="selected" <%} %> value="Gesundheit">Gesundheit</option>
+						<option <%if ("School of Engineering".equals(department)) {%> selected="selected" <%} %> value="School of Engineering">School of Engineering</option>
+						<option <%if ("Life Sciences und Facility Management".equals(department)) {%> selected="selected" <%} %> value="Life Sciences und Facility Management">Life Sciences und Facility Management</option>
+						<option <%if ("Soziale Arbeit".equals(department)) {%> selected="selected" <%} %> value="Soziale Arbeit">Soziale Arbeit</option>
+						<option <%if ("School of Management and Law".equals(department)) {%> selected="selected" <%} %> value="School of Management and Law">School of Management and Law</option>
 					  </select>
 					</div>
 				</div>
@@ -110,21 +131,28 @@
 	  </div>
 	</div>   
 	
-	<div class="row">
-      <div class="large-2 medium-2 columns">
-	    <div class="mediumpicture">
-			<img src="img/surfen.jpg" alt="profile">
-			<div class="white_medium_circle">
-			</div>
-			<div class="blue_medium_circle">
-			</div>
-		</div>
-      </div>
-	  <div class="large-2 medium-2 columns">
-	     <div class="mediumepicture right">
-			<img src="icons/plus13.svg" alt="profile">
-		</div>
-      </div>
+	<div class="row">   
+            <%   
+                image.prepareHTML();
+                if(image.getOutput()!=null){
+                    out.println(image.getOutput());
+                }
+                
+            %>               
+        <div class="large-2 medium-2 columns">
+            <div class="mediumepicture right">
+                <%--<img src="icons/plus13.svg" alt="profile">--%>
+                <form method="post" action="Image" enctype="multipart/form-data" >
+                    <div class="image-upload">
+                        <label for="file-input">
+                            <img src="icons/plus13.svg" style="margin-top:45px;" />
+                        </label>
+                        <input style=" display: none;"  id="file-input" type="file" name="file" accept="image/x-png, image/gif, image/jpeg" onchange="this.form.submit();"/>
+                    </div> 
+                </form>
+            </div>
+        </div>
+                
 	  <div class="large-2 medium-2 columns">
 	    &nbsp;
       </div>

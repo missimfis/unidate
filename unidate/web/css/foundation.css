@@ -235,6 +235,8 @@ select {
   
 	.mediumpicture img{
 		margin-bottom:20px;
+                height:150px;
+                width:150px;
 	}
 	
 	.icons{
