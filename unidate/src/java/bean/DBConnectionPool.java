@@ -52,9 +52,7 @@ public class DBConnectionPool {
     }
     
     public static void initalise() {
-
-        
-        testing = true;
+        testing = false;
         loadParameters();
         PoolProperties p = new PoolProperties();
         p.setUrl(connection_url + ":" + port + "/" + db);

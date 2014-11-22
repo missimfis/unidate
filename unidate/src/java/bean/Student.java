@@ -406,7 +406,6 @@ public class Student extends User {
      * Returns the UserInfos from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
      */
     public void prepareUserProfile(int userId) {
 

@@ -34,7 +34,7 @@ public class FormValidator {
     public boolean checkEmail(String email, String type) {
         ErrorText errors = ErrorText.getInstance();
         if (email != null && email.length() > 0) {
-            Pattern p = Pattern.compile("^[a-zA-Z0-9]+((\\.|!|_|\\+|\\-)[a-zA-Z0-9]+)*@([a-zA-Z0-9]+(\\.|\\-))+[a-zA-Z0-9]{2,}$");
+            Pattern p = Pattern.compile("^[a-zA-Z0-9]+((\\.|!|_|\\+|\\-)[a-zA-Z0-9]+)*@students.zhaw$");
             Matcher m = p.matcher(email);
             if (!m.matches()) {
                 errors.setError(type);

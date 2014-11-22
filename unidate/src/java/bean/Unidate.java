@@ -67,7 +67,7 @@ public class Unidate {
                         return false;
                     }
                 }
-                stmt = "INSERT INTO student (username,firstname,name,email,pw) VALUES (?,?,?,?,?)";
+                stmt = "INSERT INTO student (username,firstname,lastname,email,password) VALUES (?,?,?,?,?)";
                 pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
 
                 pstmt.setString(1, student.getUsername());
@@ -85,7 +85,7 @@ public class Unidate {
                 return true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
+            Logger.getLogger(Unidate.class.getName()).log(
                     Level.SEVERE, "Failure while trying to register new User", ex);
         } finally {
             DBConnectionPool.closeStmt(pstmt);
