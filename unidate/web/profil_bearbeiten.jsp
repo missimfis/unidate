@@ -95,14 +95,14 @@ window.fadeIn = function(obj) {
 					<div class="large-12 medium-12 columns">
 					  <label>Department</label>
 					  <select class="radius" name="department">
-						<option <%if ("Angewandte Linguistik".equals(department)) {%> selected="selected" <%} %> value="Angewandte Linguistik">Angewandte Linguistik</option>
-						<option <%if ("Angewandte Psychologie".equals(department)) {%> selected="selected" <%} %> value="Angewandte Psychologie">Angewandte Psychologie</option>
-						<option <%if ("Architektur, Gestaltung und Bauinginieurwesen".equals(department)) {%> selected="selected" <%} %> value="Architektur, Gestaltung und Bauinginieurwesen">Architektur, Gestaltung und Bauinginieurwesen</option>
-						<option <%if ("Gesundheit".equals(department)) {%> selected="selected" <%} %> value="Gesundheit">Gesundheit</option>
-						<option <%if ("School of Engineering".equals(department)) {%> selected="selected" <%} %> value="School of Engineering">School of Engineering</option>
-						<option <%if ("Life Sciences und Facility Management".equals(department)) {%> selected="selected" <%} %> value="Life Sciences und Facility Management">Life Sciences und Facility Management</option>
-						<option <%if ("Soziale Arbeit".equals(department)) {%> selected="selected" <%} %> value="Soziale Arbeit">Soziale Arbeit</option>
-						<option <%if ("School of Management and Law".equals(department)) {%> selected="selected" <%} %> value="School of Management and Law">School of Management and Law</option>
+						<option <%if ("Angewandte Linguistik".equals(department)) {%> selected="selected" <%}%> value="Angewandte Linguistik">Angewandte Linguistik</option>
+						<option <%if ("Angewandte Psychologie".equals(department)) {%> selected="selected" <%}%> value="Angewandte Psychologie">Angewandte Psychologie</option>
+						<option <%if ("Architektur, Gestaltung und Bauinginieurwesen".equals(department)) {%>selected="selected"<%}%>  value="Architektur, Gestaltung und Bauinginieurwesen">Architektur, Gestaltung und Bauinginieurwesen</option>
+						<option <%if ("Gesundheit".equals(department)) {%> selected="selected" <%}%> value="Gesundheit">Gesundheit</option>
+						<option <%if ("School of Engineering".equals(department)) {%> selected="selected" <%}%> value="School of Engineering">School of Engineering</option>
+						<option <%if ("Life Sciences und Facility Management".equals(department)) {%> selected="selected"<%}%>  value="Life Sciences und Facility Management">Life Sciences und Facility Management</option>
+						<option <%if ("Soziale Arbeit".equals(department)) {%> selected="selected" <%}%>  value="Soziale Arbeit">Soziale Arbeit</option>
+						<option <%if ("School of Management and Law".equals(department)) {%> selected="selected" <%}%>  value="School of Management and Law">School of Management and Law</option>
 					  </select>
 					</div>
 				</div>
@@ -171,6 +171,15 @@ window.fadeIn = function(obj) {
     <script src="js/foundation.min.js"></script>
     <script>
       $(document).foundation();
+    </script>
+    <script>
+      $(document).foundation();
+      $('.delete').click(function(){
+         var r = confirm('sicher löschen?');
+         if(r!=true){
+             return false;
+         }
+      });
     </script>
   </body>
 </html>

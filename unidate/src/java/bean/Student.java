@@ -19,6 +19,7 @@ public class Student extends User {
     private Date birthday;
     private boolean registrated;
     private boolean completedProfile;
+    private UserProfile profile;
     private PreparedStatement pstmt;
 
     /**
@@ -56,6 +57,7 @@ public class Student extends User {
         this.loginpassword = loginpassword;
         this.registrated = registrated;
         this.completedProfile = completedProfile;
+        profile = new UserProfile();
     }
 
     /**
@@ -63,6 +65,7 @@ public class Student extends User {
      */
     public Student() {
         super();
+        profile = new UserProfile();
     }
 
     /**
@@ -311,28 +314,28 @@ public class Student extends User {
     ) {
         try {
             if (!"".equals(firstname)) {
-                stmt = "UPDATE student SET firstname=? WHERE s=?";
+                stmt = "UPDATE skills SET firstname=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, firstname);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(surname)) {
-                stmt = "UPDATE student SET name=? WHERE s=?";
+                stmt = "UPDATE skills SET name=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, surname);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(email)) {
-                stmt = "UPDATE student SET email=? WHERE s=?";
+                stmt = "UPDATE skills SET email=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, email);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(password1) && !"".equals(password2)) {
-                stmt = "UPDATE student SET pw=? WHERE s=?";
+                stmt = "UPDATE skills SET pw=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, password1);
                 pstmt.setInt(2, userId);
@@ -366,28 +369,28 @@ public class Student extends User {
     ) {
         try {
             if (!"".equals(name)) {
-                stmt = "UPDATE student SET name=? WHERE personID=?";
+                stmt = "UPDATE skills SET name=? WHERE personID=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, name);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(department)) {
-                stmt = "UPDATE student SET department=? WHERE personID=?";
+                stmt = "UPDATE skills SET department=? WHERE personID=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, department);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(studium)) {
-                stmt = "UPDATE student SET studium=? WHERE personID=?";
+                stmt = "UPDATE skills SET studium=? WHERE personID=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, studium);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(about) && !"".equals(about)) {
-                stmt = "UPDATE student SET about=? WHERE personID=?";
+                stmt = "UPDATE skills SET about=? WHERE personID=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, about);
                 pstmt.setInt(2, userId);
@@ -408,59 +411,17 @@ public class Student extends User {
      * @param userId to identify the relevant person
      */
     public void prepareUserProfile(int userId) {
-
-
-        stmt = "SELECT name, department, studium, about FROM student WHERE personID=" + userId;
-        try {
-            pstmt = DBConnectionPool.getStmt(stmt);
-  
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    
-                   name = rs.getString("name");
-                   department = rs.getString("name");
-                   studium = rs.getString("name");
-                   about = rs.getString("name");
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
-
+        profile.editUserProfile(userId, name, department, studium, about);
     } 
 
     /**
-     * Returns the UserInfos from the database
+     * Returns the UserInfos name from the database
      *
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBName(int userId) {
-        String dbName = null;
-        stmt = "SELECT name FROM student WHERE personID=" + userId;
-        try {
-            pstmt = DBConnectionPool.getStmt(stmt);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-
-                    dbName = rs.getString("name");
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
-
-        return dbName;
+    public String getDBName(int userId) {       
+        return profile.getDBName(userId);
     }
 
     /**
@@ -470,84 +431,29 @@ public class Student extends User {
      * @return an user object.
      */
     public String getDBDepartment(int userId) {
-        String dbDepartment = null;
-        stmt = "SELECT department FROM student WHERE personID=" + userId;
-        try {
-            pstmt = DBConnectionPool.getStmt(stmt);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-
-                    dbDepartment = rs.getString("department");
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
-
-        return dbDepartment;
+        return profile.getDBDepartment(userId);
     }
 
     /**
-     * Returns the UserInfos from the database
+     * Returns the UserInfos studium from the database
      *
      * @param userId to identify the relevant person
      * @return an user object.
      */
     public String getDBStudium(int userId) {
-        String dbStudium = null;
-        stmt = "SELECT studium FROM student WHERE personID=" + userId;
-        try {
-            pstmt = DBConnectionPool.getStmt(stmt);
 
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
 
-                    dbStudium = rs.getString("studium");
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
-
-        return dbStudium;
+        return profile.getDBStudium(userId);
     }
 
     /**
-     * Returns the UserInfos from the database
+     * Returns the UserInfos about from the database
      *
      * @param userId to identify the relevant person
      * @return an user object.
      */
     public String getDBAbout(int userId) {
-        String dbAbout = "asdsad";
-        stmt = "SELECT about FROM student WHERE personID=" + userId;
-        try {
-            pstmt = DBConnectionPool.getStmt(stmt);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-
-                    dbAbout = rs.getString("about");
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
-
-        return dbAbout;
+        return profile.getDBAbout(userId);
     }
 
     /**
