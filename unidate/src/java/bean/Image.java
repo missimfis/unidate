@@ -3,17 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bean;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  *
  * @author thomas
  */
 
+package bean;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -31,10 +36,10 @@ public class Image extends HttpServlet{
     private String imagepath;
     private String description;
     private String fileNameOutput;
-    private String path;
     private String relativePath;
     private String webLayoutBegin;
     private String webLayoutEnd;
+    private String personID;
 
 
     // initialize html text
@@ -64,28 +69,39 @@ public class Image extends HttpServlet{
      * the web application directory.
      */
     private static final String SAVE_DIR = "uploadFiles";
-
+    private final String path = "H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles\\";
     /**
      * handles file upload
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      */
+    @Override
     protected void doPost(HttpServletRequest request,
                     HttpServletResponse response) throws ServletException, IOException {
             // gets absolute path of the web application
             String appPath = request.getServletContext().getRealPath("");
             // constructs path of the directory to save uploaded file
-            String savePath = appPath + File.separator + SAVE_DIR;
-
+            //String savePath = appPath + File.separator + SAVE_DIR;      
+             
+            
+            //createDirectory(savePath);   
+            
+            // read id from txt to manage folders
+            readTXT();          
+            String savePath2 = appPath + File.separator + SAVE_DIR + File.separator + personID;  
             // creates the save directory if it does not exists
-            createDirectory(savePath);   
+            createDirectory(savePath2);
 
             for (Part part : request.getParts()) {
                     String fileName = extractFileName(part);
-                    part.write(savePath + File.separator + fileName);
+                    part.write(savePath2 + File.separator + fileName);
             }
             //Redirect to same page
-            String site = new String("http://localhost:8084/unidate/profil_bearbeiten.jsp");
+            String site = "http://localhost:8084/unidate/profil_bearbeiten.jsp";
 
-            response.setStatus(response.SC_MOVED_TEMPORARILY);
+            response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
             response.setHeader("Location", site);                   
     }
 
@@ -105,6 +121,7 @@ public class Image extends HttpServlet{
 
     /**
      * Create directory if not exists
+     * @param savePath
      */
     public void createDirectory(String savePath) {
     // creates the save directory if it does not exists
@@ -114,30 +131,83 @@ public class Image extends HttpServlet{
             }
     }
     
+        /**
+     * create txt
+     * @param id
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.UnsupportedEncodingException
+     */
+    public void createTXT(int id) throws FileNotFoundException, UnsupportedEncodingException {
+        
+        try {
 
+        String content = Integer.toString(id);
+
+        File file = new File(path+"\\id.txt");
+
+        // if file doesnt exists, then create it
+        if (!file.exists()) {
+                file.createNewFile();
+        }
+
+        FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            try (BufferedWriter bw = new BufferedWriter(fw)) {
+                bw.write(content);
+            }
+
+        System.out.println("Done");
+
+        } catch (IOException e) {
+        }
+	
+    }
+    
+    public void readTXT(){
+    BufferedReader br = null;
+
+        try {
+                                                       
+                String sCurrentLine;
+
+                br = new BufferedReader(new FileReader(path+"\\id.txt"));
+
+                while ((sCurrentLine = br.readLine()) != null) {
+                        //System.out.println(sCurrentLine);
+                        personID=sCurrentLine;
+                }
+
+        } catch (IOException e) {
+        } finally {
+                try {
+                        if (br != null)br.close();
+                } catch (IOException ex) {
+                }
+        }
+    }
             
 
-    public void prepareHTML(){
-        path = "H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles";
-        relativePath = "uploadFiles/";  
+    public void prepareHTML(int id){
+        
+        //path = "H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles\\"+ id;
+        relativePath = "uploadFiles\\" + id +"\\";  
         webLayoutBegin = "<div class=\"large-2 medium-2 columns\"><div class=\"mediumpicture\">";
         webLayoutEnd = "<div class=\"white_medium_circle\"></div><div class=\"blue_medium_circle\"></div></div></div>";
-        //this.submitButton = "\"<FORM NAME=\"form2\" METHOD=\"POST\"><INPUT TYPE=\"SUBMIT\" NAME=\"submit\" VALUE=\"Button 2\"></FORM>\"";
+        createDirectory(path + id);
         
         File f;
-        f = new File(path);
+        f = new File(path + id);    
         File[] list = f.listFiles();    
+        
+        
         int count= 1;
         for (File jpg : list) {
             
             String fileName = jpg.getName();
-            //fileNameOutput = "<img src=\"" + relativePath + fileName + "\""+ "width=\"114\"" + "height=\"110\"" + ">" + "<br>" + fileNameOutput;
             if(fileNameOutput != null && fileName != null){
-                //fileNameOutput = "<img src=\"" + relativePath + fileName + "\""+ "width=\"150\"" + "height=\"100\"" + ">" + fileNameOutput;
                 fileNameOutput = fileNameOutput 
                         + webLayoutBegin 
                         + "<FORM NAME=\"form"+count+ "\" METHOD=\"POST\">"
-                        + "<INPUT TYPE=\"IMAGE\" src=\"img\\delete.png\" width=\"40px\" NAME=\"submit\" VALUE=\""+fileName+"\">"
+                        + "<INPUT class=\"delete\" TYPE=\"IMAGE\" src=\"img\\delete.png\" width=\"40px\" NAME=\"submit\" VALUE=\""+fileName+"\">"
                         + "</FORM>" 
                         + "<img src=\"" + relativePath + fileName + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">" 
                         + webLayoutEnd;
@@ -145,7 +215,7 @@ public class Image extends HttpServlet{
             else{
                 fileNameOutput = webLayoutBegin 
                         + "<FORM NAME=\"form"+count+ "\" METHOD=\"POST\">"
-                        + "<INPUT TYPE=\"IMAGE\" src=\"img\\delete.png\" width=\"40px\" NAME=\"submit\" VALUE=\""+fileName+"\">"
+                        + "<INPUT class=\"delete\" TYPE=\"IMAGE\" src=\"img\\delete.png\" width=\"40px\" NAME=\"submit\" VALUE=\""+fileName+"\">"
                         + "</FORM>" 
                         + "<img src=\"" + relativePath + fileName + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">"  
                         + webLayoutEnd;
@@ -154,10 +224,10 @@ public class Image extends HttpServlet{
         }
     }
     
-    public void deleteImage(String name){
+    public void deleteImage(String name, int id){
         try{
 
-        File file = new File("H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles\\"+name);
+        File file = new File(path + id + "\\" + name);
 
         if(file.delete()){
                 System.out.println(file.getName() + " is deleted!");
@@ -166,8 +236,6 @@ public class Image extends HttpServlet{
         }
 
     	}catch(Exception e){
- 
-    		e.printStackTrace();
     	}
    
     }
