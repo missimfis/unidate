@@ -13,8 +13,6 @@ public class Student extends User {
     private String email;
     private String password;
     private String username;
-    private String loginusername;
-    private String loginpassword;
     private String stmt;
     private Date birthday;
     private boolean registrated;
@@ -35,14 +33,11 @@ public class Student extends User {
      * @param email email of the user
      * @param password pw of the user
      * @param username username of the user
-     * @param loginpassword password for the user to log in
-     * @param loginusername username for the user ot log in
      * @param registrated
      * @param completedProfile
      */
     public Student(int userId, String firstname, String surname, String name, String department, String studium, String about, String email,
-            String password, String username, String loginpassword, String loginusername,
-            boolean registrated, boolean completedProfile) {
+            String password, String username, boolean registrated, boolean completedProfile) {
         super.setId(userId);
         super.setFirstname(firstname);
         super.setSurname(surname);
@@ -53,8 +48,6 @@ public class Student extends User {
         this.email = email;
         this.password = password;
         this.username = username;
-        this.loginusername = loginusername;
-        this.loginpassword = loginpassword;
         this.registrated = registrated;
         this.completedProfile = completedProfile;
         profile = new UserProfile();
@@ -192,42 +185,6 @@ public class Student extends User {
      */
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    /**
-     * Get Loginusername
-     *
-     * @return loginusername
-     */
-    public String getLoginusername() {
-        return loginusername;
-    }
-
-    /**
-     * Set loginusername
-     *
-     * @param loginusername
-     */
-    public void setLoginusername(String loginusername) {
-        this.loginusername = loginusername;
-    }
-
-    /**
-     * Get Loginpassword
-     *
-     * @return loginpassword
-     */
-    public String getLoginpassword() {
-        return loginpassword;
-    }
-
-    /**
-     * Set Loginpassword
-     *
-     * @param loginpassword
-     */
-    public void setLoginpassword(String loginpassword) {
-        this.loginpassword = loginpassword;
     }
 
     /**
@@ -404,15 +361,15 @@ public class Student extends User {
             DBConnectionPool.closeCon();
         }
     }
-    
-            /**
+
+    /**
      * Returns the UserInfos from the database
      *
      * @param userId to identify the relevant person
      */
     public void prepareUserProfile(int userId) {
         profile.editUserProfile(userId, name, department, studium, about);
-    } 
+    }
 
     /**
      * Returns the UserInfos name from the database
@@ -420,7 +377,7 @@ public class Student extends User {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBName(int userId) {       
+    public String getDBName(int userId) {
         return profile.getDBName(userId);
     }
 
@@ -441,7 +398,6 @@ public class Student extends User {
      * @return an user object.
      */
     public String getDBStudium(int userId) {
-
 
         return profile.getDBStudium(userId);
     }

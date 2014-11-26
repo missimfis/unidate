@@ -5,6 +5,9 @@
  */
 package bean;
 
+import java.security.DigestException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +32,7 @@ public class Unidate {
      *
      * @return success of registration process
      */
-    public boolean register() {
+    public boolean register() throws DigestException {
         boolean result = true;
         try {
             FormValidator validator = FormValidator.getInstance();
@@ -67,7 +70,7 @@ public class Unidate {
                         return false;
                     }
                 }
-                stmt = "INSERT INTO student (username,firstname,lastname,email,password) VALUES (?,?,?,?,?)";
+                stmt = "INSERT INTO student (username,firstname,lastname,email,password,birthday,interests,registrated,completedProfile) VALUES (?,?,?,?,?,?,?,?,?)";
                 pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
 
                 pstmt.setString(1, student.getUsername());
@@ -75,6 +78,10 @@ public class Unidate {
                 pstmt.setString(3, student.getSurname());
                 pstmt.setString(4, student.getEmail());
                 pstmt.setString(5, student.getPassword());
+                pstmt.setDate(6, student.getBirthday());
+                pstmt.setString(7, student.getInterests());
+                pstmt.setBoolean(8, false);
+                pstmt.setBoolean(9, false);
 
                 pstmt.executeUpdate();
                 try (ResultSet rs = pstmt.getGeneratedKeys()) {
@@ -101,8 +108,8 @@ public class Unidate {
      */
     public boolean validate() {
         boolean status = false;
-        stmt = "SELECT * from student WHERE username='" + student.getLoginusername()
-                + "' AND BINARY Pw='" + student.getLoginpassword() + "'";
+        stmt = "SELECT * from student WHERE username='" + student.getUsername()
+                + "' AND BINARY password='" + student.getPassword() + "'";
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery(stmt)) {
@@ -114,7 +121,7 @@ public class Unidate {
                     student.setFirstname(rs.getString("firstname"));
                     student.setSurname(rs.getString("name"));
                     student.setEmail(rs.getString("email"));
-                    student.setPassword(rs.getString("pw"));
+                    student.setPassword(rs.getString("password"));
                 } else {
                     ErrorText errors = ErrorText.getInstance();
                     errors.setError("loginFailed");

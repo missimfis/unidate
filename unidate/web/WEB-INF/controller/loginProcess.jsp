@@ -11,7 +11,9 @@
 -->
 
 <%
-    if (student.validate()) { // checks if user login is valid
+    Unidate unidate = new Unidate();
+    unidate.setStudent(student);
+    if (unidate.validate()) { // checks if user login is valid
         session.setAttribute("session", "TRUE");
         session.setAttribute("userData", student);
         session.setAttribute("userID", student.getId());           

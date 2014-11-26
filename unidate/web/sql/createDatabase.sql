@@ -16,11 +16,9 @@ CREATE TABLE IF NOT EXISTS `student` (
     `lastname` VARCHAR(255) NOT NULL DEFAULT '',
     `username` VARCHAR(255) NOT NULL DEFAULT '',
     `email` VARCHAR(255) NOT NULL DEFAULT '',
-    `password`  BINARY(64) NOT NULL,
+    `password`  VARCHAR(255) NOT NULL,
     `birthday`  DATE NOT NULL,
     `interests` VARCHAR(255) NOT NULL DEFAULT '',
-    `loginusername` VARCHAR(255) NOT NULL DEFAULT '',
-    `loginpassword`  BINARY(64) NOT NULL, 
     `registrated` BOOLEAN NOT NULL DEFAULT false,
     `completedProfile` BOOLEAN NOT NULL DEFAULT false,
     PRIMARY KEY (`s`)

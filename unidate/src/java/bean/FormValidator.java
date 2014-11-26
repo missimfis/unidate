@@ -70,4 +70,30 @@ public class FormValidator {
             return false;
         }
     }
+    
+    
+    /**
+     * Takes a String and checks if it meets the given legi number pattern.
+     * <p>
+     * Momentary used patterns are: Allowed are only letters and numbers and no
+     * other symbols. Length must be between 1 and 255.
+     *
+     * @param string to be validated.
+     * @param type will be used to set the right error when validation failes.
+     * @return true if the input meets the required specifications.
+     */
+    public boolean checkLeginumber(String string, String type) { 
+        ErrorText errors = ErrorText.getInstance();
+        if (string != null && string.length() > 0) {
+            Pattern p = Pattern.compile("S[0-9]{8,}");
+            Matcher m = p.matcher(string);
+            if (!m.matches()) {
+                errors.setError(type);
+            }
+            return m.matches();
+        } else {
+            errors.setError(type + "Empty");
+            return false;
+        }
+    }
 }
