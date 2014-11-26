@@ -43,9 +43,7 @@ public class UserProfile {
 //        super.setAbout(about);
 //    }
     
-
-    
-        /**
+    /**
      * Edits the user data in the database but only if the input is not an empty
      * string or null.
      *
@@ -100,38 +98,7 @@ public class UserProfile {
         }
     }
     
-            /**
-     * Returns the UserInfos from the database
-     *
-     * @param userId to identify the relevant person
-     * @return an user object.
-     */
-//    public void prepareUserProfile(int userId) {
-//
-//
-//        stmt = "SELECT name, department, studium, about FROM student WHERE personID=" + userId;
-//        try {
-//            pstmt = DBConnectionPool.getStmt(stmt);
-//  
-//
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    
-//                   name = rs.getString("name");
-//                   department = rs.getString("name");
-//                   studium = rs.getString("name");
-//                   about = rs.getString("name");
-//                }
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Student.class.getName()).log(
-//                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
-//        } finally {
-//            DBConnectionPool.closeStmt(pstmt);
-//            DBConnectionPool.closeCon();
-//        }
-//
-//    } 
+
 
     /**
      * Returns the UserInfos from the database
@@ -245,7 +212,7 @@ public class UserProfile {
         return dbAbout;
     }
     
-        /**
+    /**
      * Returns the UserInfos from the database
      *
      * @param userId to identify the relevant person
@@ -258,3 +225,36 @@ public class UserProfile {
 //        getDBAbout(userId);              
 //    }
 }
+
+    /**
+     * Returns the UserInfos from the database
+     *
+     * @param userId to identify the relevant person
+     * @return an user object.
+     */
+//    public void prepareUserProfile(int userId) {
+//
+//
+//        stmt = "SELECT name, department, studium, about FROM student WHERE personID=" + userId;
+//        try {
+//            pstmt = DBConnectionPool.getStmt(stmt);
+//  
+//
+//            try (ResultSet rs = pstmt.executeQuery()) {
+//                while (rs.next()) {
+//                    
+//                   name = rs.getString("name");
+//                   department = rs.getString("name");
+//                   studium = rs.getString("name");
+//                   about = rs.getString("name");
+//                }
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Student.class.getName()).log(
+//                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+//        } finally {
+//            DBConnectionPool.closeStmt(pstmt);
+//            DBConnectionPool.closeCon();
+//        }
+//
+//    } 

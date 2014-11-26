@@ -5,15 +5,16 @@
 <% String department = userinfo.getDBDepartment(1);%>
 <% String studium = userinfo.getDBStudium(1);%>
 <% String about = userinfo.getDBAbout(1);%>
+<% int id = 1;%>
 <%@ page import="java.util.*" %>
 
 
-<script>
+<!--<script>
 // this function must be defined in the global scope
 window.fadeIn = function(obj) {
     $(obj).fadeIn(1000);
 }?
-</script>
+</script>-->
   
 
 
@@ -29,16 +30,16 @@ window.fadeIn = function(obj) {
   </head>
 
   <body>
- <%--ShowImage image = new ShowImage();--%>
- <%Image image = new Image(); %>
-<% 
-    if(request.getParameter("submit") != null) {
-%>
-    <%String value = request.getParameter("submit"); 
-    image.deleteImage(value);%>
-<%
-    }
-%> 
+
+    <%Image image = new Image(); %>
+    <% 
+            if(request.getParameter("submit") != null) {
+    %>
+            <%String value = request.getParameter("submit"); 
+            image.deleteImage(value, id);%>
+    <%
+            }
+    %> 
       
     <div class="line">&nbsp;
 	</div>
@@ -133,23 +134,27 @@ window.fadeIn = function(obj) {
 	
 	<div class="row">   
             <%   
-                image.prepareHTML();
+                image.prepareHTML(id);
                 if(image.getOutput()!=null){
                     out.println(image.getOutput());
                 }
-                
+                 
             %>               
         <div class="large-2 medium-2 columns">
             <div class="mediumepicture right">
                 <%--<img src="icons/plus13.svg" alt="profile">--%>
                 <form method="post" action="Image" enctype="multipart/form-data" >
+                    
                     <div class="image-upload">
                         <label for="file-input">
                             <img src="icons/plus13.svg" style="margin-top:45px;" />
                         </label>
+                        
                         <input style=" display: none;"  id="file-input" type="file" name="file" accept="image/x-png, image/gif, image/jpeg" onchange="this.form.submit();"/>
                     </div> 
+                    <%image.createTXT(id);%>
                 </form>
+                
             </div>
         </div>
                 
@@ -166,7 +171,7 @@ window.fadeIn = function(obj) {
 	    &nbsp;
       </div>
     </div>
-    
+   
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <script>
