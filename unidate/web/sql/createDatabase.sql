@@ -50,8 +50,10 @@ CREATE TABLE IF NOT EXISTS `matchedStudent` (
 CREATE TABLE IF NOT EXISTS `message` (
     `msg` INT NOT NULL AUTO_INCREMENT,
     `ms` INT NOT NULL,
-    `lastname` VARCHAR(255) NOT NULL DEFAULT '',
-    `interests` VARCHAR(255) NOT NULL DEFAULT '',
+    `text` TEXT NOT NULL,
+    `from` int NOT NULL DEFAULT,
+    `sentdate` DATETIME NOT NULL,
+    `read` BOOLEAN NOT NULL DEFAULT 'false',
     PRIMARY KEY (`msg`),
     FOREIGN KEY (`ms`) REFERENCES `matchedStudent`(`ms`)
 );

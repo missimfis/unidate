@@ -62,7 +62,7 @@ window.fadeIn = function(obj) {
 			</div>
 		</div>
 		<div class="messages right">
-			<img src="icons/comments16.svg" alt="messages">
+			<img src="icons/comments16.png" alt="messages">
 		</div>
 	  </div>
     </div>
@@ -142,12 +142,12 @@ window.fadeIn = function(obj) {
             %>               
         <div class="large-2 medium-2 columns">
             <div class="mediumepicture right">
-                <%--<img src="icons/plus13.svg" alt="profile">--%>
+                <%--<img src="icons/plus13.png" alt="profile">--%>
                 <form method="post" action="Image" enctype="multipart/form-data" >
                     
                     <div class="image-upload">
                         <label for="file-input">
-                            <img src="icons/plus13.svg" style="margin-top:45px;" />
+                            <img src="icons/plus13.png" style="margin-top:45px;" />
                         </label>
                         
                         <input style=" display: none;"  id="file-input" type="file" name="file" accept="image/x-png, image/gif, image/jpeg" onchange="this.form.submit();"/>
