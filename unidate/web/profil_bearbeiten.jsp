@@ -1,12 +1,28 @@
 <%@ page import="bean.*"%> 
 <jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/>  
+<%@ page import="java.util.*" %>
 <% String name = userinfo.getDBName(1);%>
 <% String department = userinfo.getDBDepartment(1);%>
 <% String studium = userinfo.getDBStudium(1);%>
 <% String about = userinfo.getDBAbout(1);%>
-<% int id = 1;%>
-<%@ page import="java.util.*" %>
+<%Image image = new Image(); %>
+<%-- int id =  Integer.parseInt(request.getParameter("id"));--%>
+<% image.readTXT();
+   Integer id = null;
+%>
+
+<% 
+       if(image.getPersonID() != null) {
+%>
+       <%  
+           id = Integer.parseInt(image.getPersonID()); %>
+<%
+       }else{ 
+           id = Integer.parseInt(request.getParameter("id"));
+       }
+%> 
+
 
 
 <!--<script>
@@ -30,8 +46,7 @@ window.fadeIn = function(obj) {
   </head>
 
   <body>
-
-    <%Image image = new Image(); %>
+<%=id%>
     <% 
             if(request.getParameter("submit") != null) {
     %>
@@ -40,7 +55,8 @@ window.fadeIn = function(obj) {
     <%
             }
     %> 
-      
+    
+
     <div class="line">&nbsp;
 	</div>
 	
@@ -61,8 +77,8 @@ window.fadeIn = function(obj) {
 			<div class="littleline">&nbsp;
 			</div>
 		</div>
-		<div class="messages comment right">
-			<img src="icons/comments16.png" alt="messages">
+		<div class="messages right">
+			<img src="icons/comments16.svg" alt="messages">
 		</div>
 	  </div>
     </div>
@@ -141,8 +157,8 @@ window.fadeIn = function(obj) {
                  
             %>               
         <div class="large-2 medium-2 columns">
-            <div class="mediumpicture right">
-                <%--<img src="icons/plus13.png" alt="profile">--%>
+            <div class="mediumepicture right">
+                <%--<img src="icons/plus13.svg" alt="profile">--%>
                 <form method="post" action="Image" enctype="multipart/form-data" >
                     
                     <div class="image-upload">
@@ -188,3 +204,4 @@ window.fadeIn = function(obj) {
     </script>
   </body>
 </html>
+ 
