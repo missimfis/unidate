@@ -1,6 +1,7 @@
 package bean;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,6 +16,9 @@ public class Student extends User {
     private String username;
     private String stmt;
     private Date birthday;
+    private ArrayList<MatchedStudent> matchedStudent;
+    private ArrayList<Candidate> matchedCandidate;
+    private ArrayList<Integer> likedStudent;
     private boolean registrated;
     private boolean completedProfile;
     private UserProfile profile;
@@ -50,7 +54,10 @@ public class Student extends User {
         this.username = username;
         this.registrated = registrated;
         this.completedProfile = completedProfile;
-        profile = new UserProfile();
+        this.matchedStudent = new ArrayList<>();
+        this.matchedCandidate = new ArrayList<>();
+        this.likedStudent = new ArrayList<>();
+        this.profile = new UserProfile();
     }
 
     /**
@@ -324,42 +331,7 @@ public class Student extends User {
             String studium,
             String about
     ) {
-        try {
-            if (!"".equals(name)) {
-                stmt = "UPDATE skills SET name=? WHERE personID=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, name);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-            if (!"".equals(department)) {
-                stmt = "UPDATE skills SET department=? WHERE personID=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, department);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-            if (!"".equals(studium)) {
-                stmt = "UPDATE skills SET studium=? WHERE personID=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, studium);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-            if (!"".equals(about) && !"".equals(about)) {
-                stmt = "UPDATE skills SET about=? WHERE personID=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, about);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to access user infos from DB", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
+        profile.editUserProfile(userId, name, department, studium, about);
     }
 
     /**
@@ -447,11 +419,50 @@ public class Student extends User {
     public boolean checkNewLikes() {
         return true;
     }
+    
+    public ArrayList<Integer> checkLikedStudent() {
+        
+        return likedStudent;
+    }
 
     public boolean blockStudent() {
         return true;
     }
 
+    public boolean checkMatchedStudent(){
+        
+
+        return true; 
+    }
+    
+        public void createNewMatch(int userID, int candidateID){
+        String candidateName;
+        String candidateDepartment;
+        String candidateStudium;
+        String candidateAbout;
+        
+        //add to match list if both like
+        for (Candidate temp : matchedCandidate) {		
+            if(temp.getCandidateLike(userID) == true){                
+                
+                candidateName = temp.getCandidateProfil(candidateID);
+                candidateDepartment = temp.getCandidateProfil(candidateID);
+                candidateStudium = temp.getCandidateProfil(candidateID);
+                candidateAbout = temp.getCandidateProfil(candidateID);
+                
+                matchedStudent.add(new MatchedStudent(candidateID, candidateName, candidateDepartment, candidateStudium, candidateAbout));
+            }
+        
+        }
+        
+        
+    }  
+    
+    public void addLikedStudent(int id){
+ 
+        likedStudent.add(id);
+
+    }
     /**
      * @return the birthday
      */
@@ -466,3 +477,4 @@ public class Student extends User {
         this.birthday = birthday;
     }
 }
+
