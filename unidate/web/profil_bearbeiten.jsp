@@ -61,7 +61,7 @@ window.fadeIn = function(obj) {
 			<div class="littleline">&nbsp;
 			</div>
 		</div>
-		<div class="messages right">
+		<div class="messages comment right">
 			<img src="icons/comments16.png" alt="messages">
 		</div>
 	  </div>
@@ -141,7 +141,7 @@ window.fadeIn = function(obj) {
                  
             %>               
         <div class="large-2 medium-2 columns">
-            <div class="mediumepicture right">
+            <div class="mediumpicture right">
                 <%--<img src="icons/plus13.png" alt="profile">--%>
                 <form method="post" action="Image" enctype="multipart/form-data" >
                     
