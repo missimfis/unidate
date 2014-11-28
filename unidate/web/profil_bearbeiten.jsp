@@ -158,7 +158,7 @@ window.fadeIn = function(obj) {
             %>               
         <div class="large-2 medium-2 columns">
             <div class="mediumepicture right">
-                <%--<img src="icons/plus13.svg" alt="profile">--%>
+                <%--<img src="icons/plus13.png" alt="profile">--%>
                 <form method="post" action="Image" enctype="multipart/form-data" >
                     
                     <div class="image-upload">

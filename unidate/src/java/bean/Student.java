@@ -257,62 +257,7 @@ public class Student extends User {
         return user;
     }
 
-    /**
-     * Edits the user data in the database but only if the input is not an empty
-     * string or null. Both passwords have to be equal.
-     *
-     * @param userId
-     * @param firstname
-     * @param surname
-     * @param email
-     * @param password1
-     * @param password2
-     */
-    public void editUserProperties(
-            int userId,
-            String firstname,
-            String surname,
-            String email,
-            String password1,
-            String password2
-    ) {
-        try {
-            if (!"".equals(firstname)) {
-                stmt = "UPDATE skills SET firstname=? WHERE s=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, firstname);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-            if (!"".equals(surname)) {
-                stmt = "UPDATE skills SET name=? WHERE s=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, surname);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-            if (!"".equals(email)) {
-                stmt = "UPDATE skills SET email=? WHERE s=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, email);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-            if (!"".equals(password1) && !"".equals(password2)) {
-                stmt = "UPDATE skills SET pw=? WHERE s=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, password1);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to access user infos from DB", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
-    }
+
 
     /**
      * Edits the user data in the database but only if the input is not an empty
