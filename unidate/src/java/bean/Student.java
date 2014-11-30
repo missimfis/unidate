@@ -298,8 +298,8 @@ public class Student extends User {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBName(int userId) {
-        return profile.getDBName(userId);
+    public String getName(int userId) {
+        return profile.getName(userId);
     }
 
     /**
@@ -308,8 +308,8 @@ public class Student extends User {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBDepartment(int userId) {
-        return profile.getDBDepartment(userId);
+    public String getDepartment(int userId) {
+        return profile.getDepartment(userId);
     }
 
     /**
@@ -318,9 +318,9 @@ public class Student extends User {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBStudium(int userId) {
+    public String getStudium(int userId) {
 
-        return profile.getDBStudium(userId);
+        return profile.getStudium(userId);
     }
 
     /**
@@ -329,8 +329,8 @@ public class Student extends User {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBAbout(int userId) {
-        return profile.getDBAbout(userId);
+    public String getAbout(int userId) {
+        return profile.getAbout(userId);
     }
 
     /**
@@ -378,20 +378,26 @@ public class Student extends User {
         return true;
     }
 
-    public ArrayList<MatchedStudent> checkMatchedStudent(){
-
-        
-        
+    /**
+     * check matches in the list of studentmatches
+     * @return arraylist of matched Student
+     */
+    public ArrayList<MatchedStudent> checkMatchedStudent(){      
         return matchedStudent; 
     }
     
-    //init candidateList for tests
+    //initialize candidateList for tests
     public void init(){
         candidateList.add(new Candidate(1, "Thomas", "depar", "physio", "ich bin bla", true));
         candidateList.add(new Candidate(2, "brain", "depsadar", "physadsio", "ich bin sadbla", true));
         candidateList.add(new Candidate(3, "brain", "depsadar", "physadsio", "ich bin sadbla", true));
     }
     
+    
+    /**
+     * create new matches for student
+     * @param userID
+     */
     public void createNewMatch(int userID){
         String candidateName;
         String candidateDepartment;

@@ -46,6 +46,9 @@ public class Candidate extends User {
 
 
     public boolean like() {
+        
+        
+        
         return true;
     }
 
@@ -62,27 +65,27 @@ public class Candidate extends User {
     
     public String getCandidateName(){
         
-        return candidateProfil.getDBName(id);
+        return candidateProfil.getName(id);
     }
     
     public String getCandidateName(int id){
         
-        return candidateProfil.getDBName(id);
+        return candidateProfil.getName(id);
     }
     
     public String getCandidateAbout(int id){
         
-        return candidateProfil.getDBName(id);
+        return candidateProfil.getName(id);
     }
     
     public String getCandidateStudium(int id){
         
-        return candidateProfil.getDBName(id);
+        return candidateProfil.getName(id);
     }
         
-        public String getCandidateDepartment(int id){
+    public String getCandidateDepartment(int id){
         
-        return candidateProfil.getDBName(id);
+        return candidateProfil.getName(id);
     }
     
     /**
@@ -96,8 +99,7 @@ public class Candidate extends User {
 
         for (int match : like) {
             return id == match;
-        }
-        
+        }        
         return likeTest;
     }
 }

@@ -4,11 +4,6 @@
 <%@ page import="java.util.*" %>
 
 <%Image image = new Image(); %>
-<%--  userinfo.createNewMatch(1, 1);
-    userinfo.createNewMatch(1, 2);
-    ArrayList<MatchedStudent> matchedStudent = userinfo.checkMatchedStudent(); 
-    
- --%>   
 <%  
     int id = 1;
     userinfo.init();

@@ -104,9 +104,9 @@ public class UserProfile {
      * Returns the UserInfos from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an user Name as String.
      */
-    public String getDBName(int userId) {
+    public String getName(int userId) {
         this.dbName = "";
         stmt = "SELECT name FROM skills WHERE personID=" + userId;
         try {
@@ -133,9 +133,9 @@ public class UserProfile {
      * Returns the UserInfos from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an user Department as String.
      */
-    public String getDBDepartment(int userId) {
+    public String getDepartment(int userId) {
         String dbDepartment = "";
         stmt = "SELECT department FROM skills WHERE personID=" + userId;
         try {
@@ -158,8 +158,13 @@ public class UserProfile {
         return dbDepartment;
     }
 
-
-    public String getDBStudium(int userId) {
+    /**
+     * Returns the UserInfos from the database
+     *
+     * @param userId to identify the relevant person
+     * @return an user Department as String.
+     */
+    public String getStudium(int userId) {
         String dbStudium = "";
         stmt = "SELECT studium FROM skills WHERE personID=" + userId;
         try {
@@ -189,7 +194,7 @@ public class UserProfile {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBAbout(int userId) {
+    public String getAbout(int userId) {
         String dbAbout = "";
         stmt = "SELECT about FROM skills WHERE personID=" + userId;
         try {

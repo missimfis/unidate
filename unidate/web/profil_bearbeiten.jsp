@@ -2,27 +2,26 @@
 <jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/>  
 <%@ page import="java.util.*" %>
-<% String name = userinfo.getDBName(1);%>
-<% String department = userinfo.getDBDepartment(1);%>
-<% String studium = userinfo.getDBStudium(1);%>
-<% String about = userinfo.getDBAbout(1);%>
+
 <%Image image = new Image(); %>
 <%-- int id =  Integer.parseInt(request.getParameter("id"));--%>
-<% image.readTXT();
-   Integer id = null;
+<%  image.readTXT();
+    Integer id = null;
 %>
-
 <% 
-       if(image.getPersonID() != null) {
+    if(image.getPersonID() != null) {
 %>
-       <%  
-           id = Integer.parseInt(image.getPersonID()); %>
+    <%  
+        id = Integer.parseInt(image.getPersonID()); %>
 <%
-       }else{ 
-           id = Integer.parseInt(request.getParameter("id"));
-       }
+    }else{ 
+        id = Integer.parseInt(request.getParameter("id"));
+    }
 %> 
-
+<% String name = userinfo.getName(id);%>
+<% String department = userinfo.getDepartment(id);%>
+<% String studium = userinfo.getStudium(id);%>
+<% String about = userinfo.getAbout(id);%>
 
 
 <!--<script>

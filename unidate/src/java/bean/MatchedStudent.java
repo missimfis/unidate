@@ -3,22 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bean;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author missimfis
  */
-public class MatchedStudent extends User {
+
+package bean;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public final class MatchedStudent extends User {
     private Message message;
-    private int candidateID;
+    private final int candidateID;
     private String candidateName;
     private String candidateDepartment;
     private String candidateStudium;
@@ -36,24 +38,38 @@ public class MatchedStudent extends User {
     MatchedStudent(String firstname,
             String lastname,
             String interests,
-            int student1,
-            int candidateID) {
+            int person1,
+            int person2) {
         
-        this.candidateID = candidateID;
-        addMatchToDatabase(firstname, lastname, interests, student1, candidateID);
+        this.candidateID = person2;
+        
+        // set variables for database insert
+        addMatchToDatabase(firstname, lastname, interests, person1, person2);
         
     }
     
-    public int getCandidateID(){
-    
-    return candidateID;
+    /**
+     * 
+     *
+     * @return an candidateID as integer
+     */
+    public int getCandidateID(){   
+        return candidateID;
     }
     
-    public String getCandidateName(){
-    
-    return candidateName;
+    public String getCandidateName(){   
+        return candidateName;
     }
     
+    
+    /**
+     * Add match to database
+     * @param firstname
+     * @param lastname
+     * @param interests
+     * @param student1
+     * @param student2
+     */
     public void addMatchToDatabase(
             String firstname,
             String lastname,

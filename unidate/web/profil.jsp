@@ -1,13 +1,13 @@
 <%@ page import="bean.*"%> 
 <jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/>  
-<% String name = userinfo.getDBName(1);%>
-<% String department = userinfo.getDBDepartment(1);%>
-<% String studium = userinfo.getDBStudium(1);%>
-<% String about = userinfo.getDBAbout(1);%>
+
 <% int id = 1;%>
 <%@ page import="java.util.*" %>
-
+<% String name = userinfo.getName(id);%>
+<% String department = userinfo.getDepartment(id);%>
+<% String studium = userinfo.getStudium(id);%>
+<% String about = userinfo.getAbout(id);%>
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
