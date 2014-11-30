@@ -11,10 +11,28 @@ package bean;
  */
 public class MatchedStudent extends User {
     private Message message;
+    private int candidateID;
+    private String candidateName;
+    private String candidateDepartment;
+    private String candidateStudium;
+    private String candidateAbout;
 
     MatchedStudent(int candidateID, String candidateName, String candidateDepartment, String candidateStudium, String candidateAbout) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        this.candidateID = candidateID;
+        this.candidateName = candidateName;
     }
+    
+    public int getCandidateID(){
+    
+    return candidateID;
+    }
+    
+    public String getCandidateName(){
+    
+    return candidateName;
+    }
+    
     
     
     public boolean sendMessage(int matchedStudent, int senderID, int receiverID, String text) {    

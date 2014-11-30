@@ -17,11 +17,31 @@ public class Candidate extends User {
     private String stmt;
     private PreparedStatement pstmt;
     private ArrayList<Integer> like;
+    private String name;
+    private String about;
+    private String studium;
+    private String department;
+    private Boolean likeTest;
     
-    public Candidate() {
+    
+    public Candidate(int userId, String firstname, String surname) {
         this.like = new ArrayList();
         this.candidateProfil = new Student();
+        super.setId(userId);
+        super.setFirstname(firstname);
+        super.setSurname(surname);
     }
+    
+    public Candidate(int userId, String name, String about, String studium, String department, boolean likeTest) {
+        this.like = new ArrayList();
+        this.candidateProfil = new Student();
+        this.name = name;
+        this.about = about;
+        this.studium = studium;
+        this.department = department;
+        this.likeTest = likeTest;
+    }
+
 
     public boolean like() {
         return true;
@@ -31,7 +51,22 @@ public class Candidate extends User {
         return true;
     }
     
-    public String getCandidateProfil(int id){
+    public String getCandidateName(int id){
+        
+        return candidateProfil.getDBName(id);
+    }
+    
+    public String getCandidateAbout(int id){
+        
+        return candidateProfil.getDBName(id);
+    }
+    
+    public String getCandidateStudium(int id){
+        
+        return candidateProfil.getDBName(id);
+    }
+        
+        public String getCandidateDepartment(int id){
         
         return candidateProfil.getDBName(id);
     }
@@ -49,6 +84,6 @@ public class Candidate extends User {
             return id == match;
         }
         
-        return false;
+        return likeTest;
     }
 }
