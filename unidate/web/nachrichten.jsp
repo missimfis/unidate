@@ -9,14 +9,11 @@
     ArrayList<MatchedStudent> matchedStudent = userinfo.checkMatchedStudent(); 
     
  --%>   
-<%    
-    Student student = new Student();
-    student.init();
-    student.createNewMatch(1, 1);
-    student.createNewMatch(1, 2); 
-    student.createNewMatch(1, 3);
-    student.createNewMatch(1, 10);
-    ArrayList<MatchedStudent> matchedStudent = student.checkMatchedStudent();
+<%  
+    int id = 1;
+    userinfo.init();
+    userinfo.createNewMatch(id);
+    ArrayList<MatchedStudent> matchedStudent = userinfo.checkMatchedStudent();
 
 %>
 
@@ -45,6 +42,8 @@
 		
 		<div class="littlepicture right">
 			<img src="img/Bild1.png" alt="profile">
+                        
+                        
 			<div class="littlemask">
 				<img alt="design mask" src="img/littlecircle.png"/>
                                 
@@ -53,7 +52,9 @@
 			</div>
 		</div>
 		<div class="messages comment right">
-			<img src="icons/comments16.png" alt="messages">
+                    <form method="post" action="nachrichten.jsp">
+                        <input type="image" src="icons/comments16.png" alt="messages" name="image" style="margin-top:10px; margin-right: 10px;" width="75">  
+                    </form>
 		</div>
 	  </div>
     </div>

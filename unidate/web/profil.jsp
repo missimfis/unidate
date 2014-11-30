@@ -49,7 +49,10 @@
 			</div>
 		</div>
 		<div class="messages right">
-			<img src="icons/comments16.png" alt="messages">
+			<%--img src="icons/comments16.png" alt="messages"--%>    
+                    <form method="post" action="nachrichten.jsp">
+                        <input type="image" src="icons/comments16.png" alt="messages" name="image" style="margin-top:10px; margin-right: 10px;" width="75">  
+                    </form>
 		</div>
 	  </div>
     </div>
@@ -76,7 +79,7 @@
 			<p>24 Jahre<br/>
 			<%out.println(studium);%><br/></p>
 			<%out.println(about);%>
-			</p>
+			
 	  </div>
 	</div>   
 	
@@ -94,7 +97,7 @@
                 <form method="post" action="Image" enctype="multipart/form-data" >                   
                     <div class="image-upload">
                         <label for="file-input">
-                            <img src="icons/plus13.png" style="margin-top:15px;" />
+                            <img src="icons/plus13.png" style="margin-top:45px;" />
                         </label>
                         
                         <input style=" display: none;"  id="file-input" type="file" name="file" accept="image/x-png, image/gif, image/jpeg" onchange="this.form.submit();"/>

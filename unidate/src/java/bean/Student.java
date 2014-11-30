@@ -17,7 +17,7 @@ public class Student extends User {
     private String stmt;
     private Date birthday;
     private ArrayList<MatchedStudent> matchedStudent;
-    private ArrayList<Candidate> matchedCandidate;
+    private ArrayList<Candidate> candidateList;
     private ArrayList<Integer> likedStudent;
     private boolean registrated;
     private boolean completedProfile;
@@ -55,7 +55,7 @@ public class Student extends User {
         this.registrated = registrated;
         this.completedProfile = completedProfile;
         this.matchedStudent = new ArrayList<>();
-        this.matchedCandidate = new ArrayList<>();
+        this.candidateList = new ArrayList<>();
         this.likedStudent = new ArrayList<>();
         this.profile = new UserProfile();
     }
@@ -66,6 +66,10 @@ public class Student extends User {
     public Student() {
         super();
         profile = new UserProfile();
+        this.matchedStudent = new ArrayList<>();
+        this.candidateList = new ArrayList<>();
+        this.likedStudent = new ArrayList<>();
+        
     }
 
     /**
@@ -374,32 +378,40 @@ public class Student extends User {
         return true;
     }
 
-    public boolean checkMatchedStudent(){
-        
+    public ArrayList<MatchedStudent> checkMatchedStudent(){
 
-        return true; 
+        
+        
+        return matchedStudent; 
     }
     
-        public void createNewMatch(int userID, int candidateID){
+    //init candidateList for tests
+    public void init(){
+        candidateList.add(new Candidate(1, "Thomas", "depar", "physio", "ich bin bla", true));
+        candidateList.add(new Candidate(2, "brain", "depsadar", "physadsio", "ich bin sadbla", true));
+        candidateList.add(new Candidate(3, "brain", "depsadar", "physadsio", "ich bin sadbla", true));
+    }
+    
+    public void createNewMatch(int userID){
         String candidateName;
         String candidateDepartment;
         String candidateStudium;
         String candidateAbout;
-        
+
         //add to match list if both like
-        for (Candidate temp : matchedCandidate) {		
+        for (Candidate temp : candidateList) {		
             if(temp.getCandidateLike(userID) == true){                
                 
-                candidateName = temp.getCandidateProfil(candidateID);
-                candidateDepartment = temp.getCandidateProfil(candidateID);
-                candidateStudium = temp.getCandidateProfil(candidateID);
-                candidateAbout = temp.getCandidateProfil(candidateID);
+                int candidateID = temp.getId();
+                candidateName = temp.getCandidateName(candidateID);
+                candidateDepartment = temp.getCandidateDepartment(candidateID);
+                candidateStudium = temp.getCandidateStudium(candidateID);
+                candidateAbout = temp.getCandidateAbout(candidateID);
                 
-                matchedStudent.add(new MatchedStudent(candidateID, candidateName, candidateDepartment, candidateStudium, candidateAbout));
+                matchedStudent.add(new MatchedStudent("firstname", "lastname", "interests", userID, candidateID));
             }
         
-        }
-        
+        } 
         
     }  
     

@@ -64,7 +64,7 @@ public class UserProfile {
             if (!"".equals(name)) {
                 stmt = "UPDATE skills SET name=? WHERE personID=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, "test");
+                pstmt.setString(1, name);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }

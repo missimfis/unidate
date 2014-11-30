@@ -5,6 +5,13 @@
  */
 package bean;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author missimfis
@@ -16,11 +23,25 @@ public class MatchedStudent extends User {
     private String candidateDepartment;
     private String candidateStudium;
     private String candidateAbout;
+    private String stmt;
+    private PreparedStatement pstmt;
 
-    MatchedStudent(int candidateID, String candidateName, String candidateDepartment, String candidateStudium, String candidateAbout) {
+//    MatchedStudent(int candidateID, String candidateName, String candidateDepartment, String candidateStudium, String candidateAbout) {
+//        
+//        this.candidateID = candidateID;
+//        this.candidateName = candidateName;
+//        
+//    }
+    
+    MatchedStudent(String firstname,
+            String lastname,
+            String interests,
+            int student1,
+            int candidateID) {
         
         this.candidateID = candidateID;
-        this.candidateName = candidateName;
+        addMatchToDatabase(firstname, lastname, interests, student1, candidateID);
+        
     }
     
     public int getCandidateID(){
@@ -31,6 +52,33 @@ public class MatchedStudent extends User {
     public String getCandidateName(){
     
     return candidateName;
+    }
+    
+    public void addMatchToDatabase(
+            String firstname,
+            String lastname,
+            String interests,
+            int student1,
+            int student2){
+        try {
+                stmt = "INSERT INTO matchedstudent (firstname,lastname,interests,student1,student2) VALUES (?,?,?,?,?)";
+                pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
+
+                pstmt.setString(1, firstname);
+                pstmt.setString(2, lastname);
+                pstmt.setString(3, interests);
+                pstmt.setInt(4, student1);
+                pstmt.setInt(5, student2);
+                pstmt.executeUpdate();
+                
+      
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to access user infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
     }
     
     

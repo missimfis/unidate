@@ -70,6 +70,7 @@ window.fadeIn = function(obj) {
 		
 		<div class="littlepicture right">
 			<img src="img/Bild1.png" alt="profile">
+                        
 			<div class="white_little_circle">
 			</div>
 			<div class="blue_little_circle">
@@ -78,7 +79,9 @@ window.fadeIn = function(obj) {
 			</div>
 		</div>
 		<div class="messages right">
-			<img src="icons/comments16.svg" alt="messages">
+                    <form method="post" action="nachrichten.jsp">
+                        <input type="image" src="icons/comments16.png" alt="messages" name="image" style="margin-top:10px; margin-right: 10px;" width="75">  
+                    </form>
 		</div>
 	  </div>
     </div>

@@ -22,6 +22,7 @@ public class Candidate extends User {
     private String studium;
     private String department;
     private Boolean likeTest;
+    private int userId;
     
     
     public Candidate(int userId, String firstname, String surname) {
@@ -35,6 +36,7 @@ public class Candidate extends User {
     public Candidate(int userId, String name, String about, String studium, String department, boolean likeTest) {
         this.like = new ArrayList();
         this.candidateProfil = new Student();
+        this.userId = userId;
         this.name = name;
         this.about = about;
         this.studium = studium;
@@ -49,6 +51,18 @@ public class Candidate extends User {
 
     public boolean dislike() {
         return true;
+    }
+    
+    @Override
+    public int getId(){
+        
+        return userId;
+    
+    }
+    
+    public String getCandidateName(){
+        
+        return candidateProfil.getDBName(id);
     }
     
     public String getCandidateName(int id){
