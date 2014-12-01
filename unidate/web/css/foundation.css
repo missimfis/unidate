@@ -157,11 +157,7 @@ select {
   float: left; }
 
 @media only screen /* Mobile Version */ {
-    .blue{
-        color:#2b579a;
-    }
-    
-    .line {height:50px;}
+  .line {height:50px;}
   
   .logo img{
 		height:45px;
@@ -171,19 +167,21 @@ select {
 	
 	.messages img{
 		margin-right:10px;
+		margin-right:10px;
 		margin-top:5px;
 		height:40px;
 		width:auto;
 		color:plum;
 	}
 	
-        .comment {
-            margin-right:10px;
+	.comment {
+	margin-right:10px;
 	}
-        
+	
 	.littlepicture img{
 		height:50px;
 		width:auto;
+		margin-right:10px;
 	}
   .right{
 	float:right;
@@ -191,54 +189,60 @@ select {
   
   .littlemask{
 	position:absolute;
-	margin-top:-67px;
-	margin-left:-18px;
-	border:17px solid white;
-	border-radius:1000px;
+	margin-top:-50px;
   }
-  
+
   .littleline {
-	position:absolute;
+		position:absolute;
 	margin-top:-50px;
 	margin-left:-12px;
-	width:100%;
+	width:65px;
 	height:50px;
 	border-bottom:3px solid #26569a;}
   
   .bigpicture img{
+		margin-top:0px;
 		margin-bottom:20px;
 	}
+	
+	.icon img{
+		height:50px;
+		margin-top:10px;
+	}
+   
+   .smallmask{
+	visibility:hidden;
+	}
   
-  .bwhite_big_circle{
-	position:absolute;
-	margin-top:-65px;
-	margin-left:-18px;
-	width:80px;
-	height:80px;
-	border:17px solid white;
-	border-radius:1000px;
-  }
-  
-  .bblue_big_circle{
-	position:absolute;
-	margin-top:-300px;
-	margin-left:-2px;
-	width:95%;
-	height:95%;
-	border:3px solid #26569a;
-	border-radius:1000px;
-  }
+  .mask{
+	position:relative;
+	margin-top:-116%;
+	margin-left:0px;
+	width:100%;
+	height:auto
+	}
   
 	.mediumpicture img{
 		margin-bottom:20px;
-                height:150px;
-                width:150px;
+		
 	}
 	
 	.icons{
-		margin-top:80%;
+		margin-top:60%;
+	}
+	
+	.iconsright{
+		margin-top:60%;
+	}
+	
+	.icons img{
+		width:60%;
 	}
  
+	.iconsright img{
+		width:60%;
+		float:right;
+	}
   .small-push-0 {
     position: relative;
     left: 0%;
@@ -468,6 +472,68 @@ select {
   .column.small-uncentered.opposite,
   .columns.small-uncentered.opposite {
     float: right; } }
+
+@media only screen and (min-width: 18.75em) /*mobile landscape*/{
+	.bigpicture img{
+		margin-top:5%;
+	}
+	
+	.mask{
+		position:relative;
+		margin-top:-121%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+	  
+	  
+}	
+
+@media only screen and (min-width: 24.438em) /*mobile landscape*/{
+	.bigpicture img{
+		margin-top:5%;
+	}
+	
+	.mask{
+		position:relative;
+		margin-top:-118%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+	
+	.smallmask{
+		visibility:hidden;
+	  }
+}	
+
+	
+@media only screen and (min-width: 28.125em) /*mobile landscape*/{
+	
+	.mask{
+		position:relative;
+		margin-top:-115%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+	  
+	  .smallmask{
+		visibility:hidden;
+	  }
+}
+
+@media only screen and (min-width: 35em) /*mobile landscape*/{
+	  .smallmask{
+		visibility:visible;
+		position:relative;
+		margin-top:-130%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+}
+
 @media only screen and (min-width: 40.063em) /*Tablet Version*/{
 	.line{height:80px;}
 	
@@ -475,6 +541,23 @@ select {
 		height:70px;
 		width:auto;
 	}
+	
+	.mask{
+	position:relative;
+	margin-top:-106.4%;
+	margin-left:0px;
+	width:104%;
+	height:auto;
+  }
+  
+    .smallmask{
+		visibility:visible;
+		position:relative;
+		margin-top:-120%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
 	
 	.messages img{
 		margin-right:10px;
@@ -489,37 +572,34 @@ select {
 		width:auto;	
 	}
 	
+	 .littlemask{
+	position:absolute;
+	margin-top:-80px;
+	margin-left:0px;
+  }
+	
 	.icon img{
 		height:80px;
 		width:auto;	
+		margin-top:30px;
 	}
 	
   .right{
 	float:right;
   }
   
-  .littlepicture img{
-		height:80px;
-		width:auto;	
-	}
-	
-	 .littlemask{
-	position:absolute;
-	margin-top:-97px;
-	margin-left:-20px;
-	border:17px solid white;
-	border-radius:1000px;
-  }
-  
   .littleline {
 	position:absolute;
 	margin-top:-50px;
 	margin-left:-12px;
-	width:100%;
+	width:95px;
 	height:50px;
 	border-bottom:3px solid #26569a;}
   
-	 
+	 .bigpicture img{
+		margin-top:0px;
+		margin-bottom:20px;
+	}
   .medium-push-0 {
     position: relative;
     left: 0%;
@@ -870,6 +950,22 @@ select {
     right: 91.66667%;
     left: auto; } }
 @media only screen and (min-width: 64.063em) /* Computer Version*/{
+  .mask{
+	position:relative;
+	margin-top:-105%;
+	margin-left:0px;
+	width:102%;
+  }
+  
+    .smallmask{
+		visibility:visible;
+		position:relative;
+		margin-top:-115%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+  
   .large-push-0 {
     position: relative;
     left: 0%;
