@@ -2,7 +2,7 @@
 <jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/>                                
 
-<jsp:getProperty property="name" name="userinfo"/><br> 
+<%--jsp:getProperty property="name" name="userinfo"/><br--%> 
 <jsp:getProperty property="department" name="userinfo"/><br> 
 <jsp:getProperty property="studium" name="userinfo" /><br>
 <jsp:getProperty property="about" name="userinfo" /><br>
@@ -15,7 +15,7 @@
     String studium = request.getParameter("studium");
     String about = request.getParameter("about");
     
-    out.println("<br>" + name + "<br>");
+    //out.println("<br>" + name + "<br>");
     
     out.println(department+ "<br>");
     
