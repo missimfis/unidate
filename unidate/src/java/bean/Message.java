@@ -10,5 +10,13 @@ package bean;
  * @author missimfis
  */
 public class Message {
+
+    Message(int matchedStudent, int senderID, int receiverID, String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void sendMessage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

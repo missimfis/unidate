@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @author missimfis
  */
 public class Candidate extends User {
+
     private Student candidateProfil;
     private String stmt;
     private PreparedStatement pstmt;
@@ -23,8 +24,7 @@ public class Candidate extends User {
     private String department;
     private Boolean likeTest;
     private int userId;
-    
-    
+
     public Candidate(int userId, String firstname, String surname) {
         this.like = new ArrayList();
         this.candidateProfil = new Student();
@@ -32,7 +32,7 @@ public class Candidate extends User {
         super.setFirstname(firstname);
         super.setSurname(surname);
     }
-    
+
     public Candidate(int userId, String name, String about, String studium, String department, boolean likeTest) {
         this.like = new ArrayList();
         this.candidateProfil = new Student();
@@ -44,62 +44,45 @@ public class Candidate extends User {
         this.likeTest = likeTest;
     }
 
-
     public boolean like() {
-        
-        
-        
         return true;
     }
 
     public boolean dislike() {
         return true;
     }
-    
+
     @Override
-    public int getId(){
-        
+    public int getId() {
         return userId;
-    
     }
-    
-    public String getCandidateName(){
-        
+
+    public String getCandidateName(int id) {
         return candidateProfil.getName(id);
     }
-    
-    public String getCandidateName(int id){
-        
+
+    public String getCandidateAbout(int id) {
         return candidateProfil.getName(id);
     }
-    
-    public String getCandidateAbout(int id){
-        
+
+    public String getCandidateStudium(int id) {
         return candidateProfil.getName(id);
     }
-    
-    public String getCandidateStudium(int id){
-        
+
+    public String getCandidateDepartment(int id) {
         return candidateProfil.getName(id);
     }
-        
-    public String getCandidateDepartment(int id){
-        
-        return candidateProfil.getName(id);
-    }
-    
+
     /**
      *
      * @param id
      * @return
      */
-    public boolean getCandidateLike(int id){
-       
+    public boolean getCandidateLike(int id) {
         like = candidateProfil.checkLikedStudent();
-
         for (int match : like) {
             return id == match;
-        }        
+        }
         return likeTest;
     }
 }
