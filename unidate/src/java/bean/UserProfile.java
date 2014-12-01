@@ -19,71 +19,58 @@ public class UserProfile {
 
     private String stmt;
     private PreparedStatement pstmt;
-    private String dbName;
 
-    /**
-     * Creates a new User Object
-     *
-     * @param userId identification id of the user
-     * @param firstname firstname of the user
-     * @param surname surname of the user
-     * @param name name of the user
-     * @param department
-     * @param studium
-     * @param about
-
-     */
-//    public UserProfile(int userId, String firstname, String surname, String name, String department, String studium, String about){
-//        super.setId(userId);
-//        super.setFirstname(firstname);
-//        super.setSurname(surname);
-//        super.setName(name);
-//        super.setDepartment(department);
-//        super.setStudium(studium);
-//        super.setAbout(about);
-//    }
     
     /**
      * Edits the user data in the database but only if the input is not an empty
      * string or null.
      *
      * @param userId
-     * @param name
+     * @param firstname
+     * @param lastname
      * @param department
      * @param studium
      * @param about
      */
     public void editUserProfile(
             int userId,
-            String name,
+            String firstname,
+            String lastname,
             String department,
             String studium,
             String about
     ) {
         try {
-            if (!"".equals(name)) {
-                stmt = "UPDATE skills SET name=? WHERE personID=?";
+            if (!"".equals(firstname)) {
+                stmt = "UPDATE student SET firstname=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, name);
+                pstmt.setString(1, firstname);
+                pstmt.setInt(2, userId);
+                pstmt.executeUpdate();
+            }
+            if (!"".equals(lastname)) {
+                stmt = "UPDATE student SET firstname=? WHERE s=?";
+                pstmt = DBConnectionPool.getStmt(stmt);
+                pstmt.setString(1, firstname);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(department)) {
-                stmt = "UPDATE skills SET department=? WHERE personID=?";
+                stmt = "UPDATE student SET department=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, department);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(studium)) {
-                stmt = "UPDATE skills SET studium=? WHERE personID=?";
+                stmt = "UPDATE student SET studium=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, studium);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
             if (!"".equals(about) && !"".equals(about)) {
-                stmt = "UPDATE skills SET about=? WHERE personID=?";
+                stmt = "UPDATE student SET about=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, about);
                 pstmt.setInt(2, userId);
@@ -106,16 +93,16 @@ public class UserProfile {
      * @param userId to identify the relevant person
      * @return an user Name as String.
      */
-    public String getName(int userId) {
-        this.dbName = "";
-        stmt = "SELECT name FROM skills WHERE personID=" + userId;
+    public String getFirstname(int userId) {
+        String dbFirstname = "";
+        stmt = "SELECT firstname FROM student WHERE s=" + userId;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
 
-                    dbName = rs.getString("name");
+                    dbFirstname = rs.getString("firstname");
                 }
             }
         } catch (SQLException ex) {
@@ -126,7 +113,36 @@ public class UserProfile {
             DBConnectionPool.closeCon();
         }
 
-        return dbName;
+        return dbFirstname;
+    }
+    
+        /**
+     * Returns the UserInfos from the database
+     *
+     * @param userId to identify the relevant person
+     * @return an user Name as String.
+     */
+    public String getLastname(int userId) {
+        String dbLastname = "";
+        stmt = "SELECT lastname FROM student WHERE s=" + userId;
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+
+                    dbLastname = rs.getString("lastname");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+
+        return dbLastname;
     }
 
     /**
@@ -137,7 +153,7 @@ public class UserProfile {
      */
     public String getDepartment(int userId) {
         String dbDepartment = "";
-        stmt = "SELECT department FROM skills WHERE personID=" + userId;
+        stmt = "SELECT department FROM student WHERE s=" + userId;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
 
@@ -166,7 +182,7 @@ public class UserProfile {
      */
     public String getStudium(int userId) {
         String dbStudium = "";
-        stmt = "SELECT studium FROM skills WHERE personID=" + userId;
+        stmt = "SELECT studium FROM student WHERE s=" + userId;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
 
@@ -196,7 +212,7 @@ public class UserProfile {
      */
     public String getAbout(int userId) {
         String dbAbout = "";
-        stmt = "SELECT about FROM skills WHERE personID=" + userId;
+        stmt = "SELECT about FROM student WHERE s=" + userId;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
 
@@ -216,50 +232,6 @@ public class UserProfile {
 
         return dbAbout;
     }
-    
-    /**
-     * Returns the UserInfos from the database
-     *
-     * @param userId to identify the relevant person
-     * @return an user object.
-     */
-//    public void prepareProfil(int userId) {
-//        getDBName(userId);
-//        getDBDepartment(userId);
-//        getDBStudium(userId);
-//        getDBAbout(userId);              
-//    }
+
 }
 
-    /**
-     * Returns the UserInfos from the database
-     *
-     * @param userId to identify the relevant person
-     * @return an user object.
-     */
-//    public void prepareUserProfile(int userId) {
-//
-//
-//        stmt = "SELECT name, department, studium, about FROM student WHERE personID=" + userId;
-//        try {
-//            pstmt = DBConnectionPool.getStmt(stmt);
-//  
-//
-//            try (ResultSet rs = pstmt.executeQuery()) {
-//                while (rs.next()) {
-//                    
-//                   name = rs.getString("name");
-//                   department = rs.getString("name");
-//                   studium = rs.getString("name");
-//                   about = rs.getString("name");
-//                }
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Student.class.getName()).log(
-//                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
-//        } finally {
-//            DBConnectionPool.closeStmt(pstmt);
-//            DBConnectionPool.closeCon();
-//        }
-//
-//    } 

@@ -251,40 +251,43 @@ public class Student extends User {
      * string or null.
      *
      * @param userId
-     * @param name
+     * @param firstname
+     * @param lastname
      * @param department
      * @param studium
      * @param about
      */
     public void editUserProfile(
             int userId,
-            String name,
+            String firstname,
+            String lastname,
             String department,
             String studium,
             String about
     ) {
 
         
-        profile.editUserProfile(userId, name, department, studium, about);
+        profile.editUserProfile(userId, firstname, lastname, department, studium, about);
     }
 
     /**
-     * Returns the UserInfos from the database
-     *
-     * @param userId to identify the relevant person
-     */
-    public void prepareUserProfile(int userId) {
-        profile.editUserProfile(userId, name, department, studium, about);
-    }
-
-    /**
-     * Returns the UserInfos name from the database
+     * Returns the UserInfos firstname from the database
      *
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getName(int userId) {
-        return profile.getName(userId);
+    public String getFirstname(int userId) {
+        return profile.getFirstname(userId);
+    }
+    
+    /**
+     * Returns the UserInfos lastname from the database
+     *
+     * @param userId to identify the relevant person
+     * @return an user object.
+     */
+    public String getLastname(int userId) {
+        return profile.getLastname(userId);
     }
 
     /**
@@ -313,7 +316,7 @@ public class Student extends User {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBAbout(int userId) {
+    public String getAbout(int userId) {
         return profile.getAbout(userId);
     }
 
@@ -386,9 +389,9 @@ public class Student extends User {
 
     //initialize candidateList for tests
     public void init() {
-        candidateList.add(new Candidate(1, "Thomas", "depar", "physio", "ich bin bla", true));
-        candidateList.add(new Candidate(2, "brain", "depsadar", "physadsio", "ich bin sadbla", true));
-        candidateList.add(new Candidate(3, "brain", "depsadar", "physadsio", "ich bin sadbla", true));
+        candidateList.add(new Candidate(1, "Thomas", "Huynh","test", "physio", "ich bin bla", true));
+        candidateList.add(new Candidate(2, "David", "wa","test", "physio", "ich bin bla", true));
+        candidateList.add(new Candidate(4, "miau", "bo","test", "physio", "ich bin bla", false));
     }
 
     /**
@@ -397,7 +400,8 @@ public class Student extends User {
      * @param userID
      */
     public void createNewMatch(int userID) {
-        String candidateName;
+        String candidateFirstname;
+        String candidateLastname;
         String candidateDepartment;
         String candidateStudium;
         String candidateAbout;
@@ -407,7 +411,8 @@ public class Student extends User {
             if (temp.getCandidateLike(userID) == true) {
 
                 int candidateID = temp.getId();
-                candidateName = temp.getCandidateName(candidateID);
+                candidateFirstname = temp.getCandidateFirstname(candidateID);
+                candidateLastname = temp.getCandidateLastname(candidateID);
                 candidateDepartment = temp.getCandidateDepartment(candidateID);
                 candidateStudium = temp.getCandidateStudium(candidateID);
                 candidateAbout = temp.getCandidateAbout(candidateID);
