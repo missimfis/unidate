@@ -6,7 +6,7 @@
 <%Image image = new Image(); %>
 <%-- int id =  Integer.parseInt(request.getParameter("id"));--%>
 <%  image.readTXT();
-    Integer id = null;
+    Integer id = 1;
 %>
 <% 
     if(image.getPersonID() != null) {
@@ -18,20 +18,12 @@
         id = Integer.parseInt(request.getParameter("id"));
     }
 %> 
-<% String name = userinfo.getName(id);%>
+<%-- String name = userinfo.getName(id);--%>
+<% String firstname = userinfo.getFirstname(id);%>
+<% String lastname = userinfo.getLastname(id);%>
 <% String department = userinfo.getDepartment(id);%>
 <% String studium = userinfo.getStudium(id);%>
 <% String about = userinfo.getAbout(id);%>
-
-
-<!--<script>
-// this function must be defined in the global scope
-window.fadeIn = function(obj) {
-    $(obj).fadeIn(1000);
-}?
-</script>-->
-  
-
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -104,10 +96,15 @@ window.fadeIn = function(obj) {
 	  </div>
 	  <div class="large-8 medium-8 columns">
 		<form method="post" action="profilCheck.jsp">
-			<div class="row">
-					<div class="large-12 columns">
-					<label>Name</label>
-					  <h3 class="blue"><input type="text" value="<%=name %>" name="name" /></h3>
+                    <h3>Profileinstellung</h3>
+			<div class="row">                                       
+                                        <div class="large-6 medium-6 small-6 columns">
+					<label>Vorname</label>
+                                        <input type="text" value="<%=firstname %>" name="firstname"/>
+					</div>
+					<div class="large-6 medium-6 small-6 columns">
+					<label>Nachname</label>
+                                        <input type="text" value="<%=lastname %>" name="lastname"/>
 					</div>
 				</div>
 				<div class="row">
@@ -138,6 +135,7 @@ window.fadeIn = function(obj) {
                                           </textarea>
 					</div>
 				</div>
+                                
 				<div class="row">
 					<div class="large-12 columns">
 						<input class="small round button" type="submit" value="Speichern" />
@@ -147,7 +145,38 @@ window.fadeIn = function(obj) {
 				</div>
 				
 		</form>
-	  </div>
+                <form> 
+                    <h3>Einstellungen für Anzeigen</h3>
+                    <div class="row">
+                            <div class="large-6 medium-6 columns">
+                              <label>Interessiert an</label>
+                              <input type="radio" name="Frauen" value="Frauen" id="f"/>
+                              <label for="f">Frauen</label>
+                              <input type="radio" name="Maenner" value="Maenner" id="m"/>
+                              <label for="m">Männer</label>
+                            </div>
+                            <div class="large-6 medium-6 columns">
+                              <label>Alter</label>
+                              <input type="text" placeholder="Alter" />
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="large-6 medium-6 columns">
+                              <label>Alter zwischen</label>
+                              <input type="text" placeholder="minimum Alter" />
+                            </div>
+                            <div class="large-6 medium-6 columns">
+                              <label>und</label>
+                              <input type="text" placeholder="maximum Alter" />
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="large-12 columns">
+                             <a href="#" class="small round button">Speichern</a><br/> 
+                            </div>
+                    </div>
+                  </div>
+                </form>
 	</div>   
 	
 	<div class="row">   

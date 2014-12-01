@@ -10,21 +10,18 @@
 
 <%  
     int userId = 1;
-    String name = request.getParameter("name");
+    String firstname = request.getParameter("firstname");
+    String lastname = request.getParameter("lastname");
     String department = request.getParameter("department");
     String studium = request.getParameter("studium");
     String about = request.getParameter("about");
     
-    //out.println("<br>" + name + "<br>");
-    
-    out.println(department+ "<br>");
-    
-    out.println(studium+ "<br>");
-    
-    out.println(about+ "<br>");
+    out.println(department+ "<br>");   
+    out.println(studium+ "<br>");  
+    out.println(firstname+ "<br>");
     
 
-    userinfo.editUserProfile(userId, name, department, studium, about);
+    userinfo.editUserProfile(userId, firstname, lastname, department, studium, about);
 %>
 
 
