@@ -188,7 +188,7 @@ public class Image extends HttpServlet{
 
     public void prepareHTML(int id){
         
-        //path = "H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles\\"+ id;
+
         relativePath = "uploadFiles\\" + id +"\\";  
         webLayoutBegin = "<div class=\"large-2 medium-2 columns\"><div class=\"mediumpicture\">";
         webLayoutEnd = "<div class=\"white_medium_circle\"></div><div class=\"blue_medium_circle\"></div></div></div>";
@@ -224,6 +224,37 @@ public class Image extends HttpServlet{
         }
     }
     
+        public void displayMessage(int id){
+
+        relativePath = "uploadFiles\\" + id +"\\";  
+        
+        webLayoutBegin  = "<div class=\"row\">" + "<div class=\"large-2 medium-2 columns\">" + "<div class=\"mediumpicture\">";
+                                        //Image between
+        webLayoutEnd    = "</div>" + "</div>" + "<div class=\"large-10 medium-10 columns panel\">" + "<p>test</p>" + "</div>" + "</div>";
+        createDirectory(path + id);
+        
+        File f;
+        f = new File(path + id);    
+        File[] list = f.listFiles();    
+        
+
+        for (File jpg : list) {
+            
+            String fileName = jpg.getName();
+            if(fileNameOutput != null && fileName != null){
+                fileNameOutput =  
+                         webLayoutBegin 
+                        + "<img src=\"" + relativePath + fileName + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">"  
+                        + webLayoutEnd;            
+            }
+            else{
+                fileNameOutput =  webLayoutBegin 
+                        + "<img src=\"" + relativePath + fileName + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">"  
+                        + webLayoutEnd;    
+            }
+        }
+    }
+    
     public void deleteImage(String name, int id){
         try{
 
@@ -242,5 +273,14 @@ public class Image extends HttpServlet{
     
     public String getOutput(){
         return fileNameOutput;   
+    }
+    
+    public String resetOutput(){
+            fileNameOutput = "";
+        return fileNameOutput;   
+    }
+    
+    public String getPersonID(){
+        return personID;   
     }
 }

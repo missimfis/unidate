@@ -1,38 +1,13 @@
 <%@ page import="bean.*"%> 
 <jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/>  
-<%@ page import="java.util.*" %>
 
-<%Image image = new Image(); %>
-<%-- int id =  Integer.parseInt(request.getParameter("id"));--%>
-<%  image.readTXT();
-    Integer id = null;
-%>
-<% 
-    if(image.getPersonID() != null) {
-%>
-    <%  
-        id = Integer.parseInt(image.getPersonID()); %>
-<%
-    }else{ 
-        id = Integer.parseInt(request.getParameter("id"));
-    }
-%> 
+<% int id = 1;%>
+<%@ page import="java.util.*" %>
 <% String name = userinfo.getName(id);%>
 <% String department = userinfo.getDepartment(id);%>
 <% String studium = userinfo.getStudium(id);%>
 <% String about = userinfo.getAbout(id);%>
-
-
-<!--<script>
-// this function must be defined in the global scope
-window.fadeIn = function(obj) {
-    $(obj).fadeIn(1000);
-}?
-</script>-->
-  
-
-
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -43,9 +18,8 @@ window.fadeIn = function(obj) {
 	<link rel="stylesheet" href="css/main.css" />
     <script src="js/vendor/modernizr.js"></script>
   </head>
-
   <body>
-<%=id%>
+    <%Image image = new Image(); %>
     <% 
             if(request.getParameter("submit") != null) {
     %>
@@ -54,8 +28,6 @@ window.fadeIn = function(obj) {
     <%
             }
     %> 
-    
-
     <div class="line">&nbsp;
 	</div>
 	
@@ -69,7 +41,6 @@ window.fadeIn = function(obj) {
 		
 		<div class="littlepicture right">
 			<img src="img/Bild1.png" alt="profile">
-                        
 			<div class="white_little_circle">
 			</div>
 			<div class="blue_little_circle">
@@ -78,6 +49,7 @@ window.fadeIn = function(obj) {
 			</div>
 		</div>
 		<div class="messages right">
+			<%--img src="icons/comments16.png" alt="messages"--%>    
                     <form method="post" action="nachrichten.jsp">
                         <input type="image" src="icons/comments16.png" alt="messages" name="image" style="margin-top:10px; margin-right: 10px;" width="75">  
                     </form>
@@ -103,66 +75,26 @@ window.fadeIn = function(obj) {
 		</div>
 	  </div>
 	  <div class="large-8 medium-8 columns">
-		<form method="post" action="profilCheck.jsp">
-			<div class="row">
-					<div class="large-12 columns">
-					<label>Name</label>
-					  <h3 class="blue"><input type="text" value="<%=name %>" name="name" /></h3>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 medium-12 columns">
-					  <label>Department</label>
-					  <select class="radius" name="department">
-						<option <%if ("Angewandte Linguistik".equals(department)) {%> selected="selected" <%}%> value="Angewandte Linguistik">Angewandte Linguistik</option>
-						<option <%if ("Angewandte Psychologie".equals(department)) {%> selected="selected" <%}%> value="Angewandte Psychologie">Angewandte Psychologie</option>
-						<option <%if ("Architektur, Gestaltung und Bauinginieurwesen".equals(department)) {%>selected="selected"<%}%>  value="Architektur, Gestaltung und Bauinginieurwesen">Architektur, Gestaltung und Bauinginieurwesen</option>
-						<option <%if ("Gesundheit".equals(department)) {%> selected="selected" <%}%> value="Gesundheit">Gesundheit</option>
-						<option <%if ("School of Engineering".equals(department)) {%> selected="selected" <%}%> value="School of Engineering">School of Engineering</option>
-						<option <%if ("Life Sciences und Facility Management".equals(department)) {%> selected="selected"<%}%>  value="Life Sciences und Facility Management">Life Sciences und Facility Management</option>
-						<option <%if ("Soziale Arbeit".equals(department)) {%> selected="selected" <%}%>  value="Soziale Arbeit">Soziale Arbeit</option>
-						<option <%if ("School of Management and Law".equals(department)) {%> selected="selected" <%}%>  value="School of Management and Law">School of Management and Law</option>
-					  </select>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-					  <label>Studium</label>
-					  <input type="text" placeholder="Studium" name="studium" value="<%=studium %>"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-					  <label>Über Dich</label>
-					  <textarea style="border-radius:10px;" rows="10" name="about"><%out.println(about);%>
-                                          </textarea>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<input class="small round button" type="submit" value="Speichern" />
-                                                <%--<a href="#" class="small round button">Speichern</a><br/> */--%>
-
-					</div>
-				</div>
-				
-		</form>
+		<h3 class="blue"><%out.println(name);%></h3>
+			<p>24 Jahre<br/>
+			<%out.println(studium);%><br/></p>
+			<%out.println(about);%>
+			
 	  </div>
 	</div>   
 	
-	<div class="row">   
+      <div class="row">
             <%   
                 image.prepareHTML(id);
                 if(image.getOutput()!=null){
                     out.println(image.getOutput());
                 }
                  
-            %>               
-        <div class="large-2 medium-2 columns">
-            <div class="mediumepicture right">
-                <%--<img src="icons/plus13.png" alt="profile">--%>
-                <form method="post" action="Image" enctype="multipart/form-data" >
-                    
+            %>  
+	  <div class="large-2 medium-2 columns">
+	     <div class="mediumepicture right">
+                <%--img src="icons/plus13.svg" alt="profile"--%>                        
+                <form method="post" action="Image" enctype="multipart/form-data" >                   
                     <div class="image-upload">
                         <label for="file-input">
                             <img src="icons/plus13.png" style="margin-top:45px;" />
@@ -172,10 +104,8 @@ window.fadeIn = function(obj) {
                     </div> 
                     <%image.createTXT(id);%>
                 </form>
-                
             </div>
-        </div>
-                
+      </div>
 	  <div class="large-2 medium-2 columns">
 	    &nbsp;
       </div>
@@ -189,13 +119,23 @@ window.fadeIn = function(obj) {
 	    &nbsp;
       </div>
     </div>
-   
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<%--a href="#" class="small round button">Bearbeiten</a><br/--%>
+                        <form method="post" action="profil_bearbeiten.jsp">
+                        <input class="small round button" type="submit" value="Bearbeiten" />
+                        <input style=" display: none;" type="text" name="id" value="<%=id%>">
+                        </form>
+		</div>
+	</div>
+    
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <script>
       $(document).foundation();
     </script>
-    <script>
+        <script>
       $(document).foundation();
       $('.delete').click(function(){
          var r = confirm('sicher löschen?');
@@ -206,4 +146,3 @@ window.fadeIn = function(obj) {
     </script>
   </body>
 </html>
- 

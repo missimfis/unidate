@@ -157,7 +157,11 @@ select {
   float: left; }
 
 @media only screen /* Mobile Version */ {
-  .line {height:50px;}
+    .blue{
+        color:#2b579a;
+    }
+    
+    .line {height:50px;}
   
   .logo img{
 		height:45px;
@@ -173,6 +177,10 @@ select {
 		color:plum;
 	}
 	
+        .comment {
+            margin-right:10px;
+	}
+        
 	.littlepicture img{
 		height:50px;
 		width:auto;
@@ -181,23 +189,11 @@ select {
 	float:right;
   }
   
-  .white_little_circle{
+  .littlemask{
 	position:absolute;
-	margin-top:-65px;
+	margin-top:-67px;
 	margin-left:-18px;
-	width:80px;
-	height:80px;
 	border:17px solid white;
-	border-radius:1000px;
-  }
-  
-  .blue_little_circle{
-	position:absolute;
-	margin-top:-50px;
-	margin-left:-2px;
-	width:50px;
-	height:50px;
-	border:3px solid #26569a;
 	border-radius:1000px;
   }
   
@@ -233,7 +229,7 @@ select {
 	border-radius:1000px;
   }
   
-	.mediumepicture img{
+	.mediumpicture img{
 		margin-bottom:20px;
                 height:150px;
                 width:150px;
@@ -502,23 +498,16 @@ select {
 	float:right;
   }
   
-  .white_little_circle{
+  .littlepicture img{
+		height:80px;
+		width:auto;	
+	}
+	
+	 .littlemask{
 	position:absolute;
-	margin-top:-95px;
-	margin-left:-18px;
-	width:110px;
-	height:110px;
+	margin-top:-97px;
+	margin-left:-20px;
 	border:17px solid white;
-	border-radius:1000px;
-  }
-  
-  .blue_little_circle{
-	position:absolute;
-	margin-top:-80px;
-	margin-left:-3px;
-	width:79px;
-	height:79px;
-	border:3px solid #26569a;
 	border-radius:1000px;
   }
   
@@ -1574,7 +1563,7 @@ textarea {
   font-family: inherit;
   border-style: solid;
   border-width: 1px;
-   border-radius: 1000px;
+   border-radius: 20px;
   border-color: #cccccc;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   color: rgba(0, 0, 0, 0.75);
