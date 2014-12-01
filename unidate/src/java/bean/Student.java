@@ -18,13 +18,13 @@ public class Student extends User {
     private String matrikelnumber;
     private String stmt;
     private Integer age;
-    private List<MatchedStudent> matchedStudent;
-    private List<Candidate> candidateList;
-    private List<Integer> likedStudent;
+    private final List<MatchedStudent> matchedStudent;
+    private final List<Candidate> candidateList;
+    private final List<Integer> likedStudent;
 
     private boolean registrated;
     private boolean completedProfile;
-    private UserProfile profile;
+    private final UserProfile profile;
     private PreparedStatement pstmt;
 
     /**
