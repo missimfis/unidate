@@ -51,9 +51,9 @@ CREATE TABLE IF NOT EXISTS `message` (
     `msg` INT NOT NULL AUTO_INCREMENT,
     `ms` INT NOT NULL,
     `text` TEXT NOT NULL,
-    `from` int NOT NULL DEFAULT,
+    `from` int NOT NULL,
     `sentdate` DATETIME NOT NULL,
-    `read` BOOLEAN NOT NULL DEFAULT 'false',
+    `read` BOOLEAN NOT NULL DEFAULT 0,
     PRIMARY KEY (`msg`),
     FOREIGN KEY (`ms`) REFERENCES `matchedStudent`(`ms`)
 );
