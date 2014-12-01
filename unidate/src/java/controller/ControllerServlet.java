@@ -32,6 +32,8 @@ public class ControllerServlet extends HttpServlet {
         doGetMap.put("/nachrichten", "/view/nachrichten");
         doGetMap.put("/nachrichten_detail", "/view/nachrichten_detail");
         doGetMap.put("/nachrichten_senden", "/view/nachrichten_senden");
+        doGetMap.put("/registriert", "/view/registriert");
+        doGetMap.put("/dashboard", "/view/dashboard");
 
         // fillup doPostMap data
         doPostMap.put("/loginProcess", "/controller/loginProcess");

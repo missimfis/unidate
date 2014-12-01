@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `student` (
     `username` VARCHAR(255) NOT NULL DEFAULT '',
     `email` VARCHAR(255) NOT NULL DEFAULT '',
     `password`  VARCHAR(255) NOT NULL,
-    `birthday`  DATE NOT NULL,
+    `age`  INT NOT NULL,
     `interests` VARCHAR(255) NOT NULL DEFAULT '',
     `registrated` BOOLEAN NOT NULL DEFAULT false,
     `completedProfile` BOOLEAN NOT NULL DEFAULT false,

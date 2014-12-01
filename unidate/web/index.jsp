@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="large-6 medium-6 columns">
                     <label>Benutzername</label>
-                    <input type="text" placeholder="Benutzername" name="userName" />
+                    <input type="text" placeholder="Benutzername" name="username" />
                 </div>
                 <div class="large-6 medium-6  columns">
                     <label>Passwort</label>

@@ -166,7 +166,7 @@ public class DBConnectionPool {
                 con = ds.getConnection();
             } else {
                 if (con == null || con.isClosed()) {
-                con = datasource.getConnection();
+                    con = datasource.getConnection();
                 }
             }
         } catch (SQLException ex) {

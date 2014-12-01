@@ -13,8 +13,9 @@ public class Student extends User {
     private String email;
     private String password;
     private String username;
+    private String matrikelnumber;
     private String stmt;
-    private Date birthday;
+    private Integer age;
     private boolean registrated;
     private boolean completedProfile;
     private UserProfile profile;
@@ -455,14 +456,28 @@ public class Student extends User {
     /**
      * @return the birthday
      */
-    public Date getBirthday() {
-        return birthday;
+    public Integer getAge() {
+        return age;
     }
 
     /**
-     * @param birthday the birthday to set
+     * @param age
      */
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    /**
+     * @return the matrikelnumber
+     */
+    public String getMatrikelnumber() {
+        return matrikelnumber;
+    }
+
+    /**
+     * @param matrikelnumber the matrikelnumber to set
+     */
+    public void setMatrikelnumber(String matrikelnumber) {
+        this.matrikelnumber = matrikelnumber;
     }
 }

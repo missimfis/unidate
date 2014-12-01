@@ -5,9 +5,6 @@
  */
 package bean;
 
-import java.security.DigestException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +29,7 @@ public class Unidate {
      *
      * @return success of registration process
      */
-    public boolean register() throws DigestException {
+    public boolean register() {
         boolean result = true;
         try {
             FormValidator validator = FormValidator.getInstance();
@@ -49,6 +46,9 @@ public class Unidate {
                 result = false;
             }
             if (!validator.checkEmail(student.getEmail(), "email")) {
+                result = false;
+            }
+            if (!validator.checkLeginumber(student.getMatrikelnumber(), "matrikelnumber")) {
                 result = false;
             }
             if (result) {
@@ -70,7 +70,7 @@ public class Unidate {
                         return false;
                     }
                 }
-                stmt = "INSERT INTO student (username,firstname,lastname,email,password,birthday,interests,registrated,completedProfile) VALUES (?,?,?,?,?,?,?,?,?)";
+                stmt = "INSERT INTO student (username,firstname,lastname,email,password,age,interests,registrated,completedProfile) VALUES (?,?,?,?,?,?,?,?,?)";
                 pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
 
                 pstmt.setString(1, student.getUsername());
@@ -78,8 +78,10 @@ public class Unidate {
                 pstmt.setString(3, student.getSurname());
                 pstmt.setString(4, student.getEmail());
                 pstmt.setString(5, student.getPassword());
-                pstmt.setDate(6, student.getBirthday());
-                pstmt.setString(7, student.getInterests());
+                // Alter kommt später dazu erstmals initialisieren
+                pstmt.setInt(6, 0);
+                // Interessen sind nicht vorhadnen kommen später dazu.
+                pstmt.setString(7, "");
                 pstmt.setBoolean(8, false);
                 pstmt.setBoolean(9, false);
 
@@ -109,7 +111,7 @@ public class Unidate {
     public boolean validate() {
         boolean status = false;
         stmt = "SELECT * from student WHERE username='" + student.getUsername()
-                + "' AND BINARY password='" + student.getPassword() + "'";
+                + "' AND password='" + student.getPassword() + "'";
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery(stmt)) {
@@ -119,7 +121,7 @@ public class Unidate {
                     student.setId(rs.getInt("s"));
                     student.setUsername(rs.getString("username"));
                     student.setFirstname(rs.getString("firstname"));
-                    student.setSurname(rs.getString("name"));
+                    student.setSurname(rs.getString("lastname"));
                     student.setEmail(rs.getString("email"));
                     student.setPassword(rs.getString("password"));
                 } else {
