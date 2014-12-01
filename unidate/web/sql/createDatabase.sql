@@ -1,18 +1,11 @@
 CREATE DATABASE IF NOT EXISTS unidate;
 USE `unidate` ;
-  
-CREATE TABLE IF NOT EXISTS `skills` (
-    `personID` INT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(255) NULL,
-
-    PRIMARY KEY (`personID`)
-);
 
 CREATE TABLE IF NOT EXISTS `student` (
     `s` INT NOT NULL AUTO_INCREMENT,
     `firstname` VARCHAR(255) NOT NULL DEFAULT '',
     `lastname` VARCHAR(255) NOT NULL DEFAULT '',
-    `username` VARCHAR(255) NOT NULL DEFAULT '',
+    `username` VARCHAR(255) NOT NULL,
     `department` VARCHAR(255) NULL DEFAULT '',
     `studium` VARCHAR(255) NULL DEFAULT '',
     `about` TEXT NULL DEFAULT '',

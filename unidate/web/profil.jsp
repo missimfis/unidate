@@ -4,7 +4,8 @@
 
 <% int id = 1;%>
 <%@ page import="java.util.*" %>
-<% String name = userinfo.getName(id);%>
+<% String firstname = userinfo.getFirstname(id);%>
+<% String lastname = userinfo.getLastname(id);%>
 <% String department = userinfo.getDepartment(id);%>
 <% String studium = userinfo.getStudium(id);%>
 <% String about = userinfo.getAbout(id);%>
@@ -75,7 +76,7 @@
 		</div>
 	  </div>
 	  <div class="large-8 medium-8 columns">
-		<h3 class="blue"><%out.println(name);%></h3>
+		<h3 class="blue"><%out.println(firstname + " " + lastname);%></h3>
 			<p>24 Jahre<br/>
 			<%out.println(studium);%><br/></p>
 			<%out.println(about);%>
