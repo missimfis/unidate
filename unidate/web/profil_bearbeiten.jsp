@@ -25,16 +25,6 @@
 <% String studium = userinfo.getStudium(id);%>
 <% String about = userinfo.getAbout(id);%>
 
-
-<!--<script>
-// this function must be defined in the global scope
-window.fadeIn = function(obj) {
-    $(obj).fadeIn(1000);
-}?
-</script>-->
-  
-
-
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -106,6 +96,7 @@ window.fadeIn = function(obj) {
 	  </div>
 	  <div class="large-8 medium-8 columns">
 		<form method="post" action="profilCheck.jsp">
+                    <h3>Profileinstellung</h3>
 			<div class="row">                                       
                                         <div class="large-6 medium-6 small-6 columns">
 					<label>Vorname</label>
@@ -144,6 +135,7 @@ window.fadeIn = function(obj) {
                                           </textarea>
 					</div>
 				</div>
+                                
 				<div class="row">
 					<div class="large-12 columns">
 						<input class="small round button" type="submit" value="Speichern" />
@@ -153,7 +145,38 @@ window.fadeIn = function(obj) {
 				</div>
 				
 		</form>
-	  </div>
+                <form> 
+                    <h3>Einstellungen für Anzeigen</h3>
+                    <div class="row">
+                            <div class="large-6 medium-6 columns">
+                              <label>Interessiert an</label>
+                              <input type="radio" name="Frauen" value="Frauen" id="f"/>
+                              <label for="f">Frauen</label>
+                              <input type="radio" name="Maenner" value="Maenner" id="m"/>
+                              <label for="m">Männer</label>
+                            </div>
+                            <div class="large-6 medium-6 columns">
+                              <label>Alter</label>
+                              <input type="text" placeholder="Alter" />
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="large-6 medium-6 columns">
+                              <label>Alter zwischen</label>
+                              <input type="text" placeholder="minimum Alter" />
+                            </div>
+                            <div class="large-6 medium-6 columns">
+                              <label>und</label>
+                              <input type="text" placeholder="maximum Alter" />
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="large-12 columns">
+                             <a href="#" class="small round button">Speichern</a><br/> 
+                            </div>
+                    </div>
+                  </div>
+                </form>
 	</div>   
 	
 	<div class="row">   
