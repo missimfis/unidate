@@ -285,4 +285,8 @@ public class Message {
         }
         return result;
     }
+
+    private List<Message> loadMessages(int userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
