@@ -9,7 +9,7 @@ und ich hülle dich in eine Decke aus Blumen.');
 
 
 INSERT INTO `student`(`firstname`, `lastname`, `username`, `email`, `password`, `age`, `interests`, `registrated`, `completedProfile`) 
-VALUES ('Brianna', 'Fraser', 'fraserui','briana@zhaw.ch', '123456' , 23, 'woman', true, true)
+VALUES ('Brianna', 'Fraser', 'fraserui','briana@zhaw.ch', '123456' , 23, 'woman', true, true);
 
 INSERT INTO `candidate` (`s`, `firstname`, `lastname`, `like`, `interests`) 
 VALUES (1, 'Brianna', 'Fraser', true,'woman');
