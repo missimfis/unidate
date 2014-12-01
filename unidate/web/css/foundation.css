@@ -206,9 +206,11 @@ select {
 	}
 	
 	.icon img{
-		height:50px;
+		height:30px;
 		margin-top:10px;
 	}
+	
+	
    
    .smallmask{
 	visibility:hidden;
@@ -243,6 +245,21 @@ select {
 		width:60%;
 		float:right;
 	}
+	
+	  .circle
+	{
+		border-radius:1000px;
+		border: 4px solid #2B579A;
+		height:60px;
+		width:60px;
+		padding:3px 0px 0px 5px;
+		
+	}
+	
+	.circle2{
+		padding:2px 0px 0px 10px;
+	}
+	
   .small-push-0 {
     position: relative;
     left: 0%;
@@ -486,6 +503,20 @@ select {
 		height:auto;
 	  }
 	  
+	    .circle
+	{
+		border-radius:1000px;
+		border: 4px solid #2B579A;
+		height:60px;
+		width:60px;
+		padding:10px 0px 0px 5px;
+		
+	}
+	
+	.circle2{
+		padding:8px 0px 0px 10px;
+	}
+	  
 	  
 }	
 
@@ -505,6 +536,25 @@ select {
 	.smallmask{
 		visibility:hidden;
 	  }
+	  
+	 .icon img{
+		height:40px;
+		margin-top:10px;
+	}
+	  
+	  .circle
+	{
+		border-radius:1000px;
+		border: 5px solid #2B579A;
+		height:80px;
+		width:80px;
+		padding:8px 0px 0px 5px;
+		
+	}
+	
+	.circle2{
+		padding:6px 0px 0px 15px;
+	}
 }	
 
 	
@@ -521,6 +571,20 @@ select {
 	  .smallmask{
 		visibility:hidden;
 	  }
+	  
+	  .circle
+	{
+		border-radius:1000px;
+		border: 5px solid #2B579A;
+		height:90px;
+		width:90px;
+		padding:12px 0px 0px 10px;
+		
+	}
+	
+	.circle2{
+		padding:12px 0px 0px 22px;
+	}
 }
 
 @media only screen and (min-width: 35em) /*mobile landscape*/{
@@ -578,11 +642,27 @@ select {
 	margin-left:0px;
   }
 	
+	.circle
+	{
+		border-radius:1000px;
+		border: 5px solid #2B579A;
+		height:140px;
+		width:140px;
+		padding:30px 0px 0px 10px;
+		
+	}
+	
+	.circle2{
+		padding:25px 0px 0px 25px;
+	}
 	.icon img{
 		height:80px;
 		width:auto;	
 		margin-top:30px;
 	}
+	 .left{
+	float:left;
+  }
 	
   .right{
 	float:right;
