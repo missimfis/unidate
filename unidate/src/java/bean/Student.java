@@ -80,24 +80,6 @@ public class Student extends User {
      *
      * @return Surname
      */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Set the Surname of an User
-     *
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Get Surname of the User
-     *
-     * @return Surname
-     */
     public String getDepartment() {
         return department;
     }
@@ -281,42 +263,9 @@ public class Student extends User {
             String studium,
             String about
     ) {
-        try {
-            if (!"".equals(name)) {
-                stmt = "UPDATE skills SET name=? WHERE personID=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, name);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-            if (!"".equals(department)) {
-                stmt = "UPDATE skills SET department=? WHERE personID=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, department);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-            if (!"".equals(studium)) {
-                stmt = "UPDATE skills SET studium=? WHERE personID=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, studium);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-            if (!"".equals(about) && !"".equals(about)) {
-                stmt = "UPDATE skills SET about=? WHERE personID=?";
-                pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, about);
-                pstmt.setInt(2, userId);
-                pstmt.executeUpdate();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to access user infos from DB", ex);
-        } finally {
-            DBConnectionPool.closeStmt(pstmt);
-            DBConnectionPool.closeCon();
-        }
+
+        
+        profile.editUserProfile(userId, name, department, studium, about);
     }
 
     /**
@@ -334,7 +283,7 @@ public class Student extends User {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBName(int userId) {
+    public String getName(int userId) {
         return profile.getName(userId);
     }
 
@@ -344,7 +293,7 @@ public class Student extends User {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBDepartment(int userId) {
+    public String getDepartment(int userId) {
         return profile.getDepartment(userId);
     }
 
@@ -354,7 +303,7 @@ public class Student extends User {
      * @param userId to identify the relevant person
      * @return an user object.
      */
-    public String getDBStudium(int userId) {
+    public String getStudium(int userId) {
         return profile.getStudium(userId);
     }
 
@@ -402,16 +351,6 @@ public class Student extends User {
 
     public boolean checkNewLikes() {
         return true;
-    }
-
-    /**
-     * Returns the UserInfos name from the database
-     *
-     * @param userId to identify the relevant person
-     * @return an user object.
-     */
-    public String getName(int userId) {
-        return profile.getName(userId);
     }
 
     public boolean blockStudent() {
