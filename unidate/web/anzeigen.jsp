@@ -14,14 +14,13 @@
     else if(rating=="dislike"){
        //student.dislike(request.getParameter("id"));
     }
-    checkNewCandidates();
-    createCandidateList();
+    //checkNewCandidates();
+    //createCandidateList();
+    //ArrayList<Candidate> candidateList = getcandidateList();
+    ArrayList<Candidate> candidateList = new ArrayList<Candidate>();
+    candidateList.add(new Candidate(1, "asd", "asd","asd", "asd", "asd", true));
+    candidateList.add(new Candidate(2, "asd", "asd","asd", "asd", "asd", true));
     %>
-<% String firstname = userinfo.getFirstname(id);%>
-<% String lastname = userinfo.getLastname(id);%>
-<% String department = userinfo.getDepartment(id);%>
-<% String studium = userinfo.getStudium(id);%>
-<% String about = userinfo.getAbout(id);%>
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -31,11 +30,14 @@
     <link rel="stylesheet" href="css/foundation.css" />
 	<link rel="stylesheet" href="css/main.css" />
     <script src="js/vendor/modernizr.js"></script>
+    <script type="text/javascript">
+    function SwapContent( nextDiv, currentDiv ) {
+	document.getElementById(currentDiv).style.display = 'none';
+	document.getElementById(nextDiv).style.display = 'block';
+    }
+    </script>
   </head>
     <%Image image = new Image(); %>
-
-
-                    <%//image.createTXT(id);%><%//=id*/%>
   <body>
     <div class="line">&nbsp;
 	</div>
@@ -68,11 +70,25 @@
 		</div>
 	  </div>
     </div>
-    
-    <div class="row">
+    <% 
+        if(candidateList.size()==0)out.println("es konnten keine potenzielle Kandidatengefunden werden.");
+        for (int i=0;i<candidateList.size();i++){
+        //for (Candidate candidate:candidateList){
+        id=candidateList.get(i).getId();
+        int nextID=candidateList.get(0).getId();
+        int preID=candidateList.get(candidateList.size()-1).getId();
+        if(i+1<candidateList.size()){
+            nextID = candidateList.get(i+1).getId();
+        }
+        if(i!=0){
+            preID = candidateList.get(i-1).getId();
+        }
+            
+    %>
+    <div class="row" style="display:none; <% if(i==0)out.println("display:block;");%>" id="candidate_<% out.println(id); %>">
       <div class="large-3 medium-3 small-3 columns">
 	     <div class="icons">
-			<img src="icons/left17.png" alt="profile">
+			<img src="icons/left17.png" alt="profile"  onclick="SwapContent('candidate_<%=preID%>','candidate_<%=id%>');" style="cursor:pointer">
 		 </div>
       </div>
 	  <div class="large-6 medium-6 small-6 columns">
@@ -123,11 +139,11 @@
       </div>
 	  <div class="large-3 medium-3 small-3 columns">
 	       <div class="iconsright">
-				<img src="icons/arrow73.png" alt="profile">
+				<img src="icons/arrow73.png" alt="profile" onclick="SwapContent('candidate_<%=nextID%>','candidate_<%=id%>');" style="cursor:pointer">
 		   </div>
       </div>
     </div>
-
+    <% } %>
 
     
     <script src="js/vendor/jquery.js"></script>
