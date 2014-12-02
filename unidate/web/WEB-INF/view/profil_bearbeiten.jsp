@@ -1,82 +1,39 @@
 <%@ page import="bean.*"%> 
-<jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/>  
+<jsp:useBean id="student" class="bean.Student" scope="session"/> 
 <%@ page import="java.util.*" %>
 
 <%Image image = new Image(); %>
-<%-- int id =  Integer.parseInt(request.getParameter("id"));--%>
 <%  image.readTXT();
-    Integer id = 1;
+    int test = student.getId();
 %>
-<% 
+<% //check ID for Imagedisplay
     if(image.getPersonID() != null) {
 %>
     <%  
-        id = Integer.parseInt(image.getPersonID()); %>
+        test = Integer.parseInt(image.getPersonID()); %>
 <%
     }else{ 
-        id = Integer.parseInt(request.getParameter("id"));
+        test = Integer.parseInt(request.getParameter("id"));
     }
 %> 
-<%-- String name = userinfo.getName(id);--%>
-<% String firstname = userinfo.getFirstname(id);%>
-<% String lastname = userinfo.getLastname(id);%>
-<% String department = userinfo.getDepartment(id);%>
-<% String studium = userinfo.getStudium(id);%>
-<% String about = userinfo.getAbout(id);%>
 
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-	<link rel="stylesheet" href="css/main.css" />
-    <script src="js/vendor/modernizr.js"></script>
-  </head>
+<% String firstname = student.getFirstname(test);%>
+<% String lastname = student.getLastname(test);%>
+<% String department = student.getDepartment(test);%>
+<% String studium = student.getStudium(test);%>
+<% String about = student.getAbout(test);%>
 
-  <body>
-<%=id%>
+<%=test%>
     <% 
             if(request.getParameter("submit") != null) {
     %>
             <%String value = request.getParameter("submit"); 
-            image.deleteImage(value, id);%>
+            image.deleteImage(value, test);%>
     <%
             }
     %> 
-    
 
-    <div class="line">&nbsp;
-	</div>
-	
-    <div class="row">
-      <div class="large-4 medium-4 small-4 columns">
-		<div class="logo">
-			<img src="img/logo_v2_1.jpg" alt="Unidate">
-		</div>
-	  </div>
-	  <div class="large-8 medium-8 small-8 columns">
-		
-		<div class="littlepicture right">
-			<img src="img/Bild1.png" alt="profile">
-                        
-			<div class="white_little_circle">
-			</div>
-			<div class="blue_little_circle">
-			</div>
-			<div class="littleline">&nbsp;
-			</div>
-		</div>
-		<div class="messages right">
-                    <form method="post" action="nachrichten.jsp">
-                        <input type="image" src="icons/comments16.png" alt="messages" name="image" style="margin-top:10px; margin-right: 10px;" width="75">  
-                    </form>
-		</div>
-	  </div>
-    </div>
-    
     <div class="row">
       <div class="large-12 columns">
 	        <h2>Profil</h2>
@@ -95,7 +52,7 @@
 		</div>
 	  </div>
 	  <div class="large-8 medium-8 columns">
-		<form method="post" action="profilCheck.jsp">
+		<form method="post" action="profilCheck">
                     <h3>Profileinstellung</h3>
 			<div class="row">                                       
                                         <div class="large-6 medium-6 small-6 columns">
@@ -181,7 +138,7 @@
 	
 	<div class="row">   
             <%   
-                image.prepareHTML(id);
+                image.prepareHTML(test);
                 if(image.getOutput()!=null){
                     out.println(image.getOutput());
                 }
@@ -199,7 +156,7 @@
                         
                         <input style=" display: none;"  id="file-input" type="file" name="file" accept="image/x-png, image/gif, image/jpeg" onchange="this.form.submit();"/>
                     </div> 
-                    <%image.createTXT(id);%>
+                    <%image.createTXT(test);%>
                 </form>
                 
             </div>
@@ -233,6 +190,3 @@
          }
       });
     </script>
-  </body>
-</html>
- 
