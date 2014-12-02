@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `student` (
     `s` INT NOT NULL AUTO_INCREMENT,
     `firstname` VARCHAR(255) NOT NULL DEFAULT '',
     `lastname` VARCHAR(255) NOT NULL DEFAULT '',
-    `username` VARCHAR(255) NOT NULL,
+    `username` VARCHAR(255) NOT NULL DEFAULT '',
     `department` VARCHAR(255) NULL DEFAULT '',
     `studium` VARCHAR(255) NULL DEFAULT '',
     `about` TEXT NULL DEFAULT '',
