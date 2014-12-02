@@ -6,6 +6,17 @@
 <%out.println(request.getParameter("rating"));%>
 <% int id = 1;%>
 <%@ page import="java.util.*" %>
+<% 
+    String rating = request.getParameter("rating");
+    if(rating=="like"){
+        //student.like(request.getParameter("id"));
+    }
+    else if(rating=="dislike"){
+       //student.dislike(request.getParameter("id"));
+    }
+    checkNewCandidates();
+    createCandidateList();
+    %>
 <% String firstname = userinfo.getFirstname(id);%>
 <% String lastname = userinfo.getLastname(id);%>
 <% String department = userinfo.getDepartment(id);%>
@@ -39,11 +50,10 @@
 		
 		<div class="littlepicture right">
 			<img src="img/Bild1.png" alt="profilexx">
-                        <%   
+                        <%  //waiting for method 
                             image.prepareHTML(id);
-                            out.println(id);
                             if(image.getOutput()!=null){
-                                out.println(image.getOutput());
+                                //out.println(image.getOutput());
                             }
                  
                         %>
@@ -69,10 +79,10 @@
 		<div class="bigpicture">
 			<img src="img/Bild1.png" alt="profile">
                         <%   
-                            image.prepareHTML(id);
-                            out.println(id);
+                            //waiting for method!!!!!!
+                            image.displayMessage(id);
                             if(image.getOutput()!=null){
-                                out.println(image.getOutput());
+                                //out.println(image.getOutput());
                             }
                  
                         %>
@@ -84,11 +94,10 @@
 					<div class="littlepicture left">
 						<div class="circle left">
 							<div class="icon">
-                                                            <!--<img src="icons/checkmark2.png" alt="dislike">-->
-                                                            <form method="post" action="anzeigen.jsp">
+                                                            <form action="anzeigen.jsp" method="post" name="like" >
                                                                 <input style=" display: none;" type="text" name="id" value="<%=id%>">
                                                                 <input style=" display: none;" type="text" name="rating" value="like">
-                                                                <input type="image" src="icons/checkmark2.png" alt="dislike" />
+                                                                <img src="icons/checkmark2.png" alt="dislike" onclick="document.like.submit();" style="cursor:pointer">
                                                             </form>
                                                         </div>
 						</div>
@@ -100,10 +109,10 @@
 						<div class="circle circle2 right">
 							<div class="icon">
                                                             <!--<img src="icons/cross5.png" alt="dislike">-->
-                                                            <form method="post" action="anzeigen.jsp">
+                                                            <form action="anzeigen.jsp" method="post" name="dislike" >
                                                                 <input style=" display: none;" type="text" name="id" value="<%=id%>">
                                                                 <input style=" display: none;" type="text" name="rating" value="dislike">
-                                                                <input type="image" src="icons/checkmark2.png" alt="dislike" />
+                                                                <img src="icons/cross5.png" alt="dislike" onclick="document.dislike.submit();" style="cursor:pointer">
                                                             </form>
                                                         </div>
 						</div>
