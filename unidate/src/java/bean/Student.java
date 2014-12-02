@@ -18,9 +18,13 @@ public class Student extends User {
     private String matrikelnumber;
     private String stmt;
     private Integer age;
+    private String gender;
+    private FilterCriteria filterCriteria;
     private final List<MatchedStudent> matchedStudent;
-    private final List<Candidate> candidateList;
-    private final List<Integer> likedStudent;
+    private ArrayList<Candidate> candidateList;
+    private ArrayList<Integer> likedStudent;
+    private ArrayList<Integer> blockedStudent;
+
 
     private boolean registrated;
     private boolean completedProfile;
@@ -58,9 +62,11 @@ public class Student extends User {
         this.registrated = registrated;
         this.completedProfile = completedProfile;
         this.matchedStudent = new ArrayList<>();
-        this.candidateList = new ArrayList<>();
-        this.likedStudent = new ArrayList<>();
+        this.candidateList = new ArrayList<Candidate>();
+        this.likedStudent = new ArrayList<Integer>();
+        this.blockedStudent = new ArrayList<Integer>();
         this.profile = new UserProfile();
+        this.filterCriteria = new FilterCriteria();
     }
 
     /**
@@ -70,8 +76,10 @@ public class Student extends User {
         super();
         this.profile = new UserProfile();
         this.matchedStudent = new ArrayList<>();
-        this.candidateList = new ArrayList<>();
-        this.likedStudent = new ArrayList<>();
+        this.candidateList = new ArrayList<Candidate>();
+        this.likedStudent = new ArrayList<Integer>();
+        this.blockedStudent = new ArrayList<Integer>();
+        this.filterCriteria = new FilterCriteria();
 
     }
 
@@ -348,7 +356,7 @@ public class Student extends User {
         this.completedProfile = completedProfile;
     }
 
-    public boolean checkNewMesage() {
+    public boolean checkNewMessage() {
         return true;
     }
 
@@ -356,7 +364,41 @@ public class Student extends User {
         return true;
     }
 
-    public boolean blockStudent() {
+    public boolean blockStudent(int candidateID) {
+        blockedStudent.add(candidateID);
+        //Candidate deleteCandidate = new Candidate();
+        int index=0;
+        for(int i=0;i<=candidateList.size();i++){
+            if(candidateList.get(i).getId()==candidateID){
+                index=i;
+            }
+        }
+        candidateList.remove(index);
+        /** SQL??????? **/
+        return true;
+    }
+    
+    public boolean like(int candidateID){
+        if(matchCheck(this.getId(),candidateID)){
+            createNewMatch(candidateID);
+        }
+        else{
+            addLikedStudent(candidateID);
+        }
+        return true;
+    }
+    public boolean dislike(int candidateID){
+        blockStudent(candidateID);
+        return true;
+    }
+    public boolean matchCheck(int studentID,int candidateID){
+        boolean result = false;
+            /***** SQL??????? ***/
+        return result;
+    }
+
+    public boolean createCandidateList() {
+        candidateList = filterCriteria.createCandidateList();
         return true;
     }
 
@@ -424,6 +466,7 @@ public class Student extends User {
 
     public void addLikedStudent(int id) {
         likedStudent.add(id);
+        /* SQL */
     }
 
     /**

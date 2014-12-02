@@ -81,7 +81,6 @@ public class FilterCriteria {
      */
     public ArrayList<Candidate> createCandidateList() {
         ArrayList<Candidate> candidateList = new ArrayList<Candidate>();
-        /** SQL to create Candidate **/
         stmt = "SELECT "
                 + "st.id,"
                 + "st.firstname,"
@@ -89,7 +88,7 @@ public class FilterCriteria {
                 + "st.about,"
                 + "st.studium,"
                 + "st.department  "
-                + "FROM student st WHERE st.gender=" + gender;// + " AND st.birthday >="+ maxBirthday +" AND st.birthday <="+ minBirthday ;
+                + "FROM student st WHERE st.gender=" + gender + " AND st.age >="+ minAge +" AND st.age <="+ maxAge ;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
