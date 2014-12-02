@@ -8,12 +8,15 @@
 <%@ page import="java.util.*" %>
 <% 
     String rating = request.getParameter("rating");
-    //int candidateID = Integer.parseInt(request.getParameter("id"));
-    if(rating=="like"){
+    if(rating!=null){
+    
+    if(rating.equals("like")){
         student.like(Integer.parseInt(request.getParameter("id")));
     }
-    else if(rating=="dislike"){
-       student.dislike(Integer.parseInt(request.getParameter("id")));
+    else if(rating.equals("dislike")){
+       student.dislike(1);
+       out.println(Integer.parseInt(request.getParameter("id")));
+    }
     }
     student.createCandidateList();
     ArrayList<Candidate> candidateList = student.getCandidateList();

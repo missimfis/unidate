@@ -88,7 +88,7 @@ public class FilterCriteria {
                 + "st.about,"
                 + "st.studium,"
                 + "st.department  "
-                + "FROM student st WHERE st.gender=" + gender + " AND st.age >="+ minAge +" AND st.age <="+ maxAge ;
+                + "FROM student st WHERE st.gender=" + gender;// + " AND st.age >="+ minAge +" AND st.age <="+ maxAge ;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
