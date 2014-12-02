@@ -85,7 +85,7 @@
         }
             
     %>
-    <div class="row" style="display:none; <% if(i==0)out.println("display:block;");%>" id="candidate_<% out.println(id); %>">
+    <div class="row" style="display:none; <% if(i==0)out.println("display:block;");%>" id="candidate_<%=id%>">
       <div class="large-3 medium-3 small-3 columns">
 	     <div class="icons">
 			<img src="icons/left17.png" alt="profile"  onclick="SwapContent('candidate_<%=preID%>','candidate_<%=id%>');" style="cursor:pointer">
@@ -110,10 +110,10 @@
 					<div class="littlepicture left">
 						<div class="circle left">
 							<div class="icon">
-                                                            <form action="anzeigen.jsp" method="post" name="like" >
+                                                            <form action="anzeigen.jsp" method="post" name="like<%=id%>" >
                                                                 <input style=" display: none;" type="text" name="id" value="<%=id%>">
                                                                 <input style=" display: none;" type="text" name="rating" value="like">
-                                                                <img src="icons/checkmark2.png" alt="dislike" onclick="document.like.submit();" style="cursor:pointer">
+                                                                <img src="icons/checkmark2.png" alt="dislike" onclick="document.like<%=id%>.submit();" style="cursor:pointer">
                                                             </form>
                                                         </div>
 						</div>
@@ -125,10 +125,10 @@
 						<div class="circle circle2 right">
 							<div class="icon">
                                                             <!--<img src="icons/cross5.png" alt="dislike">-->
-                                                            <form action="anzeigen.jsp" method="post" name="dislike" >
+                                                            <form action="anzeigen.jsp" method="post" name="dislike<%=id%>" >
                                                                 <input style=" display: none;" type="text" name="id" value="<%=id%>">
                                                                 <input style=" display: none;" type="text" name="rating" value="dislike">
-                                                                <img src="icons/cross5.png" alt="dislike" onclick="document.dislike.submit();" style="cursor:pointer">
+                                                                <img src="icons/cross5.png" alt="dislike" onclick="document.dislike<%=id%>.submit();" style="cursor:pointer">
                                                             </form>
                                                         </div>
 						</div>
