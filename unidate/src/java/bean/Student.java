@@ -401,6 +401,9 @@ public class Student extends User {
         candidateList = filterCriteria.createCandidateList();
         return true;
     }
+    public ArrayList<Candidate> getCandidateList() {
+        return candidateList;
+    }
 
     /**
      * @return the birthday

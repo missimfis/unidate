@@ -8,16 +8,16 @@
 <%@ page import="java.util.*" %>
 <% 
     String rating = request.getParameter("rating");
+    //int candidateID = Integer.parseInt(request.getParameter("id"));
     if(rating=="like"){
-        //student.like(request.getParameter("id"));
+        student.like(Integer.parseInt(request.getParameter("id")));
     }
     else if(rating=="dislike"){
-       //student.dislike(request.getParameter("id"));
+       student.dislike(Integer.parseInt(request.getParameter("id")));
     }
-    //checkNewCandidates();
-    //createCandidateList();
-    //ArrayList<Candidate> candidateList = getcandidateList();
-    ArrayList<Candidate> candidateList = new ArrayList<Candidate>();
+    student.createCandidateList();
+    ArrayList<Candidate> candidateList = student.getCandidateList();
+    //ArrayList<Candidate> candidateList = new ArrayList<Candidate>();
     candidateList.add(new Candidate(1, "asd", "asd","asd", "asd", "asd", true));
     candidateList.add(new Candidate(2, "asd", "asd","asd", "asd", "asd", true));
     %>
