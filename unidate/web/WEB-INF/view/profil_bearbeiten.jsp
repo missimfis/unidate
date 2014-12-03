@@ -22,6 +22,7 @@
 <% String department = student.getDepartment(test);%>
 <% String studium = student.getStudium(test);%>
 <% String about = student.getAbout(test);%>
+<% String gender = student.getGender(test);%>
 <% image.setProfilePic(test);
 String profilePic = image.getProfilePic();%>
 
@@ -58,51 +59,60 @@ String profilePic = image.getProfilePic();%>
 		<form method="post" action="profilCheck">
                     <h3>Profileinstellung</h3>
 			<div class="row">                                       
-                                        <div class="large-6 medium-6 small-6 columns">
-					<label>Vorname</label>
-                                        <input type="text" value="<%=firstname %>" name="firstname"/>
-					</div>
-					<div class="large-6 medium-6 small-6 columns">
-					<label>Nachname</label>
-                                        <input type="text" value="<%=lastname %>" name="lastname"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 medium-12 columns">
-					  <label>Department</label>
-					  <select class="radius" name="department">
-						<option <%if ("Angewandte Linguistik".equals(department)) {%> selected="selected" <%}%> value="Angewandte Linguistik">Angewandte Linguistik</option>
-						<option <%if ("Angewandte Psychologie".equals(department)) {%> selected="selected" <%}%> value="Angewandte Psychologie">Angewandte Psychologie</option>
-						<option <%if ("Architektur, Gestaltung und Bauinginieurwesen".equals(department)) {%>selected="selected"<%}%>  value="Architektur, Gestaltung und Bauinginieurwesen">Architektur, Gestaltung und Bauinginieurwesen</option>
-						<option <%if ("Gesundheit".equals(department)) {%> selected="selected" <%}%> value="Gesundheit">Gesundheit</option>
-						<option <%if ("School of Engineering".equals(department)) {%> selected="selected" <%}%> value="School of Engineering">School of Engineering</option>
-						<option <%if ("Life Sciences und Facility Management".equals(department)) {%> selected="selected"<%}%>  value="Life Sciences und Facility Management">Life Sciences und Facility Management</option>
-						<option <%if ("Soziale Arbeit".equals(department)) {%> selected="selected" <%}%>  value="Soziale Arbeit">Soziale Arbeit</option>
-						<option <%if ("School of Management and Law".equals(department)) {%> selected="selected" <%}%>  value="School of Management and Law">School of Management and Law</option>
-					  </select>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-					  <label>Studium</label>
-					  <input type="text" placeholder="Studium" name="studium" value="<%=studium %>"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns">
-					  <label>Über Dich</label>
-					  <textarea style="border-radius:10px;" rows="10" name="about"><%out.println(about);%>
-                                          </textarea>
-					</div>
-				</div>
-                                
-				<div class="row">
-					<div class="large-12 columns">
-						<input class="small round button" type="submit" value="Speichern" />
-                                                <%--<a href="#" class="small round button">Speichern</a><br/> */--%>
+                            <div class="large-6 medium-6 small-6 columns">
+                            <label>Vorname</label>
+                            <input type="text" value="<%=firstname %>" name="firstname"/>
+                            </div>
+                            <div class="large-6 medium-6 small-6 columns">
+                            <label>Nachname</label>
+                            <input type="text" value="<%=lastname %>" name="lastname"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="large-6 medium-6 columns">
+                                  <label>Geschlecht</label>
+                                  <input type="radio" <%if ("frau".equals(gender)) {%> checked="checked" <%}%>name="geschlecht" value="frau" id="f"/>
+                                  <label for="f">Frau</label>
+                                  <input type="radio" <%if ("mann".equals(gender)) {%> checked="checked" <%}%> name="geschlecht" value="mann" id="m"/>
+                                  <label for="m">Mann</label>
+                                </div>
+                        </div>    
+                        <div class="row">
+                                <div class="large-12 medium-12 columns">
+                                  <label>Department</label>
+                                  <select class="radius" name="department">
+                                        <option <%if ("Angewandte Linguistik".equals(department)) {%> selected="selected" <%}%> value="Angewandte Linguistik">Angewandte Linguistik</option>
+                                        <option <%if ("Angewandte Psychologie".equals(department)) {%> selected="selected" <%}%> value="Angewandte Psychologie">Angewandte Psychologie</option>
+                                        <option <%if ("Architektur, Gestaltung und Bauinginieurwesen".equals(department)) {%>selected="selected"<%}%>  value="Architektur, Gestaltung und Bauinginieurwesen">Architektur, Gestaltung und Bauinginieurwesen</option>
+                                        <option <%if ("Gesundheit".equals(department)) {%> selected="selected" <%}%> value="Gesundheit">Gesundheit</option>
+                                        <option <%if ("School of Engineering".equals(department)) {%> selected="selected" <%}%> value="School of Engineering">School of Engineering</option>
+                                        <option <%if ("Life Sciences und Facility Management".equals(department)) {%> selected="selected"<%}%>  value="Life Sciences und Facility Management">Life Sciences und Facility Management</option>
+                                        <option <%if ("Soziale Arbeit".equals(department)) {%> selected="selected" <%}%>  value="Soziale Arbeit">Soziale Arbeit</option>
+                                        <option <%if ("School of Management and Law".equals(department)) {%> selected="selected" <%}%>  value="School of Management and Law">School of Management and Law</option>
+                                  </select>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="large-12 columns">
+                                  <label>Studium</label>
+                                  <input type="text" placeholder="Studium" name="studium" value="<%=studium %>"/>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="large-12 columns">
+                                  <label>Über Dich</label>
+                                  <textarea style="border-radius:10px;" rows="10" name="about"><%out.println(about);%>
+                                  </textarea>
+                                </div>
+                        </div>
 
-					</div>
-				</div>
+                        <div class="row">
+                                <div class="large-12 columns">
+                                        <input class="small round button" type="submit" value="Speichern" />
+                                        <%--<a href="#" class="small round button">Speichern</a><br/> */--%>
+
+                                </div>
+                        </div>
 				
 		</form>
                 <form> 

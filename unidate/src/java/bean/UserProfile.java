@@ -36,9 +36,11 @@ public class UserProfile {
             int userId,
             String firstname,
             String lastname,
+            String gender,
             String department,
             String studium,
             String about
+            
     ) {
         try {
             if (!"".equals(firstname)) {
@@ -52,6 +54,13 @@ public class UserProfile {
                 stmt = "UPDATE student SET firstname=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, firstname);
+                pstmt.setInt(2, userId);
+                pstmt.executeUpdate();
+            }
+            if (!"".equals(gender) && !"".equals(gender)) {
+                stmt = "UPDATE student SET gender=? WHERE s=?";
+                pstmt = DBConnectionPool.getStmt(stmt);
+                pstmt.setString(1, gender);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
@@ -231,6 +240,35 @@ public class UserProfile {
         }
 
         return dbAbout;
+    }
+    
+        /**
+     * Returns the UserInfos from the database
+     *
+     * @param userId to identify the relevant person
+     * @return an user object.
+     */
+    public String getGender(int userId) {
+        String dbGender = "";
+        stmt = "SELECT gender FROM student WHERE s=" + userId;
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+
+                    dbGender = rs.getString("gender");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+
+        return dbGender;
     }
 
 }

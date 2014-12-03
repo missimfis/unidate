@@ -269,13 +269,14 @@ public class Student extends User {
             int userId,
             String firstname,
             String lastname,
+            String gender,
             String department,
             String studium,
             String about
     ) {
 
         
-        profile.editUserProfile(userId, firstname, lastname, department, studium, about);
+        profile.editUserProfile(userId, firstname, lastname, gender, department, studium, about);
     }
 
     /**
@@ -326,6 +327,16 @@ public class Student extends User {
      */
     public String getAbout(int userId) {
         return profile.getAbout(userId);
+    }
+    
+    /**
+     * Returns the UserInfos about from the database
+     *
+     * @param userId to identify the relevant person
+     * @return an user object.
+     */
+    public String getGender(int userId) {
+        return profile.getGender(userId);
     }
 
     /**

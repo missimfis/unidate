@@ -11,34 +11,6 @@
     ArrayList<MatchedStudent> matchedStudent = userinfo.checkMatchedStudent();
 
 %>
-
-	
-    <div class="row">
-      <div class="large-4 medium-4 small-4 columns">
-		<div class="logo">
-			<img src="img/logo_v2_1.jpg" alt="Unidate">
-		</div>
-	  </div>
-	  <div class="large-8 medium-8 small-8 columns">
-		
-		<div class="littlepicture right">
-			<img src="img/Bild1.png" alt="profile">
-                        
-                        
-			<div class="littlemask">
-				<img alt="design mask" src="img/littlecircle.png"/>
-                                
-			</div>
-			<div class="littleline">&nbsp;
-			</div>
-		</div>
-		<div class="messages comment right">
-                    <form method="post" action="nachrichten.jsp">
-                        <input type="image" src="icons/comments16.png" alt="messages" name="image" style="margin-top:10px; margin-right: 10px;" width="75">  
-                    </form>
-		</div>
-	  </div>
-    </div>
     
     <div class="row">
 		<div class="large-12 columns">
