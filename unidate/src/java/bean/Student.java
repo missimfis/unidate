@@ -430,7 +430,14 @@ public class Student extends User {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    if(rs.getInt(1)==1) result = true;
+                    if(rs.getInt(1)==1){
+                        result = true;
+                        for(Candidate candidate: candidateList){
+                            if(candidate.getId()==candidateID){
+                                candidate.setCandidateLike();
+                            }
+                        }
+                    }
                 }
             }
         } catch (SQLException ex) {
@@ -443,8 +450,91 @@ public class Student extends User {
         return result;
     }
 
+    public boolean createFilterCriteria() {
+        stmt = "SELECT "
+                + "st.intrests,"
+                + "st.minage,"
+                + "st.maxage"
+                + "FROM student st WHERE st.s=" + this.getId();
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    filterCriteria.changeCriteria(rs.getInt(2),rs.getInt(3),rs.getString(1));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+        return true;
+    }
+    public boolean createBlockedStudentList() {
+        blockedStudent.clear();
+        stmt = "SELECT "
+                + "st.blockedstudentid"
+                + "FROM blockedstudent WHERE studentid=" + this.getId();
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    blockedStudent.add(rs.getInt(1));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to get infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+        return true;
+    }
+    public boolean createLikedStudentList() {
+        likedStudent.clear();
+        stmt = "SELECT "
+                + "st.blockedstudentid"
+                + "FROM blockedstudent WHERE studentid=" + this.getId();
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    likedStudent.add(rs.getInt(1));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to get infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+        return true;
+    }
     public boolean createCandidateList() {
-        candidateList = filterCriteria.createCandidateList();
+        candidateList.clear();
+        boolean allreadyExists = false;
+        ArrayList<Candidate> temp = filterCriteria.createCandidateList();
+        for(Candidate candidate:temp){
+            for(int blockedId: blockedStudent){
+                if(candidate.getId()==blockedId){
+                    allreadyExists=true;
+                    break; 
+                }
+            }
+            for(int likedId: likedStudent){
+                if(candidate.getId()==likedId){
+                    allreadyExists=true;
+                    break; 
+                }
+            }
+            if(!allreadyExists){
+                candidateList.add(candidate);
+            }
+        }
         return true;
     }
     public ArrayList<Candidate> getCandidateList() {

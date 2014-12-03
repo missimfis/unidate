@@ -91,4 +91,12 @@ public class Candidate extends User {
         }
         return likeTest;
     }
+    
+    /**
+     *
+     * @param
+     */
+    public void setCandidateLike() {
+        likeTest=true;
+    }
 }
