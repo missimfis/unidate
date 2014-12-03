@@ -366,7 +366,6 @@ public class Student extends User {
 
     public boolean blockStudent(int candidateID) {
         blockedStudent.add(candidateID);
-        //Candidate deleteCandidate = new Candidate();
         int index=0;
         for(int i=0;i<=candidateList.size();i++){
             if(candidateList.get(i).getId()==candidateID){
@@ -374,7 +373,6 @@ public class Student extends User {
             }
         }
         candidateList.remove(index);
-        /** SQL??????? **/
          try {
                 stmt = "INSERT INTO blockedstudent (studentid, blockedstudentid) VALUES (?,?)";
                 pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
@@ -492,7 +490,6 @@ public class Student extends User {
             }
         }
         candidateList.remove(index);
-        /* SQL */
         try {
                 stmt = "INSERT INTO likedstudent (studentid, likedstudentid) VALUES (?,?)";
                 pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
