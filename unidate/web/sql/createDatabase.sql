@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS `matchedStudent` (
     `student2`  INT NOT NULL,
     PRIMARY KEY (`ms`),
     FOREIGN KEY (`student1`) REFERENCES `student`(`s`),
-    FOREIGN KEY (`student2`) REFERENCES `student`(`s`)
+    FOREIGN KEY (`student2`) REFERENCES `student`(`s`),
+    UNIQUE (`student1`, `student2`)
 );
 
 CREATE TABLE IF NOT EXISTS `message` (
