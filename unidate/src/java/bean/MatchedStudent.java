@@ -77,14 +77,11 @@ public final class MatchedStudent extends User {
             int student1,
             int student2){
         try {
-                stmt = "INSERT INTO matchedstudent (firstname,lastname,interests,student1,student2) VALUES (?,?,?,?,?)";
+                stmt = "INSERT INTO matchedstudent (student1,student2) VALUES (?,?)";
                 pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
 
-                pstmt.setString(1, firstname);
-                pstmt.setString(2, lastname);
-                pstmt.setString(3, interests);
-                pstmt.setInt(4, student1);
-                pstmt.setInt(5, student2);
+                pstmt.setInt(1, student1);
+                pstmt.setInt(2, student2);
                 pstmt.executeUpdate();
                 
       

@@ -5,7 +5,7 @@
 
 
 <%  
-    int userId = 1;
+    int userId = student.getId();
     String firstname = request.getParameter("firstname");
     String lastname = request.getParameter("lastname");
     String gender = request.getParameter("geschlecht");
