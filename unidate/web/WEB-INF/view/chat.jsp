@@ -1,7 +1,8 @@
+<%@ page import="java.util.*" %>
 <%@ page import="bean.*"%> 
 <jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/>  
-<%@ page import="java.util.*" %>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     
