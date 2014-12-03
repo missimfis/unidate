@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
             "/nachrichten_senden",
             "/nachrichtenProcess",
             "/administration",
+            "/anzeigen",
             "/nachrichten",
             "/chat",
             "/registriert",
@@ -39,6 +40,7 @@ public class ControllerServlet extends HttpServlet {
         doGetMap.put("/nachrichten_senden", "/view/nachrichten_senden");
         doGetMap.put("/registriert", "/view/registriert");
         doGetMap.put("/dashboard", "/view/dashboard");
+        doGetMap.put("/anzeigen", "/view/anzeigen");
         doGetMap.put("/profil", "/view/profil");
         doGetMap.put("/profil_bearbeiten", "/view/profil_bearbeiten");
         doGetMap.put("/chat", "/view/chat");
@@ -49,6 +51,7 @@ public class ControllerServlet extends HttpServlet {
         doPostMap.put("/nachrichten_senden", "/view/nachrichten_senden");
         doPostMap.put("/nachrichtenProcess", "/controller/nachrichtenProcess");
         doPostMap.put("/administration", "/controller/administration");
+        doPostMap.put("/bewertung", "/controller/bewertung");
         doPostMap.put("/profilCheck", "/controller/profilCheck");
         doPostMap.put("/profil_bearbeiten", "/view/profil_bearbeiten");
         doPostMap.put("/chatSend", "/controller/chatSend");
