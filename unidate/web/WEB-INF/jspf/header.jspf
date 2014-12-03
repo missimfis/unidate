@@ -15,15 +15,18 @@
 	</div>
 	
     <div class="row">
-      <div class="large-12 columns">
+      <div class="large-4 medium-4 small-4 columns">
 		<div class="logo">
 			<img src="img/logo_v2_1.jpg" alt="Unidate">
 		</div>
-	  </div>
-    </div>
-    <%@include file="../jspf/nav.jspf" %>
+	</div>
+        <div class="large-8 medium-8 small-8 columns">
+         <%@include file="../jspf/nav.jspf" %>
     <%} else {
 %>
+        </div>
+    </div>
+   
 <jsp:forward page="../../index.jsp"/>
 <% }
 %>
