@@ -42,11 +42,11 @@
 	  <div class="large-8 medium-8 small-8 columns">
 		
 		<div class="littlepicture right">
-			<img src="img/Bild1.png" alt="profilexx">
+			<!--<img src="img/Bild1.png" alt="profilexx">-->
                         <%  //waiting for method 
-                            //image.setProfilePic(id);
-                            if(image.getOutput()!=null){
-                                //out.println(image.getOutput());
+                            image.setProfilePic(id);
+                            if(image.getProfilePic()!=null){
+                                out.println(image.getProfilePic());
                             }
                  
                         %>
@@ -84,14 +84,15 @@
       </div>
 	  <div class="large-6 medium-6 small-6 columns">
 		<div class="bigpicture">
-			<img src="img/Bild1.png" alt="profile">
+			<!--<img src="img/Bild1.png" alt="profile">-->
                         <%   
                             //waiting for method!!!!!!
-                            //image.setProfilePic(id);
-                            if(image.getOutput()!=null){
-                                //out.println(image.getOutput());
-                            }
-                 
+                            image.setProfilePic(id);
+                            if(image.getProfilePic()!=null){
+                                out.println(image.getProfilePic());
+                            } else{%>
+                        <img src="img/Bild1.png" alt="profile">
+                        <%  }
                         %>
 			<div class="mask">
 				<img src="img/bigcircle.png"/>
