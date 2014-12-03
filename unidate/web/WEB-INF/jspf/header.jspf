@@ -21,12 +21,13 @@
 		</div>
 	</div>
         <div class="large-8 medium-8 small-8 columns">
-         <%@include file="../jspf/nav.jspf" %>
-    <%} else {
-%>
+            <%@include file="../jspf/nav.jspf" %>
+    
         </div>
     </div>
-   
+        
+   <%} else {
+%>
 <jsp:forward page="../../index.jsp"/>
 <% }
 %>

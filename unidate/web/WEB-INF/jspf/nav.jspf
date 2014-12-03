@@ -5,9 +5,8 @@
     <div class="littlemask">
 	<img src="img/littlecircle.png"/>
     </div>
-    <div class="littleline">&nbsp;
-	</div>
-    </div>
+    <div class="littleline">&nbsp;</div>
+</div>
     <a href="nachrichten.jsp">
         <div class="messages comment right">
             <img src="icons/comments16.png" alt="messages">
