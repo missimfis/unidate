@@ -69,7 +69,7 @@ public class Image extends HttpServlet{
      * the web application directory.
      */
     private static final String SAVE_DIR = "uploadFiles";
-    private final String path = "H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles\\";
+    private final String path = "C:\\Users\\Siebasiach\\Desktop\\zhaw\\3\\PSIT\\new\\unidate\\unidate\\build\\web\\uploadFiles\\";
     /**
      * handles file upload
      * @param request
@@ -189,7 +189,7 @@ public class Image extends HttpServlet{
     public void prepareHTML(int id){
         
 
-        relativePath = "uploadFiles\\" + id +"\\";  
+        relativePath = "uploadFiles/" + id +"/";  
         webLayoutBegin = "<div class=\"large-2 medium-2 columns\"><div class=\"mediumpicture\">";
         webLayoutEnd = "<div class=\"white_medium_circle\"></div><div class=\"blue_medium_circle\"></div></div></div>";
         createDirectory(path + id);
@@ -226,7 +226,7 @@ public class Image extends HttpServlet{
     
         public void displayMessage(int id){
 
-        relativePath = "uploadFiles\\" + id +"\\";  
+        relativePath = "uploadFiles/" + id +"/";  
         
         webLayoutBegin  = "<div class=\"row\">" + "<div class=\"large-2 medium-2 columns\">" + "<div class=\"mediumpicture\">";
                                         //Image between

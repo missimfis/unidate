@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `student` (
     `firstname` VARCHAR(255) NOT NULL DEFAULT '',
     `lastname` VARCHAR(255) NOT NULL DEFAULT '',
     `username` VARCHAR(255) NOT NULL DEFAULT '',
+    `gender` VARCHAR(255) NOT NULL DEFAULT '',
     `department` VARCHAR(255) NULL DEFAULT '',
     `studium` VARCHAR(255) NULL DEFAULT '',
     `about` TEXT NULL DEFAULT '',
@@ -18,15 +19,20 @@ CREATE TABLE IF NOT EXISTS `student` (
     PRIMARY KEY (`s`)
 );
 
-CREATE TABLE IF NOT EXISTS `candidate` (
-    `c` INT NOT NULL AUTO_INCREMENT,
-    `s` INT NOT NULL,
-    `firstname` VARCHAR(255) NOT NULL DEFAULT '',
-    `lastname` VARCHAR(255) NOT NULL DEFAULT '',
-    `like` BOOLEAN NOT NULL DEFAULT false,
-    `interests` VARCHAR(255) NOT NULL DEFAULT '',
-    PRIMARY KEY (`c`),
-    FOREIGN KEY (`s`) REFERENCES `student`(`s`)
+CREATE TABLE IF NOT EXISTS `blockedStudent` (
+    `studentid` INT NOT NULL,
+    `blockedstudentid` INT NOT NULL,
+    PRIMARY KEY (`studentid`,`blockedstudentid`),
+    FOREIGN KEY (`studentid`) REFERENCES `student`(`s`),
+    FOREIGN KEY (`blockedstudentid`) REFERENCES `student`(`s`)
+);
+
+CREATE TABLE IF NOT EXISTS `likedStudent` (
+    `studentid` INT NOT NULL,
+    `likedstudentid` INT NOT NULL,
+    PRIMARY KEY (`studentid`,`likedstudentid`),
+    FOREIGN KEY (`studentid`) REFERENCES `student`(`s`),
+    FOREIGN KEY (`likedstudentid`) REFERENCES `student`(`s`)
 );
 
 CREATE TABLE IF NOT EXISTS `matchedStudent` (
