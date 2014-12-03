@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.ArrayList;
 
 /**
  *This class organizes the reading and sendig of messages. How they are read 
@@ -37,8 +36,8 @@ public class Message {
  
     public Message(int matchedStudent, int senderID, int receiverID, String text){
         this.matchedStudent = matchedStudent;
-        this.from = from;
-        this.to = to;
+        this.from = senderID;
+        this.to = receiverID;
         this.text = text;
     }
 
@@ -176,7 +175,7 @@ public class Message {
     /**
      * Loads a specific message from the database.
      *
-     * @param messageID the id of the message that is to be shown.
+     * @param matchedStudent
      * @return the message as a Message object
      */
     public Message loadMessage(int matchedStudent) {

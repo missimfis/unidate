@@ -8,7 +8,7 @@
     int id = 1;
     int matchId=1;
     int userId = student.getId();
-    message.getFrom();
+   
     String text = request.getParameter("text");
     
     out.println(id+ "<br>");
