@@ -39,9 +39,6 @@ CREATE TABLE IF NOT EXISTS `likedStudent` (
 
 CREATE TABLE IF NOT EXISTS `matchedStudent` (
     `ms` INT NOT NULL AUTO_INCREMENT,
-    `firstname` VARCHAR(255) NOT NULL DEFAULT '',
-    `lastname` VARCHAR(255) NOT NULL DEFAULT '',
-    `interests` VARCHAR(255) NOT NULL DEFAULT '',
     `student1`  INT NOT NULL,
     `student2`  INT NOT NULL,
     PRIMARY KEY (`ms`),

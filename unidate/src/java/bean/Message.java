@@ -35,14 +35,14 @@ public class Message {
     private PreparedStatement pstmt;
     private Connection con;
  
-    Message(int matchedStudent, int senderID, int receiverID, String text){
+    public Message(int matchedStudent, int senderID, int receiverID, String text){
         this.matchedStudent = matchedStudent;
         this.from = from;
         this.to = to;
         this.text = text;
     }
 
-    private Message() {
+    public Message() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     /**

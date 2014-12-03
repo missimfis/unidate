@@ -1,11 +1,7 @@
 <%@ page import="bean.*"%> 
+<jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/>  
-<jsp:useBean id="student" class="bean.Student" scope="session"/> 
 <%@ page import="java.util.*" %>
-
-<% int test = student.getId(); %>
-
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     
@@ -34,12 +30,12 @@
 		</div>
             </div>	
             <div class="row">
-		<form method="post" action="\chatsend">
+		<form method="post" action="chatSend">
                     <div class="small-9 columns">
-			<textarea></textarea>
+			<textarea name="text"></textarea>
                     </div>
                     <div class="small-3 columns">
-			<span class="button round">Send</span>
+			<input class="small round button" type="submit" value="Senden" />
                     </div>
 		</form>
             </div>	
@@ -61,5 +57,3 @@
     <script>
       $(document).foundation();
     </script>
-  </body>
-</html>
