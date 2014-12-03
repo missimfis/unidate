@@ -40,6 +40,7 @@ public class Image extends HttpServlet{
     private String webLayoutBegin;
     private String webLayoutEnd;
     private String personID;
+    private String profilPic;
 
 
     // initialize html text
@@ -69,7 +70,7 @@ public class Image extends HttpServlet{
      * the web application directory.
      */
     private static final String SAVE_DIR = "uploadFiles";
-    private final String path = "C:\\Users\\Masha Schiltknecht\\Documents\\NetBeansProjects\\unidate\\unidate\\build\\web\\uploadFiles\\";
+    private final String path = "F:\\project\\unidate\\unidate\\unidate\\build\\web\\uploadFiles\\";
     /**
      * handles file upload
      * @param request
@@ -99,7 +100,7 @@ public class Image extends HttpServlet{
                     part.write(savePath2 + File.separator + fileName);
             }
             //Redirect to same page
-            String site = "http://localhost:8084/unidate/profil_bearbeiten.jsp";
+            String site = "http://localhost:8084/unidate/profil_bearbeiten";
 
             response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
             response.setHeader("Location", site);                   
@@ -188,7 +189,6 @@ public class Image extends HttpServlet{
 
     public void prepareHTML(int id){
         
-
         relativePath = "uploadFiles/" + id +"/";  
         webLayoutBegin = "<div class=\"large-2 medium-2 columns\"><div class=\"mediumpicture\">";
         webLayoutEnd = "<div class=\"white_medium_circle\"></div><div class=\"blue_medium_circle\"></div></div></div>";
@@ -197,8 +197,7 @@ public class Image extends HttpServlet{
         File f;
         f = new File(path + id);    
         File[] list = f.listFiles();    
-        
-        
+               
         int count= 1;
         for (File jpg : list) {
             
@@ -206,7 +205,7 @@ public class Image extends HttpServlet{
             if(fileNameOutput != null && fileName != null){
                 fileNameOutput = fileNameOutput 
                         + webLayoutBegin 
-                        + "<FORM NAME=\"form"+count+ "\" METHOD=\"POST\">"
+                        + "<FORM NAME=\"form"+count+ "\" METHOD=\"POST\" action=\"profil_bearbeiten\">"
                         + "<INPUT class=\"delete\" TYPE=\"IMAGE\" src=\"img\\delete.png\" width=\"40px\" NAME=\"submit\" VALUE=\""+fileName+"\">"
                         + "</FORM>" 
                         + "<img src=\"" + relativePath + fileName + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">" 
@@ -214,7 +213,7 @@ public class Image extends HttpServlet{
             }
             else{
                 fileNameOutput = webLayoutBegin 
-                        + "<FORM NAME=\"form"+count+ "\" METHOD=\"POST\">"
+                        + "<FORM NAME=\"form"+count+ "\" METHOD=\"POST\" action=\"profil_bearbeiten\">"
                         + "<INPUT class=\"delete\" TYPE=\"IMAGE\" src=\"img\\delete.png\" width=\"40px\" NAME=\"submit\" VALUE=\""+fileName+"\">"
                         + "</FORM>" 
                         + "<img src=\"" + relativePath + fileName + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">"  
@@ -224,7 +223,7 @@ public class Image extends HttpServlet{
         }
     }
     
-        public void displayMessage(int id){
+    public void displayMessage(int id){
 
         relativePath = "uploadFiles/" + id +"/";  
         
@@ -253,6 +252,30 @@ public class Image extends HttpServlet{
                         + webLayoutEnd;    
             }
         }
+    }
+        
+    public void setProfilePic(int id){
+
+        relativePath = "uploadFiles/" + id +"/";  
+        createDirectory(path + id);
+        
+        File f;
+        f = new File(path + id);    
+        File[] list = f.listFiles();    
+      
+            String fileName = list[0].getName();
+            
+            if(profilPic != null && fileName != null){
+                profilPic = "";            
+            }
+            else{
+                profilPic =  ""+ "<img src=\"" + relativePath + fileName + "\"" + "width=\"550\"" + "height=\"150\"" + "alt=\"profile\"" + ">" + "";    
+            }
+        
+    }
+    
+    public String getProfilePic(){
+        return profilPic;
     }
     
     public void deleteImage(String name, int id){
