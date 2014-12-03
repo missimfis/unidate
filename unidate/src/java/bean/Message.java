@@ -175,7 +175,7 @@ public class Message {
     /**
      * Loads a specific message from the database.
      *
-     * @param messageID the id of the message that is to be shown.
+     * @param matchedStudent
      * @return the message as a Message object
      */
     public Message loadMessage(int matchedStudent) {
