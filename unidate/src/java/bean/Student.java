@@ -399,6 +399,13 @@ public class Student extends User {
         else{
             addLikedStudent(candidateID);
         }
+        int index=0;
+        for(int i=0;i<=candidateList.size();i++){
+            if(candidateList.get(i).getId()==candidateID){
+                index=i;
+            }
+        }
+        candidateList.remove(index);
         return true;
     }
     public boolean dislike(int candidateID){
@@ -407,7 +414,21 @@ public class Student extends User {
     }
     public boolean matchCheck(int studentID,int candidateID){
         boolean result = false;
-            /***** SQL??????? ***/
+            stmt = "SELECT COUNT(`studentid`) FROM `likedstudent` WHERE `studentid`="+candidateID+" AND `likedstudentid`="+studentID;
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    if(rs.getInt(1)==1) result = true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
         return result;
     }
 
@@ -483,13 +504,6 @@ public class Student extends User {
 
     public void addLikedStudent(int candidateID) {
         likedStudent.add(candidateID);
-        int index=0;
-        for(int i=0;i<=candidateList.size();i++){
-            if(candidateList.get(i).getId()==candidateID){
-                index=i;
-            }
-        }
-        candidateList.remove(index);
         try {
                 stmt = "INSERT INTO likedstudent (studentid, likedstudentid) VALUES (?,?)";
                 pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
