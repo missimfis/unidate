@@ -483,9 +483,32 @@ public class Student extends User {
         }
     }
 
-    public void addLikedStudent(int id) {
-        likedStudent.add(id);
+    public void addLikedStudent(int candidateID) {
+        likedStudent.add(candidateID);
+        int index=0;
+        for(int i=0;i<=candidateList.size();i++){
+            if(candidateList.get(i).getId()==candidateID){
+                index=i;
+            }
+        }
+        candidateList.remove(index);
         /* SQL */
+        try {
+                stmt = "INSERT INTO likedstudent (studentid, likedstudentid) VALUES (?,?)";
+                pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
+
+                pstmt.setInt(1, this.getId());
+                pstmt.setInt(2, candidateID);
+                pstmt.executeUpdate();
+                
+      
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to insert blockedstudents on DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
     }
 
     /**
