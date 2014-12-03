@@ -44,7 +44,7 @@
 		<div class="littlepicture right">
 			<img src="img/Bild1.png" alt="profilexx">
                         <%  //waiting for method 
-                            image.setProfilePic(id);
+                            //image.setProfilePic(id);
                             if(image.getOutput()!=null){
                                 //out.println(image.getOutput());
                             }
@@ -87,7 +87,7 @@
 			<img src="img/Bild1.png" alt="profile">
                         <%   
                             //waiting for method!!!!!!
-                            image.setProfilePic(id);
+                            //image.setProfilePic(id);
                             if(image.getOutput()!=null){
                                 //out.println(image.getOutput());
                             }
@@ -101,7 +101,7 @@
 					<div class="littlepicture left">
 						<div class="circle left">
 							<div class="icon">
-                                                            <form action="bewerten" method="post" name="like<%=id%>" >
+                                                            <form action="bewertung" method="post" name="like<%=id%>" >
                                                                 <input style=" display: none;" type="text" name="id" value="<%=id%>">
                                                                 <input style=" display: none;" type="text" name="rating" value="like">
                                                                 <img src="icons/checkmark2.png" alt="dislike" onclick="document.like<%=id%>.submit();" style="cursor:pointer">
@@ -116,7 +116,7 @@
 						<div class="circle circle2 right">
 							<div class="icon">
                                                             <!--<img src="icons/cross5.png" alt="dislike">-->
-                                                            <form action="bewerten" method="post" name="dislike<%=id%>" >
+                                                            <form action="bewertung" method="post" name="dislike<%=id%>" >
                                                                 <input style=" display: none;" type="text" name="id" value="<%=id%>">
                                                                 <input style=" display: none;" type="text" name="rating" value="dislike">
                                                                 <img src="icons/cross5.png" alt="dislike" onclick="document.dislike<%=id%>.submit();" style="cursor:pointer">

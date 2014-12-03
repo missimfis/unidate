@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
             "/nachrichtenProcess",
             "/administration",
             "/anzeigen",
+            "/bewertung",
             "/nachrichten",
             "/chat",
             "/registriert",

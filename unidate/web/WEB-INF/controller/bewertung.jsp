@@ -12,7 +12,7 @@
         student.like(Integer.parseInt(request.getParameter("id")));
     }
     else if(rating.equals("dislike")){
-       student.dislike(1);
+       //student.dislike(Integer.parseInt(request.getParameter("id")));
        out.println(Integer.parseInt(request.getParameter("id")));
     }
     }
