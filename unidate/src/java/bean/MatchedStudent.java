@@ -101,7 +101,7 @@ public final class MatchedStudent extends User {
     
     public boolean sendMessage(int matchedStudent, int senderID, int receiverID, String text) {    
         message = new Message(matchedStudent, senderID, receiverID, text);
-        message.sendMessage();
+        message.sendMessage(matchedStudent, text, senderID);
         return true;
     }
     

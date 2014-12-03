@@ -7,12 +7,20 @@
 <%  
     int id = 1;
     int matchId=1;
-    int userId = student.getId();
-   
-    String text = request.getParameter("text");
+    String text="blabla";
+    int from=27;
+    message.sendMessage(1, "blabla", 7);
+    message.setTo(5);
+    message.setMatchedStudent(2);
+    message.setFrom(student.getId());
+    message.setIsRead(false);
+    message.setText(request.getParameter("text"));
+    
+    
     
     out.println(id+ "<br>");
-    out.println(userId+ "<br>");
+    out.println(student.getId() + "<br>");
     out.println(matchId+ "<br>");  
-    out.println(text+ "<br>");
+    out.println(message.getText()+ "<br>");
+    
 %>

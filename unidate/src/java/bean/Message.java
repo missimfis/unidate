@@ -213,11 +213,11 @@ public class Message {
      *
      * @return true if the message has been successfully sent
      */
-    public boolean sendMessage() {
+    public boolean sendMessage(int matchedStudent, String text, int from) {
         Statement statement = DBConnectionPool.getStmt();
         try {
             statement.executeQuery("START TRANSACTION");
-            stmt = "INSERT INTO message (ms, text, from, read) VALUES (?,?,?,?)";
+            stmt = "INSERT INTO message (ms, text, from, sentdate, read) VALUES (?,?,?,?,?)";
             pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, matchedStudent);
             pstmt.setString(2, text);
