@@ -1,16 +1,18 @@
 <%@ page import="bean.*"%> 
-<jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/>  
-
-<% int id = 1;%>
+<jsp:useBean id="student" class="bean.Student" scope="session"/> 
 <%@ page import="java.util.*" %>
-<% String firstname = userinfo.getFirstname(id);%>
-<% String lastname = userinfo.getLastname(id);%>
-<% String department = userinfo.getDepartment(id);%>
-<% String studium = userinfo.getStudium(id);%>
-<% String about = userinfo.getAbout(id);%>
 
-    <%Image image = new Image(); %>
+<% int id = student.getId();%>
+<%@ page import="java.util.*" %>
+<% String firstname = student.getFirstname(id);%>
+<% String lastname = student.getLastname(id);%>
+<% String department = student.getDepartment(id);%>
+<% String studium = student.getStudium(id);%>
+<% String about = student.getAbout(id);%>
+
+    <%Image image = new Image(); 
+    %>
     <% 
             if(request.getParameter("submit") != null) {
     %>
@@ -19,35 +21,7 @@
     <%
             }
     %> 
-    <div class="line">&nbsp;
-	</div>
-	
-    <div class="row">
-      <div class="large-4 medium-4 small-4 columns">
-		<div class="logo">
-			<img src="img/logo_v2_1.jpg" alt="Unidate">
-		</div>
-	  </div>
-	  <div class="large-8 medium-8 small-8 columns">
-		
-		<div class="littlepicture right">
-			<img src="img/Bild1.png" alt="profile">
-			<div class="white_little_circle">
-			</div>
-			<div class="blue_little_circle">
-			</div>
-			<div class="littleline">&nbsp;
-			</div>
-		</div>
-		<div class="messages right">
-			<%--img src="icons/comments16.png" alt="messages"--%>    
-                    <form method="post" action="nachrichten.jsp">
-                        <input type="image" src="icons/comments16.png" alt="messages" name="image" style="margin-top:10px; margin-right: 10px;" width="75">  
-                    </form>
-		</div>
-	  </div>
-    </div>
-    
+
     <div class="row">
       <div class="large-12 columns">
 	        <h2>Profil</h2>
@@ -114,7 +88,7 @@
 	<div class="row">
 		<div class="large-12 columns">
 			<%--a href="#" class="small round button">Bearbeiten</a><br/--%>
-                        <form method="post" action="profil_bearbeiten.jsp">
+                        <form method="post" action="profil_bearbeiten">
                         <input class="small round button" type="submit" value="Bearbeiten" />
                         <input style=" display: none;" type="text" name="id" value="<%=id%>">
                         </form>

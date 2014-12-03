@@ -22,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
             "/nachrichten",
             "/registriert",
             "/profil",
-            "/profil_bearbeiten"})
+            "/profil_bearbeiten",
+            "/profilCheck"})
 
 public class ControllerServlet extends HttpServlet {
 
@@ -45,6 +46,8 @@ public class ControllerServlet extends HttpServlet {
         doPostMap.put("/nachrichten_senden", "/view/nachrichten_senden");
         doPostMap.put("/nachrichtenProcess", "/controller/nachrichtenProcess");
         doPostMap.put("/administration", "/controller/administration");
+        doPostMap.put("/profilCheck", "/controller/profilCheck");
+        doPostMap.put("/profil_bearbeiten", "/view/profil_bearbeiten");
     }
 
     /**

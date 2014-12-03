@@ -1,5 +1,4 @@
 <%@ page import="bean.*"%> 
-<jsp:setProperty property="*" name="userinfo"/>  
 <jsp:useBean id="student" class="bean.Student" scope="session"/> 
 <%@ page import="java.util.*" %>
 
@@ -23,6 +22,8 @@
 <% String department = student.getDepartment(test);%>
 <% String studium = student.getStudium(test);%>
 <% String about = student.getAbout(test);%>
+<% image.setProfilePic(test);
+String profilePic = image.getProfilePic();%>
 
 
 
@@ -45,11 +46,12 @@
 	<div class="row">
       <div class="large-4 medium-4 columns">
 		<div class="bigpicture">
-			<img src="img/Bild1.png" alt="profile">
+                        <%=profilePic%>
 			<div class="white_big_circle">
 			</div>
 			<div class="blue_big_circle">
 			</div>
+                        
 		</div>
 	  </div>
 	  <div class="large-8 medium-8 columns">
