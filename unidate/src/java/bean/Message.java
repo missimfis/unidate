@@ -42,7 +42,6 @@ public class Message {
     }
 
     public Message() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     /**
      * Gets the id of the message
