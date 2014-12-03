@@ -375,6 +375,22 @@ public class Student extends User {
         }
         candidateList.remove(index);
         /** SQL??????? **/
+         try {
+                stmt = "INSERT INTO blockedstudent (studentid, blockedstudentid) VALUES (?,?)";
+                pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
+
+                pstmt.setInt(1, this.getId());
+                pstmt.setInt(2, candidateID);
+                pstmt.executeUpdate();
+                
+      
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to insert blockedstudents on DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
         return true;
     }
     
