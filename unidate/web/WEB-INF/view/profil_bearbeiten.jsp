@@ -24,7 +24,12 @@
 <% String studium = student.getStudium(test);%>
 <% String about = student.getAbout(test);%>
 
-<%=test%>
+
+
+    <div class="row">
+      <div class="large-12 columns">
+	        <h2>Profil</h2>
+                <%=test%>
     <% 
             if(request.getParameter("submit") != null) {
     %>
@@ -33,10 +38,6 @@
     <%
             }
     %> 
-
-    <div class="row">
-      <div class="large-12 columns">
-	        <h2>Profil</h2>
 	        <p>Herzlich Willkommen auf unidate. Die Registration ist abgeschlossen, bevor jedoch begonnen werden kann. Bitten Wir dich ein paar Einstellungen zu machen. Damit wir dir erste Vorschläge senden können.</p>
       </div>
     </div>
