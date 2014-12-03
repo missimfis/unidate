@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS `student` (
     `password`  VARCHAR(255) NOT NULL,
     `age`  INT NOT NULL,
     `interests` VARCHAR(255) NOT NULL DEFAULT '',
+    `minage`  INT NOT NULL,
+    `maxage`  INT NOT NULL,
     `registrated` BOOLEAN NOT NULL DEFAULT false,
     `completedProfile` BOOLEAN NOT NULL DEFAULT false,
     PRIMARY KEY (`s`)
