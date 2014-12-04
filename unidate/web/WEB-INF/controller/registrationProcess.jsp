@@ -9,7 +9,7 @@
             session.setAttribute("session","TRUE"); 
             session.setAttribute("userData", student);
             session.setAttribute("userID", student.getId());
-            response.sendRedirect("registriert");
+            response.sendRedirect("profil");
     } else { // if user registration fails
            session.setAttribute("username", student.getUsername());
            session.setAttribute("firstname", student.getFirstname());

@@ -108,7 +108,7 @@ public class Unidate {
      *
      * @return Success of the validation process
      */
-    public boolean validate() {
+    public boolean login() {
         boolean status = false;
         stmt = "SELECT * from student WHERE username='" + student.getUsername()
                 + "' AND password='" + student.getPassword() + "'";
@@ -124,6 +124,9 @@ public class Unidate {
                     student.setSurname(rs.getString("lastname"));
                     student.setEmail(rs.getString("email"));
                     student.setPassword(rs.getString("password"));
+                    student.createNewMatch(student.getId());
+                    student.createFilterCriteria();
+                    student.createBlockedStudentList();
                 } else {
                     ErrorText errors = ErrorText.getInstance();
                     errors.setError("loginFailed");
@@ -145,10 +148,6 @@ public class Unidate {
 
     public boolean unlockProfil() {
         student.setRegistrated(true);
-        return true;
-    }
-
-    public boolean login() {
         return true;
     }
 
