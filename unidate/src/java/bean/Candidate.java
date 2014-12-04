@@ -85,10 +85,6 @@ public class Candidate extends User {
      * @return
      */
     public boolean getCandidateLike(int id) {
-        like = candidateProfil.checkLikedStudent();
-        for (int match : like) {
-            return id == match;
-        }
         return likeTest;
     }
     

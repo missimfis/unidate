@@ -32,13 +32,6 @@ public final class MatchedStudent extends User {
     private String stmt;
     private PreparedStatement pstmt;
 
-//    MatchedStudent(int candidateID, String candidateName, String candidateDepartment, String candidateStudium, String candidateAbout) {
-//        
-//        this.candidateID = candidateID;
-//        this.candidateName = candidateName;
-//        
-//    }
-    
     MatchedStudent(String firstname,
             String lastname,
             String interests,
@@ -48,12 +41,11 @@ public final class MatchedStudent extends User {
         this.candidateID = person2;
         
         // set variables for database insert
-        addMatchToDatabase(firstname, lastname, interests, person1, person2);
+        addMatchToDatabase(person1, person2);
         
     }
 
     MatchedStudent() {
-
     }
     
     /**
@@ -89,16 +81,10 @@ public final class MatchedStudent extends User {
     
     /**
      * Add match to database
-     * @param firstname
-     * @param lastname
-     * @param interests
      * @param student1
      * @param student2
      */
     public void addMatchToDatabase(
-            String firstname,
-            String lastname,
-            String interests,
             int student1,
             int student2){
         try {
@@ -122,6 +108,7 @@ public final class MatchedStudent extends User {
                  /**
      * creates a list of potential candiates for a student according to the 
      * filter criteria
+     * @param id
      * @return 
      */
     public List<MatchedStudent> createMatchedList(int id) {

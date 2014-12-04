@@ -77,7 +77,7 @@ public class MatchedStudentTest {
         int student1 = 0;
         int student2 = 0;
         MatchedStudent instance = null;
-        instance.addMatchToDatabase(firstname, lastname, interests, student1, student2);
+        //instance.addMatchToDatabase(firstname, lastname, interests, student1, student2);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
