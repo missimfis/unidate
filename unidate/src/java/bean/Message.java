@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class Message {
     private int id;
-    private int from;
+    private int senderId;
     private int to;
     private int matchedStudent;
     private boolean isRead;
@@ -36,7 +36,7 @@ public class Message {
  
     public Message(int matchedStudent, int senderID, int receiverID, String text){
         this.matchedStudent = matchedStudent;
-        this.from = senderID;
+        this.senderId = senderID;
         this.to = receiverID;
         this.text = text;
     }
@@ -66,7 +66,7 @@ public class Message {
      * @return the id of the sender of the message
      */
     public int getFrom(){
-        return from;
+        return senderId;
     }
     
     /**
@@ -76,7 +76,7 @@ public class Message {
      * @return reference to this message.
      */
     public Message setFrom(int from){
-        this.from=from;
+        this.senderId=senderId;
         return this;
     }
     
@@ -211,19 +211,21 @@ public class Message {
      * Sends a message with a specified sent time to a specified User and
      * inserts the requiered fields into the database.
      *
+     * @param matchedStudent
+     * @param text
+     * @param from
      * @return true if the message has been successfully sent
      */
-    public boolean sendMessage(int matchedStudent, String text, int from) {
+    public boolean sendMessage(int matchedStudent, String text, int senderId) {
         Statement statement = DBConnectionPool.getStmt();
         try {
             statement.executeQuery("START TRANSACTION");
-            stmt = "INSERT INTO message (ms, text, from, sentdate, read) VALUES (?,?,?,?,?)";
+            stmt = "INSERT INTO message (ms, text, senderId, sentdate) VALUES (?,?,?,?)";
             pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, matchedStudent);
             pstmt.setString(2, text);
-            pstmt.setInt(3, from);
+            pstmt.setInt(3, senderId);
             pstmt.setTimestamp(4, new Timestamp(new java.util.Date().getTime()));
-            pstmt.setInt(5, 0);
             pstmt.executeUpdate();
             try (ResultSet rs = pstmt.getGeneratedKeys()) {
                 if (rs != null && rs.next()) {
