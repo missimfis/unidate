@@ -259,17 +259,18 @@ public class Image extends HttpServlet{
            
         File f = new File(path + id);    
         File[] list = f.listFiles();    
-        String fileName ="";
+        String fileName ="default-user-image.png";
         int index = 0;
         
         boolean inBounds = (index >= 0) && (index < list.length);
         
-        relativePath = "uploadFiles/" + id +"/";  
+        relativePath = "uploadFiles/";  
         createDirectory(path + id);  
         
         //check if file exists
         if(inBounds){
             fileName = list[0].getName();
+            relativePath = "uploadFiles/" + id +"/";  
         }
       
             if(profilPic != null && fileName != null){
