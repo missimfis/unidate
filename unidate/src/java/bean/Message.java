@@ -73,10 +73,10 @@ public class Message {
     /**
      * Sets the id of the sender of the message
      * 
-     * @param sender the id of the sender of the message.
+     * @param senderId
      * @return reference to this message.
      */
-    public Message setSender(int sender){
+    public Message setSender(int senderId){
         this.senderId=senderId;
         return this;
     }
