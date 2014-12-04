@@ -71,7 +71,9 @@ public class FilterCriteria {
             int maxAge,
             String gender
     ) {
-
+        this.minAge = minAge;
+        this.maxAge = maxAge;
+        this.gender = gender;
     }
 
      /**

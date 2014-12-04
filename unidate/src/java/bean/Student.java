@@ -456,7 +456,7 @@ public class Student extends User {
 
     public boolean createFilterCriteria() {
         stmt = "SELECT "
-                + "st.intrests,"
+                + "st.interests,"
                 + "st.minage,"
                 + "st.maxage"
                 + "FROM student st WHERE st.s=" + this.getId();
