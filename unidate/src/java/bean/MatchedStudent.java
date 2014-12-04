@@ -94,23 +94,6 @@ public final class MatchedStudent extends User {
         }
     }
     
-    
-    
-    public boolean sendMessage(int matchedStudent, int senderID, int receiverID, String text) {    
-        message = new Message(matchedStudent, senderID, receiverID, text);
-        message.sendMessage(matchedStudent, text, senderID);
-        return true;
-    }
-    
-    /**
-     * Returns the Messages as String
-     * @return 
-     */
-    public String showMessages(){
-        
-        return "message";
-    }
-    
     /**
      * Checks if Match exists
      * @param Person1

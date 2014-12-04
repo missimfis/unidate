@@ -70,7 +70,7 @@ public class Image extends HttpServlet{
      * the web application directory.
      */
     private static final String SAVE_DIR = "uploadFiles";
-    private final String path = "F:\\project\\unidate\\unidate\\unidate\\build\\web\\uploadFiles\\";
+    private final String path = "C:\\Users\\Masha Schiltknecht\\Documents\\NetBeansProjects\\unidate\\unidate\\build\\web\\img";
     /**
      * handles file upload
      * @param request

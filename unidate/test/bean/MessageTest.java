@@ -6,6 +6,7 @@
 package bean;
 
 import java.util.Date;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -68,21 +69,21 @@ public class MessageTest {
     }
 
     /**
-     * Test of getFrom method, of class Message.
+     * Test of getSender method, of class Message.
      */
     @Test
-    public void testGetFrom() {
+    public void testGetSender() {
         System.out.println("getFrom");
         Message instance = new Message();
         int expResult = 0;
-        int result = instance.getFrom();
+        int result = instance.getSender();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setFrom method, of class Message.
+     * Test of setSender method, of class Message.
      */
     @Test
     public void testSetFrom() {
@@ -90,7 +91,7 @@ public class MessageTest {
         int from = 0;
         Message instance = new Message();
         Message expResult = null;
-        Message result = instance.setFrom(from);
+        Message result = instance.setSender(from);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -247,10 +248,11 @@ public class MessageTest {
     @Test
     public void testLoadMessage() {
         System.out.println("loadMessage");
-        int matchedStudent = 0;
+        int studentId = 0;
+        int matchId = 0;
         Message instance = new Message();
         Message expResult = null;
-        Message result = instance.loadMessage(matchedStudent);
+        List<Message> result = instance.loadMessages(studentId, matchId);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -267,7 +269,7 @@ public class MessageTest {
         int senderId = 0;
         Message instance = new Message();
         boolean expResult = false;
-        boolean result = instance.sendMessage(matchedStudent, text, senderId);
+        boolean result = instance.sendMessage(text, matchedStudent, senderId);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
