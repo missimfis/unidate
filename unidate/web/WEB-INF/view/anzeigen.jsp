@@ -2,15 +2,21 @@
 <jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/> 
 <jsp:useBean id="student" class="bean.Student" scope="session"/>
-<%out.println(student.getId());%>
+<%out.println(student.filterCriteria);%>
 <%out.println(request.getParameter("rating"));%>
 <% int id = 1;%>
 <%@ page import="java.util.*" %>
 <% 
+    
+    student.createFilterCriteria();
+    out.println(student.filterCriteria.getGender());
+    student.createBlockedStudentList();
+    student.createLikedStudentList();
+    student.createCandidateList();
     ArrayList<Candidate> candidateList = student.getCandidateList();
     //ArrayList<Candidate> candidateList = new ArrayList<Candidate>();
-    candidateList.add(new Candidate(1, "asd", "asd","asd", "asd", "asd", true));
-    candidateList.add(new Candidate(2, "asd", "asd","asd", "asd", "asd", true));
+    //candidateList.add(new Candidate(1, "asd", "asd","asd", "asd", "asd", true));
+    //candidateList.add(new Candidate(2, "asd", "asd","asd", "asd", "asd", true));
     %>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -61,6 +67,7 @@
 		</div>
 	  </div>
     </div>
+   <div>
     <% 
         if(candidateList.size()==0)out.println("es konnten keine potenzielle Kandidatengefunden werden.");
         for (int i=0;i<candidateList.size();i++){
@@ -137,11 +144,3 @@
     </div>
     <% } %>
 
-    
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
-  </body>
-</html>

@@ -19,7 +19,7 @@ public class Student extends User {
     private String stmt;
     private Integer age;
     private String gender;
-    private FilterCriteria filterCriteria;
+    public FilterCriteria filterCriteria;
     private final List<MatchedStudent> matchedStudent;
     private ArrayList<Candidate> candidateList;
     private ArrayList<Integer> likedStudent;
@@ -67,6 +67,10 @@ public class Student extends User {
         this.blockedStudent = new ArrayList<Integer>();
         this.profile = new UserProfile();
         this.filterCriteria = new FilterCriteria();
+        createFilterCriteria();
+        createBlockedStudentList();
+        createLikedStudentList();
+        
     }
 
     /**
