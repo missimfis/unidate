@@ -47,22 +47,6 @@ public class UnidateTest {
         boolean expResult = false;
         boolean result = instance.register();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of validate method, of class Unidate.
-     */
-    @Test
-    public void testValidate() {
-        System.out.println("validate");
-        Unidate instance = new Unidate();
-        boolean expResult = false;
-        boolean result = instance.validate();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

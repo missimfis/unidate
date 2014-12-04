@@ -13,11 +13,11 @@
 <%
     Unidate unidate = new Unidate();
     unidate.setStudent(student);
-    if (unidate.validate()) { // checks if user login is valid
+    if (unidate.login()) { // checks if user login is valid
         session.setAttribute("session", "TRUE");
         session.setAttribute("userData", student);
         session.setAttribute("userID", student.getId());           
-        response.sendRedirect("dashboard");
+        response.sendRedirect("anzeigen");
 } else {
         response.sendRedirect("rejectLogin.jsp");
     }
