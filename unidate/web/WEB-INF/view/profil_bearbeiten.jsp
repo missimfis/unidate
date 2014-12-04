@@ -6,16 +6,7 @@
 <%  image.readTXT();
     int test = student.getId();
 %>
-<% //check ID for Imagedisplay
-    if(image.getPersonID() != null) {
-%>
-    <%  
-        test = Integer.parseInt(image.getPersonID()); %>
-<%
-    }else{ 
-        test = Integer.parseInt(request.getParameter("id"));
-    }
-%> 
+
 
 <% String firstname = student.getFirstname(test);%>
 <% String lastname = student.getLastname(test);%>
