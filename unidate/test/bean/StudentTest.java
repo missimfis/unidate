@@ -156,8 +156,6 @@ public class StudentTest {
         String expResult = "";
         String result = instance.getPassword();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -169,8 +167,6 @@ public class StudentTest {
         String password = "";
         Student instance = new Student();
         instance.setPassword(password);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -183,8 +179,6 @@ public class StudentTest {
         String expResult = "";
         String result = instance.getUsername();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -196,8 +190,7 @@ public class StudentTest {
         String username = "";
         Student instance = new Student();
         instance.setUsername(username);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(username, instance.getUsername());
     }
 
     /**
@@ -260,8 +253,6 @@ public class StudentTest {
         String expResult = "";
         String result = instance.getFirstname(userId);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -275,8 +266,6 @@ public class StudentTest {
         String expResult = "";
         String result = instance.getLastname(userId);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -349,8 +338,6 @@ public class StudentTest {
         boolean expResult = false;
         boolean result = instance.isRegistrated();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -362,8 +349,7 @@ public class StudentTest {
         boolean registrated = false;
         Student instance = new Student();
         instance.setRegistrated(registrated);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(instance.isRegistrated(),registrated);
     }
 
     /**
@@ -376,8 +362,6 @@ public class StudentTest {
         boolean expResult = false;
         boolean result = instance.isCompletedProfile();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -389,8 +373,6 @@ public class StudentTest {
         boolean completedProfile = false;
         Student instance = new Student();
         instance.setCompletedProfile(completedProfile);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -562,8 +544,6 @@ public class StudentTest {
         Integer expResult = null;
         Integer result = instance.getAge();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -572,11 +552,10 @@ public class StudentTest {
     @Test
     public void testSetAge() {
         System.out.println("setAge");
-        Integer age = null;
+        Integer age = 1;
         Student instance = new Student();
         instance.setAge(age);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(age, instance.getAge());
     }
 
     /**
@@ -589,8 +568,6 @@ public class StudentTest {
         ArrayList<Integer> expResult = null;
         ArrayList<Integer> result = instance.checkLikedStudent();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -614,7 +591,7 @@ public class StudentTest {
     public void testClearMatchedStudentList() {
         System.out.println("clearMatchedStudentList");
         Student instance = new Student();
-       // instance.clearMatchedStudentList();
+        //instance.clearMatchedStudentList();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -667,8 +644,6 @@ public class StudentTest {
         String expResult = "";
         String result = instance.getMatrikelnumber();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -677,11 +652,10 @@ public class StudentTest {
     @Test
     public void testSetMatrikelnumber() {
         System.out.println("setMatrikelnumber");
-        String matrikelnumber = "";
+        String matrikelnumber = "resultS12345678";
         Student instance = new Student();
         instance.setMatrikelnumber(matrikelnumber);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(instance.getMatrikelnumber(), matrikelnumber);
     }
     
 }
