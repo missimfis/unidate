@@ -83,38 +83,6 @@ public class MatchedStudentTest {
     }
 
     /**
-     * Test of sendMessage method, of class MatchedStudent.
-     */
-    @Test
-    public void testSendMessage() {
-        System.out.println("sendMessage");
-        int matchedStudent = 0;
-        int senderID = 0;
-        int receiverID = 0;
-        String text = "";
-        MatchedStudent instance = null;
-        boolean expResult = false;
-        boolean result = instance.sendMessage(matchedStudent, senderID, receiverID, text);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of showMessages method, of class MatchedStudent.
-     */
-    @Test
-    public void testShowMessages() {
-        System.out.println("showMessages");
-        MatchedStudent instance = null;
-        String expResult = "";
-        String result = instance.showMessages();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of checkMatch method, of class MatchedStudent.
      */
     @Test

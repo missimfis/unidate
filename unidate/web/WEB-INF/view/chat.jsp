@@ -1,6 +1,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="bean.*"%> 
-<jsp:useBean id="userinfo" class="bean.Student"/>
+<jsp:useBean id="student" class="bean.Student" scope="session"/>
+<jsp:useBean id="message" class="bean.Message" scope="session"/>
 <jsp:setProperty property="*" name="userinfo"/>  
 
 
@@ -16,20 +17,29 @@
             </div>
         </div>
         <div class="large-8 medium-8 small-8 columns">
-	    <div class="row">
+            <% 
+            List<Message> messages = message.loadMessages(student.getId(), 42);         
+            for (int i = 0; i < messages.size(); i++) {
+                if(messages.get(i).getSender() == student.getId()){%>
+            <div class="row">
 		<div class="large-10 medium-10 small-10 columns panel">
-                    test
+                    <%out.println(messages.get(i).getText());%>
 		</div>
 		<div class="large-2 medium-2 small-2 columns ">
+                    <%out.println(messages.get(i).getSender());%>
                 </div>
             </div>	
+                <%}else {%>
             <div class="row">
 		<div class="large-2 medium-2 small-2 columns ">
+                    <%out.println(messages.get(i).getSender());%>
 		</div>
 		<div class="large-10 medium-10 small-10 columns panel">
-                    test
+                    <%out.println(messages.get(i).getText());%>
 		</div>
-            </div>	
+            </div>
+                <%}
+            }%>
             <div class="row">
 		<form method="post" action="chatSend">
                     <div class="small-9 columns">

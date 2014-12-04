@@ -2,65 +2,28 @@
 <jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/> 
 <jsp:useBean id="student" class="bean.Student" scope="session"/>
-<%out.println(student.getId());%>
 <%out.println(request.getParameter("rating"));%>
-<% int id = 1;%>
+<% int id = student.getId();%>
 <%@ page import="java.util.*" %>
 <% 
+    
+    student.createFilterCriteria();
+    out.println(student.filterCriteria.getMaxAge());
+    out.println(student.filterCriteria.getMinAge());
+    ArrayList<Candidate> blabal = student.filterCriteria.createCandidateList();
+    student.createBlockedStudentList();
+    student.createLikedStudentList();
+    student.createCandidateList();
+    out.println(student.candidateList.size());
     ArrayList<Candidate> candidateList = student.getCandidateList();
-    //ArrayList<Candidate> candidateList = new ArrayList<Candidate>();
-    candidateList.add(new Candidate(1, "asd", "asd","asd", "asd", "asd", true));
-    candidateList.add(new Candidate(2, "asd", "asd","asd", "asd", "asd", true));
     %>
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anzeigen</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-	<link rel="stylesheet" href="css/main.css" />
-    <script src="js/vendor/modernizr.js"></script>
     <script type="text/javascript">
     function SwapContent( nextDiv, currentDiv ) {
 	document.getElementById(currentDiv).style.display = 'none';
 	document.getElementById(nextDiv).style.display = 'block';
     }
     </script>
-  </head>
-    <%Image image = new Image(); %>
-  <body>
-    <div class="line">&nbsp;
-	</div>
-	
-    <div class="row">
-      <div class="large-4 medium-4 small-4 columns">
-		<div class="logo">
-			<img src="img/logo_v2_1.jpg" alt="Unidate">
-		</div>
-	  </div>
-	  <div class="large-8 medium-8 small-8 columns">
-		
-		<div class="littlepicture right">
-			<!--<img src="img/Bild1.png" alt="profilexx">-->
-                        <%  //waiting for method 
-                            image.setProfilePic(id);
-                            if(image.getProfilePic()!=null){
-                                out.println(image.getProfilePic());
-                            }
-                 
-                        %>
-			<div class="littlemask">
-				<img src="img/littlecircle.png"/>
-			</div>
-			<div class="littleline">&nbsp;
-			</div>
-		</div>
-		<div class="messages comment right">
-			<img src="icons/comments16.png" alt="messages">
-		</div>
-	  </div>
-    </div>
+   <div>
     <% 
         if(candidateList.size()==0)out.println("es konnten keine potenzielle Kandidatengefunden werden.");
         for (int i=0;i<candidateList.size();i++){
@@ -84,7 +47,8 @@
       </div>
 	  <div class="large-6 medium-6 small-6 columns">
 		<div class="bigpicture">
-			<!--<img src="img/Bild1.png" alt="profile">-->
+			<!--<img src="img/Bild1.png" alt="profile">--> 
+                        <%Image image = new Image(); %>
                         <%   
                             //waiting for method!!!!!!
                             image.setProfilePic(id);
@@ -137,11 +101,3 @@
     </div>
     <% } %>
 
-    
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
-  </body>
-</html>

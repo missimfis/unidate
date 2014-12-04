@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -65,17 +66,17 @@ public class Message {
      * Get the id of the sender of the message.
      * @return the id of the sender of the message
      */
-    public int getFrom(){
+    public int getSender(){
         return senderId;
     }
     
     /**
      * Sets the id of the sender of the message
      * 
-     * @param from the id of the sender of the message.
+     * @param sender the id of the sender of the message.
      * @return reference to this message.
      */
-    public Message setFrom(int from){
+    public Message setSender(int sender){
         this.senderId=senderId;
         return this;
     }
@@ -177,23 +178,59 @@ public class Message {
      * @param matchedStudent
      * @return the message as a Message object
      */
-    public Message loadMessage(int matchedStudent) {
-        Message message = null;
-        stmt = "SELECT message.text, "
-                + "message.sender "
-                + "message.read "
+    public List<Message> loadMessages(int studentId, int matchId) {
+        List<Message> messages = new ArrayList<>();
+        stmt = "SELECT message.msg, "
+                + "message.text, "
+                + "message.senderId "
                 + "FROM message "
-                + "WHERE message.ms=" + matchedStudent + " "
+                + "WHERE message.senderId = " + studentId + " AND message.receiverId = " + matchId + " "
+                + "OR message.senderId = " + matchId + " AND message.receiverId = " + studentId + " "
                 + "ORDER BY message.sentDate DESC";
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    message = new Message()
-                            .setText(rs.getString(1))
-                            .setIsRead(rs.getInt(2)!= 0 )
-                            .setSentDate(rs.getTimestamp(3))
-                            .setText(rs.getString(4));
+                while (rs.next()) {
+                    messages.add(new Message()
+                            .setId(rs.getInt(1))
+                            .setText(rs.getString(2))
+                            .setSender(rs.getInt(3)));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Event.class.getName()).log(
+                    Level.SEVERE, "Failure while loading a message from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+        return messages;
+    }
+    
+    /**
+     * Loads a specific message from the database.
+     *
+     * @param matchedStudent
+     * @return the message as a Message object
+     */
+    public List<Message> loadLastMessage(int studentId, int matchId) {
+        List<Message> messages = new ArrayList<>();
+        stmt = "SELECT message.msg, "
+                + "message.text, "
+                + "message.senderId "
+                + "FROM message "
+                + "WHERE message.senderId = " + studentId + " AND message.receiverId = " + matchId + " "
+                + "OR message.senderId = " + matchId + " AND message.receiverId = " + studentId + " "
+                + "ORDER BY message.sentDate DESC"
+                + "LIMIT 1";
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    messages.add(new Message()
+                            .setId(rs.getInt(1))
+                            .setText(rs.getString(2))
+                            .setSender(rs.getInt(3)));
                 }
             }
         } catch (SQLException ex) {
@@ -204,7 +241,7 @@ public class Message {
             DBConnectionPool.closeCon();
         }
         setId(id);
-        return message;
+        return messages;
     }
     
     /**
@@ -216,15 +253,15 @@ public class Message {
      * @param from
      * @return true if the message has been successfully sent
      */
-    public boolean sendMessage(int matchedStudent, String text, int senderId) {
+    public boolean sendMessage(String text, int senderId, int receiverId) {
         Statement statement = DBConnectionPool.getStmt();
         try {
             statement.executeQuery("START TRANSACTION");
-            stmt = "INSERT INTO message (ms, text, senderId, sentdate) VALUES (?,?,?,?)";
+            stmt = "INSERT INTO message (text, senderId, receiverId, sentdate) VALUES (?,?,?,?)";
             pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, matchedStudent);
-            pstmt.setString(2, text);
-            pstmt.setInt(3, senderId);
+            pstmt.setString(1, text);
+            pstmt.setInt(2, senderId);
+            pstmt.setInt(3, receiverId);
             pstmt.setTimestamp(4, new Timestamp(new java.util.Date().getTime()));
             pstmt.executeUpdate();
             try (ResultSet rs = pstmt.getGeneratedKeys()) {
@@ -287,6 +324,14 @@ public class Message {
     }
 
     private List<Message> loadMessages(int userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private Object setInteger(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private Object setMsg(int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

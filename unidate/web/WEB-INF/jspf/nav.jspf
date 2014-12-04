@@ -1,7 +1,18 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>            
+<%@ page import="bean.*"%> 
+<jsp:useBean id="student2" class="bean.Student" scope="session"/>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% int id = student2.getId();%>
 <nav>
 <div class="littlepicture right">
-    <img src="img/Bild3.jpg" alt="profile">
+    <!--<img src="img/Bild3.jpg" alt="profile">-->
+    <% 
+        Image image = new Image();
+        image.setProfilePic(id);
+        if(image.getProfilePic()!=null){
+            out.println(image.getProfilePic());
+        }
+                 
+        %>
     <div class="littlemask">
 	<img src="img/littlecircle.png"/>
     </div>
@@ -9,7 +20,7 @@
 </div>
     <a href="nachrichten.jsp">
         <div class="messages comment right">
-            <img src="icons/comments16.png" alt="messages">
+            <img src="icons/comments16.png" alt="messages" >
         </div>
     </a>
 </nav>
