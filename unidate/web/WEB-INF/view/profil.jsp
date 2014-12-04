@@ -1,5 +1,4 @@
 <%@ page import="bean.*"%> 
-<jsp:setProperty property="*" name="userinfo"/>  
 <jsp:useBean id="student" class="bean.Student" scope="session"/> 
 <%@ page import="java.util.*" %>
 
