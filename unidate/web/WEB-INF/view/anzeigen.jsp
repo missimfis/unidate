@@ -2,21 +2,20 @@
 <jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/> 
 <jsp:useBean id="student" class="bean.Student" scope="session"/>
-<%out.println(student.filterCriteria);%>
 <%out.println(request.getParameter("rating"));%>
 <% int id = student.getId();%>
 <%@ page import="java.util.*" %>
 <% 
     
     student.createFilterCriteria();
-    out.println(student.filterCriteria.getGender());
+    out.println(student.filterCriteria.getMaxAge());
+    out.println(student.filterCriteria.getMinAge());
+    ArrayList<Candidate> blabal = student.filterCriteria.createCandidateList();
     student.createBlockedStudentList();
     student.createLikedStudentList();
     student.createCandidateList();
+    out.println(student.candidateList.size());
     ArrayList<Candidate> candidateList = student.getCandidateList();
-    //ArrayList<Candidate> candidateList = new ArrayList<Candidate>();
-    //candidateList.add(new Candidate(1, "asd", "asd","asd", "asd", "asd", true));
-    //candidateList.add(new Candidate(2, "asd", "asd","asd", "asd", "asd", true));
     %>
     <script type="text/javascript">
     function SwapContent( nextDiv, currentDiv ) {
@@ -24,7 +23,6 @@
 	document.getElementById(nextDiv).style.display = 'block';
     }
     </script>
-    <%Image image = new Image(); %>
    <div>
     <% 
         if(candidateList.size()==0)out.println("es konnten keine potenzielle Kandidatengefunden werden.");
@@ -49,7 +47,8 @@
       </div>
 	  <div class="large-6 medium-6 small-6 columns">
 		<div class="bigpicture">
-			<!--<img src="img/Bild1.png" alt="profile">-->
+			<!--<img src="img/Bild1.png" alt="profile">--> 
+                        <%Image image = new Image(); %>
                         <%   
                             //waiting for method!!!!!!
                             image.setProfilePic(id);
