@@ -70,7 +70,7 @@ public class Image extends HttpServlet{
      * the web application directory.
      */
     private static final String SAVE_DIR = "uploadFiles";
-    private final String path = "H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles\\";
+    private final String path = "F:\\project\\unidate\\unidate\\unidate\\build\\web\\uploadFiles\\";
     /**
      * handles file upload
      * @param request
@@ -256,7 +256,7 @@ public class Image extends HttpServlet{
         
     public void setProfilePic(int id){
 
-           
+        createDirectory(path + id);    
         File f = new File(path + id);    
         File[] list = f.listFiles();    
         String fileName ="default-user-image.png";

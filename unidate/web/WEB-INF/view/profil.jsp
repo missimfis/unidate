@@ -11,16 +11,17 @@
 <% String studium = student.getStudium(id);%>
 <% String about = student.getAbout(id);%>
 
-    <%Image image = new Image(); 
-    %>
-    <% 
-            if(request.getParameter("submit") != null) {
-    %>
-            <%String value = request.getParameter("submit"); 
-            image.deleteImage(value, id);%>
-    <%
-            }
-    %> 
+<%Image image = new Image();%>
+<% image.setProfilePic(id);
+String profilePic = image.getProfilePic();%>
+<% 
+        if(request.getParameter("submit") != null) {
+%>
+        <%String value = request.getParameter("submit"); 
+        image.deleteImage(value, id);%>
+<%
+        }
+%> 
 
     <div class="row">
       <div class="large-12 columns">
@@ -32,7 +33,7 @@
 	<div class="row">
       <div class="large-4 medium-4 columns">
 		<div class="bigpicture">
-			<img src="img/Bild1.png" alt="profile">
+			<%=profilePic%>
 			<div class="white_big_circle">
 			</div>
 			<div class="blue_big_circle">
@@ -100,7 +101,7 @@
     <script>
       $(document).foundation();
     </script>
-        <script>
+    <script>
       $(document).foundation();
       $('.delete').click(function(){
          var r = confirm('sicher löschen?');
