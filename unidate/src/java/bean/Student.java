@@ -21,7 +21,7 @@ public class Student extends User {
     private String gender;
     public FilterCriteria filterCriteria;
     private final List<MatchedStudent> matchedStudent;
-    private ArrayList<Candidate> candidateList;
+    public ArrayList<Candidate> candidateList;
     private ArrayList<Integer> likedStudent;
     private ArrayList<Integer> blockedStudent;
 
@@ -458,7 +458,7 @@ public class Student extends User {
         stmt = "SELECT "
                 + "st.interests,"
                 + "st.minage,"
-                + "st.maxage"
+                + "st.maxage "
                 + "FROM student st WHERE st.s=" + this.getId();
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
@@ -479,7 +479,7 @@ public class Student extends User {
     public boolean createBlockedStudentList() {
         blockedStudent.clear();
         stmt = "SELECT "
-                + "st.blockedstudentid"
+                + "blockedstudentid "
                 + "FROM blockedstudent WHERE studentid=" + this.getId();
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
@@ -500,8 +500,8 @@ public class Student extends User {
     public boolean createLikedStudentList() {
         likedStudent.clear();
         stmt = "SELECT "
-                + "st.blockedstudentid"
-                + "FROM blockedstudent WHERE studentid=" + this.getId();
+                + "likedstudentid "
+                + "FROM likedstudent WHERE studentid=" + this.getId();
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -520,9 +520,9 @@ public class Student extends User {
     }
     public boolean createCandidateList() {
         candidateList.clear();
-        boolean allreadyExists = false;
         ArrayList<Candidate> temp = filterCriteria.createCandidateList();
         for(Candidate candidate:temp){
+            boolean allreadyExists = false;
             for(int blockedId: blockedStudent){
                 if(candidate.getId()==blockedId){
                     allreadyExists=true;

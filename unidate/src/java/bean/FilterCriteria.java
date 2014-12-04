@@ -5,9 +5,7 @@
  */
 package bean;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,13 +82,13 @@ public class FilterCriteria {
     public ArrayList<Candidate> createCandidateList() {
         ArrayList<Candidate> candidateList = new ArrayList<Candidate>();
         stmt = "SELECT "
-                + "st.id,"
+                + "st.s,"
                 + "st.firstname,"
-                + "st.name,"
+                + "st.lastname,"
                 + "st.about,"
                 + "st.studium,"
-                + "st.department  "
-                + "FROM student st WHERE st.gender=" + gender + " AND st.age >="+ minAge +" AND st.age <="+ maxAge ;
+                + "st.department "
+                + "FROM student st WHERE st.gender='" + gender + "' AND st.age >="+ minAge +" AND st.age <="+ maxAge ;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
