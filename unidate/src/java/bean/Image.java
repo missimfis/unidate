@@ -70,7 +70,7 @@ public class Image extends HttpServlet{
      * the web application directory.
      */
     private static final String SAVE_DIR = "uploadFiles";
-    private final String path = "H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles\\";
+    private final String path = "C:\\Users\\Masha Schiltknecht\\Documents\\NetBeansProjects\\unidate\\unidate\\build\\web\\img\\";
     /**
      * handles file upload
      * @param request
@@ -227,9 +227,9 @@ public class Image extends HttpServlet{
         String defaultPic ="default-user-image.png";  
         String fileName = "";
         relativePath = "uploadFiles/" + id +"/";        
-        webLayoutBegin  = "<div class=\"row\">" + "<div class=\"large-2 medium-2 columns\">" + "<div class=\"mediumpicture\">";
+        webLayoutBegin  = "<div class=\"row\">" + "<a href=\"chatset?match="+ id +"<div class=\"large-2 medium-2 columns\">" + "<div class=\"mediumpicture\">";
         //Image between
-        webLayoutEnd    = "</div>" + "</div>" + "<div class=\"large-10 medium-10 columns panel\">" + "<p>test</p>" + "</div>" + "</div>";
+        webLayoutEnd    = "</div>" + "</div>" + "<div class=\"large-10 medium-10 columns panel\">" + "<p>test</p>" + "</div>" + "</a></div>";
         createDirectory(path + id);
         
         File f;

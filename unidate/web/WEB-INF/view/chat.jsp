@@ -17,8 +17,11 @@
             </div>
         </div>
         <div class="large-8 medium-8 small-8 columns">
-            <% 
-            List<Message> messages = message.loadMessages(student.getId(), 42);         
+            <%         
+            // Set refresh, autoload time as 5 seconds
+            //response.setIntHeader("Refresh", 5);
+            // Get current time
+            List<Message> messages = message.loadMessages( student.getId(), 42);            
             for (int i = 0; i < messages.size(); i++) {
                 if(messages.get(i).getSender() == student.getId()){%>
             <div class="row">

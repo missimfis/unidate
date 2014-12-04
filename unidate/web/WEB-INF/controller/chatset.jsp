@@ -3,14 +3,17 @@
 <jsp:useBean id="student" class="bean.Student" scope="session"/> 
 <jsp:useBean id="message" class="bean.Message" scope="session"/>
 
+
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
                             
 
 <%  
     int receiverId = 42;
-    message.setText(request.getParameter("text"));
-    message.sendMessage(message.getText(), student.getId(), receiverId);
-    response.sendRedirect("chat");
+    message.setMatchedStudent(Integer.parseInt(request.getParameter("id")));
+   out.println("id " + receiverId);
+   out.println("match " + Integer.parseInt(request.getParameter("id")));
+   out.println("get " + message.getMatchedStudent());
+    //response.sendRedirect("chat");
         
 %>

@@ -194,7 +194,8 @@ public class Message {
                     messages.add(new Message()
                             .setId(rs.getInt(1))
                             .setText(rs.getString(2))
-                            .setSender(rs.getInt(3)));
+                            .setSender(rs.getInt(3))
+                    );
                 }
             }
         } catch (SQLException ex) {
@@ -248,9 +249,9 @@ public class Message {
      * Sends a message with a specified sent time to a specified User and
      * inserts the requiered fields into the database.
      *
-     * @param matchedStudent
+     * @param senderId
+     * @param receiverId
      * @param text
-     * @param from
      * @return true if the message has been successfully sent
      */
     public boolean sendMessage(String text, int senderId, int receiverId) {
