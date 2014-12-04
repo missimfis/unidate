@@ -21,7 +21,8 @@
             // Set refresh, autoload time as 5 seconds
             //response.setIntHeader("Refresh", 5);
             // Get current time
-            List<Message> messages = message.loadMessages( student.getId(), 42);            
+            
+            List<Message> messages = message.loadMessages( student.getId(), message.getMatchedStudent());            
             for (int i = 0; i < messages.size(); i++) {
                 if(messages.get(i).getSender() == student.getId()){%>
             <div class="row">
@@ -29,13 +30,11 @@
                     <%out.println(messages.get(i).getText());%>
 		</div>
 		<div class="large-2 medium-2 small-2 columns ">
-                    <%out.println(messages.get(i).getSender());%>
                 </div>
             </div>	
                 <%}else {%>
             <div class="row">
 		<div class="large-2 medium-2 small-2 columns ">
-                    <%out.println(messages.get(i).getSender());%>
 		</div>
 		<div class="large-10 medium-10 small-10 columns panel">
                     <%out.println(messages.get(i).getText());%>

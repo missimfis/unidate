@@ -37,6 +37,8 @@ public class Image extends HttpServlet{
     private String description;
     private String fileNameOutput;
     private String relativePath;
+    private String forwardlink;
+    private String forwardlinkend;
     private String webLayoutBegin;
     private String webLayoutEnd;
     private String personID;
@@ -70,7 +72,7 @@ public class Image extends HttpServlet{
      * the web application directory.
      */
     private static final String SAVE_DIR = "uploadFiles";
-    private final String path = "C:\\Users\\Masha Schiltknecht\\Documents\\NetBeansProjects\\unidate\\unidate\\build\\web\\img\\";
+    private final String path = "C:\\Users\\Masha Schiltknecht\\Documents\\NetBeansProjects\\unidate\\unidate\\build\\web\\img";
     /**
      * handles file upload
      * @param request
@@ -227,9 +229,9 @@ public class Image extends HttpServlet{
         String defaultPic ="default-user-image.png";  
         String fileName = "";
         relativePath = "uploadFiles/" + id +"/";        
-        webLayoutBegin  = "<div class=\"row\">" + "<a href=\"chatset?match="+ id +"<div class=\"large-2 medium-2 columns\">" + "<div class=\"mediumpicture\">";
+        webLayoutBegin  = "<div class=\"row\">" + "<a href=\"chatset?match=" +id+ "\">" +  "<div class=\"large-2 medium-2 columns\">" + "<div class=\"mediumpicture\">";
         //Image between
-        webLayoutEnd    = "</div>" + "</div>" + "<div class=\"large-10 medium-10 columns panel\">" + "<p>test</p>" + "</div>" + "</a></div>";
+        webLayoutEnd    = "</div>" + "</div>" + "<div class=\"large-10 medium-10 columns panel\">" + "<p>test</p>" + "</div>" +  "</a>" +"</div>";
         createDirectory(path + id);
         
         File f;
@@ -246,9 +248,10 @@ public class Image extends HttpServlet{
             fileName = jpg.getName();
             if(fileName != null){
                 fileNameOutput =  
-                         webLayoutBegin 
+                        
+                        webLayoutBegin 
                         + "<img src=\"" + relativePath + fileName + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">"  
-                        + webLayoutEnd;            
+                        + webLayoutEnd;           
             }
 
         }

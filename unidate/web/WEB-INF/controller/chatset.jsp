@@ -10,10 +10,9 @@
 
 <%  
     int receiverId = 42;
-    message.setMatchedStudent(Integer.parseInt(request.getParameter("id")));
+   // message.setMatchedStudent(Integer.parseInt(request.getParameter("id")));
    out.println("id " + receiverId);
-   out.println("match " + Integer.parseInt(request.getParameter("id")));
-   out.println("get " + message.getMatchedStudent());
-    //response.sendRedirect("chat");
+   message.setMatchedStudent(Integer.parseInt(request.getParameter("match")));
+   response.sendRedirect("chat");
         
 %>

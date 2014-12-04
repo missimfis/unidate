@@ -1,11 +1,12 @@
 <%@ page import="bean.*"%> 
-<jsp:useBean id="userinfo" class="bean.Student"/>
+<jsp:useBean id="userinfo" class="bean.Student" scope="session"/>
+<jsp:useBean id="message" class="bean.Message" scope="session"/>
 <jsp:setProperty property="*" name="userinfo"/>  
 <%@ page import="java.util.*" %>
 
 <%Image image = new Image(); %>
 <%  
-    int id = 1;
+    int id = userinfo.getId();
     userinfo.init();
     userinfo.createNewMatch(id);
     ArrayList<MatchedStudent> matchedStudent = userinfo.checkMatchedStudent();
@@ -23,6 +24,7 @@
                             if(image.getOutput()!=null){
                                 
                                 out.println(image.getOutput());
+                                
                             }                            
                         }                      
                         %>   		

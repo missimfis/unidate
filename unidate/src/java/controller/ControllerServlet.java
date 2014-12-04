@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
             "/registriert",
             "/profil",
             "/profil_bearbeiten",
+            "/chatset",
             "/profilCheck",
             "/chatSend"})
 
@@ -44,6 +45,7 @@ public class ControllerServlet extends HttpServlet {
         doGetMap.put("/anzeigen", "/view/anzeigen");
         doGetMap.put("/profil", "/view/profil");
         doGetMap.put("/profil_bearbeiten", "/view/profil_bearbeiten");
+        doGetMap.put("/chatset", "/controller/chatset");
         doGetMap.put("/chat", "/view/chat");
 
         // fillup doPostMap data
