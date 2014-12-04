@@ -5,22 +5,19 @@
                             
 
 <%  
-    int id = 1;
     int matchId=1;
-    String text="blabla";
-    int from=27;
-    message.sendMessage(1, "blabla", 7);
-    message.setTo(5);
-    message.setMatchedStudent(2);
-    message.setFrom(student.getId());
-    message.setIsRead(false);
+    //String text=request.getParameter("text");
+    //int studentId = student.getId();
+    message.setMatchedStudent(1337);
     message.setText(request.getParameter("text"));
-    
-    
-    
-    out.println(id+ "<br>");
-    out.println(student.getId() + "<br>");
-    out.println(matchId+ "<br>");  
-    out.println(message.getText()+ "<br>");
+    message.setFrom(student.getId());
+    message.sendMessage(matchId, message.getText(), message.getFrom());
+
     
 %>
+<%--
+   // Rederict to chat.jsp
+   String site = new String("http://localhost:8084/unidate/chat.jsp");
+   response.setStatus(response.SC_MOVED_TEMPORARILY);
+   response.setHeader("Location", site); 
+--%>
