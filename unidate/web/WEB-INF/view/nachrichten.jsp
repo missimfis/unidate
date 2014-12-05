@@ -7,7 +7,7 @@
 <%Image image = new Image(); %>
 <%  
     int id = student.getId();
-    student.init();
+    //student.init();
     student.createNewMatch(id);
     ArrayList<MatchedStudent> matchedStudent = student.checkMatchedStudent(id);
 
