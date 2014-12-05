@@ -19,11 +19,12 @@ public class Student extends User {
     private String stmt;
     private Integer age;
     private String gender;
-    public FilterCriteria filterCriteria;
+    private FilterCriteria filterCriteria;
     private final List<MatchedStudent> matchedStudent;
     public ArrayList<Candidate> candidateList;
     private ArrayList<Integer> likedStudent;
     private ArrayList<Integer> blockedStudent;
+    
 
 
     private boolean registrated;
@@ -382,7 +383,7 @@ public class Student extends User {
     public boolean blockStudent(int candidateID) {
         blockedStudent.add(candidateID);
         int index=0;
-        for(int i=0;i<=candidateList.size();i++){
+        for(int i=0;i<candidateList.size();i++){
             if(candidateList.get(i).getId()==candidateID){
                 index=i;
             }
@@ -408,19 +409,19 @@ public class Student extends User {
     }
     
     public boolean like(int candidateID){
+        int index=999999;
+        for(int i=0;i<candidateList.size();i++){
+            if(candidateList.get(i).getId()==candidateID){
+                index=i;
+            }
+        }
+        candidateList.remove(index);
         if(matchCheck(this.getId(),candidateID)){
             createNewMatch(candidateID);
         }
         else{
             addLikedStudent(candidateID);
         }
-        int index=0;
-        for(int i=0;i<=candidateList.size();i++){
-            if(candidateList.get(i).getId()==candidateID){
-                index=i;
-            }
-        }
-        candidateList.remove(index);
         return true;
     }
     public boolean dislike(int candidateID){

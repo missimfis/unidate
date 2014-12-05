@@ -8,9 +8,9 @@
 <% 
     
     student.createFilterCriteria();
-    out.println(student.filterCriteria.getMaxAge());
-    out.println(student.filterCriteria.getMinAge());
-    ArrayList<Candidate> blabal = student.filterCriteria.createCandidateList();
+    //out.println(student.filterCriteria.getMaxAge());
+    //out.println(student.filterCriteria.getMinAge());
+    //ArrayList<Candidate> blabal = student.filterCriteria.createCandidateList();
     student.createBlockedStudentList();
     student.createLikedStudentList();
     student.createCandidateList();

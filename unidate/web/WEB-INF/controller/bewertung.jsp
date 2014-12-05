@@ -15,6 +15,5 @@
         }
     }
     
-
     response.sendRedirect("anzeigen");
 %>
