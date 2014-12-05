@@ -8,25 +8,17 @@ import java.util.List;
 
 public class Student extends User {
 
-    private String name;
-    private String department;
-    private String studium;
-    private String about;
     private String email;
     private String password;
     private String username;
     private String matrikelnumber;
     private String stmt;
     private Integer age;
-    private String gender;
-    private FilterCriteria filterCriteria;
+    private final FilterCriteria filterCriteria;
     private final List<MatchedStudent> matchedStudent;
-    public ArrayList<Candidate> candidateList;
-    private ArrayList<Integer> likedStudent;
-    private ArrayList<Integer> blockedStudent;
-    
-
-
+    private final List<Candidate> candidateList;
+    private final List<Integer> likedStudent;
+    private final List<Integer> blockedStudent;
     private boolean registrated;
     private boolean completedProfile;
     private final UserProfile profile;
@@ -38,40 +30,32 @@ public class Student extends User {
      * @param userId identification id of the user
      * @param firstname firstname of the user
      * @param surname surname of the user
-     * @param name name of the user
-     * @param department
-     * @param studium
-     * @param about
      * @param email email of the user
      * @param password pw of the user
      * @param username username of the user
      * @param registrated
      * @param completedProfile
      */
-    public Student(int userId, String firstname, String surname, String name, String department, String studium, String about, String email,
+    public Student(int userId, String firstname, String surname, String email,
             String password, String username, boolean registrated, boolean completedProfile) {
         super.setId(userId);
         super.setFirstname(firstname);
         super.setSurname(surname);
-        this.name = name;
-        this.department = department;
-        this.studium = studium;
-        this.about = about;
         this.email = email;
         this.password = password;
         this.username = username;
         this.registrated = registrated;
         this.completedProfile = completedProfile;
         this.matchedStudent = new ArrayList<>();
-        this.candidateList = new ArrayList<Candidate>();
-        this.likedStudent = new ArrayList<Integer>();
-        this.blockedStudent = new ArrayList<Integer>();
+        this.candidateList = new ArrayList<>();
+        this.likedStudent = new ArrayList<>();
+        this.blockedStudent = new ArrayList<>();
         this.profile = new UserProfile();
         this.filterCriteria = new FilterCriteria();
         createFilterCriteria();
         createBlockedStudentList();
         createLikedStudentList();
-        
+
     }
 
     /**
@@ -81,65 +65,11 @@ public class Student extends User {
         super();
         this.profile = new UserProfile();
         this.matchedStudent = new ArrayList<>();
-        this.candidateList = new ArrayList<Candidate>();
-        this.likedStudent = new ArrayList<Integer>();
-        this.blockedStudent = new ArrayList<Integer>();
+        this.candidateList = new ArrayList<>();
+        this.likedStudent = new ArrayList<>();
+        this.blockedStudent = new ArrayList<>();
         this.filterCriteria = new FilterCriteria();
 
-    }
-
-    /**
-     * Get Surname of the User
-     *
-     * @return Surname
-     */
-    public String getDepartment() {
-        return department;
-    }
-
-    /**
-     * Set the Surname of an User
-     *
-     * @param department
-     */
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    /**
-     * Get Surname of the User
-     *
-     * @return studium
-     */
-    public String getStudium() {
-        return studium;
-    }
-
-    /**
-     * Set the Surname of an User
-     *
-     * @param studium
-     */
-    public void setStudium(String studium) {
-        this.studium = studium;
-    }
-
-    /**
-     * Get Surname of the User
-     *
-     * @return about
-     */
-    public String getAbout() {
-        return about;
-    }
-
-    /**
-     * Set the Surname of an User
-     *
-     * @param about
-     */
-    public void setAbout(String about) {
-        this.about = about;
     }
 
     /**
@@ -266,6 +196,7 @@ public class Student extends User {
      * @param userId
      * @param firstname
      * @param lastname
+     * @param gender
      * @param department
      * @param studium
      * @param about
@@ -280,7 +211,6 @@ public class Student extends User {
             String about
     ) {
 
-        
         profile.editUserProfile(userId, firstname, lastname, gender, department, studium, about);
     }
 
@@ -293,7 +223,7 @@ public class Student extends User {
     public String getFirstname(int userId) {
         return profile.getFirstname(userId);
     }
-    
+
     /**
      * Returns the UserInfos lastname from the database
      *
@@ -333,7 +263,7 @@ public class Student extends User {
     public String getAbout(int userId) {
         return profile.getAbout(userId);
     }
-    
+
     /**
      * Returns the UserInfos about from the database
      *
@@ -382,22 +312,21 @@ public class Student extends User {
 
     public boolean blockStudent(int candidateID) {
         blockedStudent.add(candidateID);
-        int index=0;
-        for(int i=0;i<candidateList.size();i++){
-            if(candidateList.get(i).getId()==candidateID){
-                index=i;
+        int index = 0;
+        for (int i = 0; i < candidateList.size(); i++) {
+            if (candidateList.get(i).getId() == candidateID) {
+                index = i;
             }
         }
         candidateList.remove(index);
-         try {
-                stmt = "INSERT INTO blockedstudent (studentid, blockedstudentid) VALUES (?,?)";
-                pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
+        try {
+            stmt = "INSERT INTO blockedstudent (studentid, blockedstudentid) VALUES (?,?)";
+            pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
 
-                pstmt.setInt(1, this.getId());
-                pstmt.setInt(2, candidateID);
-                pstmt.executeUpdate();
-                
-      
+            pstmt.setInt(1, this.getId());
+            pstmt.setInt(2, candidateID);
+            pstmt.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(Student.class.getName()).log(
                     Level.SEVERE, "Failure while trying to insert blockedstudents on DB", ex);
@@ -407,41 +336,40 @@ public class Student extends User {
         }
         return true;
     }
-    
-    public boolean like(int candidateID){
-        int index=999999;
-        for(int i=0;i<candidateList.size();i++){
-            if(candidateList.get(i).getId()==candidateID){
-                index=i;
+
+    public boolean like(int candidateID) {
+        int index = 999999;
+        for (int i = 0; i < candidateList.size(); i++) {
+            if (candidateList.get(i).getId() == candidateID) {
+                index = i;
             }
         }
         candidateList.remove(index);
-        if(matchCheck(this.getId(),candidateID)){
+        if (matchCheck(this.getId(), candidateID)) {
             createNewMatch(candidateID);
-        }
-        else{
+        } else {
             addLikedStudent(candidateID);
         }
         return true;
     }
-    public boolean dislike(int candidateID){
+
+    public boolean dislike(int candidateID) {
         blockStudent(candidateID);
         return true;
     }
-    public boolean matchCheck(int studentID,int candidateID){
+
+    public boolean matchCheck(int studentID, int candidateID) {
         boolean result = false;
-            stmt = "SELECT COUNT(`studentid`) FROM `likedstudent` WHERE `studentid`="+candidateID+" AND `likedstudentid`="+studentID;
+        stmt = "SELECT COUNT(`studentid`) FROM `likedstudent` WHERE `studentid`=" + candidateID + " AND `likedstudentid`=" + studentID;
         try {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    if(rs.getInt(1)==1){
+                    if (rs.getInt(1) == 1) {
                         result = true;
-                        for(Candidate candidate: candidateList){
-                            if(candidate.getId()==candidateID){
-                                candidate.setCandidateLike();
-                            }
-                        }
+                        candidateList.stream().filter((candidate) -> (candidate.getId() == candidateID)).forEach((candidate) -> {
+                            candidate.setCandidateLike();
+                        });
                     }
                 }
             }
@@ -455,7 +383,7 @@ public class Student extends User {
         return result;
     }
 
-    public boolean createFilterCriteria() {
+    public final boolean createFilterCriteria() {
         stmt = "SELECT "
                 + "st.interests,"
                 + "st.minage,"
@@ -465,7 +393,7 @@ public class Student extends User {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    filterCriteria.changeCriteria(rs.getInt(2),rs.getInt(3),rs.getString(1));
+                    filterCriteria.changeCriteria(rs.getInt(2), rs.getInt(3), rs.getString(1));
                 }
             }
         } catch (SQLException ex) {
@@ -477,7 +405,8 @@ public class Student extends User {
         }
         return true;
     }
-    public boolean createBlockedStudentList() {
+
+    public final boolean createBlockedStudentList() {
         blockedStudent.clear();
         stmt = "SELECT "
                 + "blockedstudentid "
@@ -498,7 +427,8 @@ public class Student extends User {
         }
         return true;
     }
-    public boolean createLikedStudentList() {
+
+    public final boolean createLikedStudentList() {
         likedStudent.clear();
         stmt = "SELECT "
                 + "likedstudentid "
@@ -519,31 +449,33 @@ public class Student extends User {
         }
         return true;
     }
+
     public boolean createCandidateList() {
         candidateList.clear();
         ArrayList<Candidate> temp = filterCriteria.createCandidateList();
-        for(Candidate candidate:temp){
+        for (Candidate candidate : temp) {
             boolean allreadyExists = false;
-            for(int blockedId: blockedStudent){
-                if(candidate.getId()==blockedId){
-                    allreadyExists=true;
-                    break; 
+            for (int blockedId : blockedStudent) {
+                if (candidate.getId() == blockedId) {
+                    allreadyExists = true;
+                    break;
                 }
             }
-            for(int likedId: likedStudent){
-                if(candidate.getId()==likedId){
-                    allreadyExists=true;
-                    break; 
+            for (int likedId : likedStudent) {
+                if (candidate.getId() == likedId) {
+                    allreadyExists = true;
+                    break;
                 }
             }
-            if(!allreadyExists){
+            if (!allreadyExists) {
                 candidateList.add(candidate);
             }
         }
         return true;
     }
+
     public ArrayList<Candidate> getCandidateList() {
-        return candidateList;
+        return (ArrayList<Candidate>) candidateList;
     }
 
     /**
@@ -575,9 +507,9 @@ public class Student extends User {
 
     //initialize candidateList for tests
     public void init() {
-        candidateList.add(new Candidate(1, "Thomas", "Huynh","test", "physio", "ich bin bla", true));
-        candidateList.add(new Candidate(2, "David", "wa","test", "physio", "ich bin bla", true));
-        candidateList.add(new Candidate(4, "miau", "bo","test", "physio", "ich bin bla", true));
+        candidateList.add(new Candidate(1, "Thomas", "Huynh", "test", "physio", "ich bin bla", true));
+        candidateList.add(new Candidate(2, "David", "wa", "test", "physio", "ich bin bla", true));
+        candidateList.add(new Candidate(4, "miau", "bo", "test", "physio", "ich bin bla", true));
     }
 
     /**
@@ -611,14 +543,13 @@ public class Student extends User {
     public void addLikedStudent(int candidateID) {
         likedStudent.add(candidateID);
         try {
-                stmt = "INSERT INTO likedstudent (studentid, likedstudentid) VALUES (?,?)";
-                pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
+            stmt = "INSERT INTO likedstudent (studentid, likedstudentid) VALUES (?,?)";
+            pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
 
-                pstmt.setInt(1, this.getId());
-                pstmt.setInt(2, candidateID);
-                pstmt.executeUpdate();
-                
-      
+            pstmt.setInt(1, this.getId());
+            pstmt.setInt(2, candidateID);
+            pstmt.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(Student.class.getName()).log(
                     Level.SEVERE, "Failure while trying to insert blockedstudents on DB", ex);
