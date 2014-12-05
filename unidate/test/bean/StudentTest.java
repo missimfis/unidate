@@ -434,8 +434,8 @@ public class StudentTest {
         System.out.println("checkMatchedStudent");
         Student instance = new Student();
         ArrayList<MatchedStudent> expResult = null;
-        ArrayList<MatchedStudent> result = instance.checkMatchedStudent();
-        assertEquals(expResult, result);
+        //ArrayList<MatchedStudent> result = instance.checkMatchedStudent();
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

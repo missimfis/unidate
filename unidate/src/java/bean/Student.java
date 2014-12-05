@@ -499,10 +499,16 @@ public class Student extends User {
     /**
      * check matches in the list of studentmatches
      *
+     * @param id
      * @return arraylist of matched Student
      */
-    public ArrayList<MatchedStudent> checkMatchedStudent() {
-        return (ArrayList<MatchedStudent>) matchedStudent;
+    public ArrayList<MatchedStudent> checkMatchedStudent(int id) {
+        MatchedStudent match = new MatchedStudent();
+        ArrayList<MatchedStudent> matchList = new ArrayList<>();
+       
+        matchList = (ArrayList<MatchedStudent>) match.createMatchedList(id);
+        
+        return (ArrayList<MatchedStudent>) matchList;
     }
 
     //initialize candidateList for tests
@@ -518,24 +524,16 @@ public class Student extends User {
      * @param userID
      */
     public void createNewMatch(int userID) {
-        String candidateFirstname;
-        String candidateLastname;
-        String candidateDepartment;
-        String candidateStudium;
-        String candidateAbout;
+    MatchedStudent match = new MatchedStudent();    
 
         //add to match list if both like
         for (Candidate temp : candidateList) {
             if (temp.getCandidateLike(userID) == true) {
 
                 int candidateID = temp.getId();
-                candidateFirstname = temp.getCandidateFirstname(candidateID);
-                candidateLastname = temp.getCandidateLastname(candidateID);
-                candidateDepartment = temp.getCandidateDepartment(candidateID);
-                candidateStudium = temp.getCandidateStudium(candidateID);
-                candidateAbout = temp.getCandidateAbout(candidateID);
 
-                matchedStudent.add(new MatchedStudent("firstname", "lastname", "interests", userID, candidateID));
+
+                match.addMatchToDatabase(userID, candidateID);
             }
         }
     }
