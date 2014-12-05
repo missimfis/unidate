@@ -14,7 +14,7 @@
     student.createBlockedStudentList();
     student.createLikedStudentList();
     student.createCandidateList();
-    out.println(student.candidateList.size());
+    //out.println(student.candidateList.size());
     ArrayList<Candidate> candidateList = student.getCandidateList();
     %>
     <script type="text/javascript">
