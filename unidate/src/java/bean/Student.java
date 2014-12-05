@@ -338,6 +338,11 @@ public class Student extends User {
     }
 
     public boolean like(int candidateID) {
+        if (matchCheck(this.getId(), candidateID)) {
+            createNewMatch(candidateID);
+        } else {
+            addLikedStudent(candidateID);
+        }
         int index = 999999;
         for (int i = 0; i < candidateList.size(); i++) {
             if (candidateList.get(i).getId() == candidateID) {
@@ -345,11 +350,6 @@ public class Student extends User {
             }
         }
         candidateList.remove(index);
-        if (matchCheck(this.getId(), candidateID)) {
-            createNewMatch(candidateID);
-        } else {
-            addLikedStudent(candidateID);
-        }
         return true;
     }
 
@@ -367,9 +367,13 @@ public class Student extends User {
                 while (rs.next()) {
                     if (rs.getInt(1) == 1) {
                         result = true;
-                        candidateList.stream().filter((candidate) -> (candidate.getId() == candidateID)).forEach((candidate) -> {
-                            candidate.setCandidateLike();
-                        });
+                        //candidateList.stream().filter((candidate) -> (candidate.getId() == candidateID)).forEach((candidate) -> {
+                        for(Candidate candidate: candidateList){
+                            if(candidate.getId()==candidateID){
+                                candidate.setCandidateLike();
+                            }
+                        }
+                        //});
                     }
                 }
             }
@@ -449,10 +453,29 @@ public class Student extends User {
         }
         return true;
     }
-
+    
     public boolean createCandidateList() {
         candidateList.clear();
         ArrayList<Candidate> temp = filterCriteria.createCandidateList();
+        ArrayList<Integer> matchedList = new ArrayList<Integer>();
+        stmt = "SELECT "
+                + "student1, student2 "
+                + "FROM matchedstudent WHERE student1=" + this.getId()+" OR student2="+this.getId();
+        try {
+        pstmt = DBConnectionPool.getStmt(stmt);
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+               matchedList.add(rs.getInt(1));
+            }
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                Level.SEVERE, "Failure while trying to get infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+        
         for (Candidate candidate : temp) {
             boolean allreadyExists = false;
             for (int blockedId : blockedStudent) {
@@ -463,6 +486,12 @@ public class Student extends User {
             }
             for (int likedId : likedStudent) {
                 if (candidate.getId() == likedId) {
+                    allreadyExists = true;
+                    break;
+                }
+            }
+            for (int matchedID : matchedList) {
+                if (candidate.getId() == matchedID) {
                     allreadyExists = true;
                     break;
                 }
@@ -512,11 +541,11 @@ public class Student extends User {
     }
 
     //initialize candidateList for tests
-    public void init() {
-        candidateList.add(new Candidate(1, "Thomas", "Huynh", "test", "physio", "ich bin bla", true));
-        candidateList.add(new Candidate(3, "David", "wa", "test", "physio", "ich bin bla", true));
-        candidateList.add(new Candidate(4, "miau", "bo", "test", "physio", "ich bin bla", true));
-    }
+    //public void init() {
+        //candidateList.add(new Candidate(1, "Thomas", "Huynh", "test", "physio", "ich bin bla", true));
+        //candidateList.add(new Candidate(3, "David", "wa", "test", "physio", "ich bin bla", true));
+        //candidateList.add(new Candidate(4, "miau", "bo", "test", "physio", "ich bin bla", true));
+    //}
 
     /**
      * create new matches for student
@@ -524,14 +553,12 @@ public class Student extends User {
      * @param userID
      */
     public void createNewMatch(int userID) {
-    MatchedStudent match = new MatchedStudent();    
-
+    MatchedStudent match = new MatchedStudent();
         //add to match list if both like
         for (Candidate temp : candidateList) {
             if (temp.getCandidateLike(userID) == true) {
 
-                int candidateID = temp.getId();
-
+                int candidateID = this.getId();
 
                 match.addMatchToDatabase(userID, candidateID);
             }

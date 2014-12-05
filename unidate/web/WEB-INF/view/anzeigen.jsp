@@ -2,19 +2,10 @@
 <jsp:useBean id="userinfo" class="bean.Student"/>
 <jsp:setProperty property="*" name="userinfo"/> 
 <jsp:useBean id="student" class="bean.Student" scope="session"/>
-<%out.println(request.getParameter("rating"));%>
 <% int id = student.getId();%>
 <%@ page import="java.util.*" %>
 <% 
-    
-    student.createFilterCriteria();
-    //out.println(student.filterCriteria.getMaxAge());
-    //out.println(student.filterCriteria.getMinAge());
-    //ArrayList<Candidate> blabal = student.filterCriteria.createCandidateList();
-    student.createBlockedStudentList();
-    student.createLikedStudentList();
     student.createCandidateList();
-    //out.println(student.candidateList.size());
     ArrayList<Candidate> candidateList = student.getCandidateList();
     %>
     <script type="text/javascript">
@@ -27,7 +18,6 @@
     <% 
         if(candidateList.size()==0)out.println("es konnten keine potenzielle Kandidatengefunden werden.");
         for (int i=0;i<candidateList.size();i++){
-        //for (Candidate candidate:candidateList){
         id=candidateList.get(i).getId();
         int nextID=candidateList.get(0).getId();
         int preID=candidateList.get(candidateList.size()-1).getId();
