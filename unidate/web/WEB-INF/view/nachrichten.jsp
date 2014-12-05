@@ -20,7 +20,7 @@
                             int matchid = match.getCandidateID();
                             image.resetOutput();
                             image.displayMessage(matchid); 
-                            
+                            out.println(matchid);
                             if(image.getOutput()!=null){
                                 
                                 out.println(image.getOutput());

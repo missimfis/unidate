@@ -514,7 +514,7 @@ public class Student extends User {
     //initialize candidateList for tests
     public void init() {
         candidateList.add(new Candidate(1, "Thomas", "Huynh", "test", "physio", "ich bin bla", true));
-        candidateList.add(new Candidate(2, "David", "wa", "test", "physio", "ich bin bla", true));
+        candidateList.add(new Candidate(3, "David", "wa", "test", "physio", "ich bin bla", true));
         candidateList.add(new Candidate(4, "miau", "bo", "test", "physio", "ich bin bla", true));
     }
 

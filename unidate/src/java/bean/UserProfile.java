@@ -51,9 +51,9 @@ public class UserProfile {
                 pstmt.executeUpdate();
             }
             if (!"".equals(lastname)) {
-                stmt = "UPDATE student SET firstname=? WHERE s=?";
+                stmt = "UPDATE student SET lastname=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
-                pstmt.setString(1, firstname);
+                pstmt.setString(1, lastname);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
