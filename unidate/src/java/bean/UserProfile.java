@@ -28,9 +28,14 @@ public class UserProfile {
      * @param userId
      * @param firstname
      * @param lastname
+     * @param gender
      * @param department
      * @param studium
      * @param about
+     * @param interest
+     * @param age
+     * @param minAge
+     * @param maxAge
      */
     public void editUserProfile(
             int userId,
@@ -39,7 +44,11 @@ public class UserProfile {
             String gender,
             String department,
             String studium,
-            String about
+            String about,
+            String interest,
+            int age,
+            int minAge,
+            int maxAge
             
     ) {
         try {
@@ -57,7 +66,7 @@ public class UserProfile {
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
-            if (!"".equals(gender) && !"".equals(gender)) {
+            if (!"".equals(gender)) {
                 stmt = "UPDATE student SET gender=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, gender);
@@ -78,10 +87,38 @@ public class UserProfile {
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
-            if (!"".equals(about) && !"".equals(about)) {
+            if (!"".equals(about)) {
                 stmt = "UPDATE student SET about=? WHERE s=?";
                 pstmt = DBConnectionPool.getStmt(stmt);
                 pstmt.setString(1, about);
+                pstmt.setInt(2, userId);
+                pstmt.executeUpdate();
+            }
+            if (!"".equals(interest)) {
+                stmt = "UPDATE student SET interests=? WHERE s=?";
+                pstmt = DBConnectionPool.getStmt(stmt);
+                pstmt.setString(1, interest);
+                pstmt.setInt(2, userId);
+                pstmt.executeUpdate();
+            }
+            if (age >= 0) {
+                stmt = "UPDATE student SET age=? WHERE s=?";
+                pstmt = DBConnectionPool.getStmt(stmt);
+                pstmt.setInt(1, age);
+                pstmt.setInt(2, userId);
+                pstmt.executeUpdate();
+            }
+            if (minAge >= 0) {
+                stmt = "UPDATE student SET minage=? WHERE s=?";
+                pstmt = DBConnectionPool.getStmt(stmt);
+                pstmt.setInt(1, minAge);
+                pstmt.setInt(2, userId);
+                pstmt.executeUpdate();
+            }
+            if (maxAge >= 0) {
+                stmt = "UPDATE student SET maxage=? WHERE s=?";
+                pstmt = DBConnectionPool.getStmt(stmt);
+                pstmt.setInt(1, maxAge);
                 pstmt.setInt(2, userId);
                 pstmt.executeUpdate();
             }
@@ -269,6 +306,122 @@ public class UserProfile {
         }
 
         return dbGender;
+    }
+    
+            /**
+     * Returns the UserInfos from the database
+     *
+     * @param userId to identify the relevant person
+     * @return an user object.
+     */
+    public String getInterest(int userId) {
+        String dbInterest = "";
+        stmt = "SELECT interests FROM student WHERE s=" + userId;
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+
+                    dbInterest = rs.getString("interests");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+
+        return dbInterest;
+    }
+    
+    /**
+     * Returns the UserInfos from the database
+     *
+     * @param userId to identify the relevant person
+     * @return an user object.
+     */
+    public int getAge(int userId) {
+        int dbAge = 0;
+        stmt = "SELECT age FROM student WHERE s=" + userId;
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+
+                    dbAge = rs.getInt("age");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+
+        return dbAge;
+    }
+    
+            /**
+     * Returns the UserInfos from the database
+     *
+     * @param userId to identify the relevant person
+     * @return an user object.
+     */
+    public int getMinAge(int userId) {
+        int dbMinAge = 0;
+        stmt = "SELECT minage FROM student WHERE s=" + userId;
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+
+                    dbMinAge = rs.getInt("minage");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+
+        return dbMinAge;
+    }
+    
+                /**
+     * Returns the UserInfos from the database
+     *
+     * @param userId to identify the relevant person
+     * @return an user object.
+     */
+    public int getMaxAge(int userId) {
+        int dbMaxAge = 0;
+        stmt = "SELECT maxage FROM student WHERE s=" + userId;
+        try {
+            pstmt = DBConnectionPool.getStmt(stmt);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+
+                    dbMaxAge = rs.getInt("maxage");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(
+                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+        } finally {
+            DBConnectionPool.closeStmt(pstmt);
+            DBConnectionPool.closeCon();
+        }
+
+        return dbMaxAge;
     }
 
 }

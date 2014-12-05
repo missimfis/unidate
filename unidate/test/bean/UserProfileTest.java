@@ -50,8 +50,12 @@ public class UserProfileTest {
         String department = "";
         String studium = "";
         String about = "";
+        String interest = "";
+        int age=0;
+        int minAge=0;
+        int maxAge=0;
         UserProfile instance = new UserProfile();
-        instance.editUserProfile(userId, firstname, lastname, gender, department, studium, about);
+        instance.editUserProfile(userId, firstname, lastname, gender, department, studium, about,interest, age, minAge, maxAge);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

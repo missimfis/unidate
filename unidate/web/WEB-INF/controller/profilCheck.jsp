@@ -12,16 +12,12 @@
     String department = request.getParameter("department");
     String studium = request.getParameter("studium");
     String about = request.getParameter("about");
+    String interest = request.getParameter("interesse");
+    int age = Integer.parseInt(request.getParameter("age"));
+    int minAge = Integer.parseInt(request.getParameter("minAge"));
+    int maxAge = Integer.parseInt(request.getParameter("maxAge"));
     
 
-    student.editUserProfile(userId, firstname, lastname, gender, department, studium, about);
+    student.editUserProfile(userId, firstname, lastname, gender, department, studium, about, interest, age, minAge, maxAge);
     response.sendRedirect("profil_bearbeiten");
 %>
-
-
-<%--
-   // New location to be redirected
-   String site = new String("http://localhost:8084/unidate/profil_bearbeiten.jsp");
-   response.setStatus(response.SC_MOVED_TEMPORARILY);
-   response.setHeader("Location", site); 
---%>

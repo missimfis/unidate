@@ -14,6 +14,11 @@
 <% String studium = student.getStudium(test);%>
 <% String about = student.getAbout(test);%>
 <% String gender = student.getGender(test);%>
+<% String interest = student.getInterest(test);%>
+<% int age = student.getAge(test);%>
+<% int minAge = student.getMinAge(test);%>
+<% int maxAge = student.getMaxAge(test);%>
+
 <% image.setProfilePic(test);
 String profilePic = image.getProfilePic();%>
 
@@ -96,7 +101,30 @@ String profilePic = image.getProfilePic();%>
                                   </textarea>
                                 </div>
                         </div>
-
+                        			                    <h3>Einstellungen für Anzeigen</h3>
+                        <div class="row">
+                                <div class="large-6 medium-6 columns">
+                                  <label>Interessiert an</label>
+                                  <input type="radio" <%if ("women".equals(interest)) {%> checked="checked" <%}%> name="interesse" value="women" id="f"/>
+                                  <label for="f">Frauen</label>
+                                  <input type="radio"  <%if ("men".equals(interest)) {%> checked="checked" <%}%> name="interesse" value="men" id="m"/>
+                                  <label for="m">Männer</label>
+                                </div>
+                                <div class="large-6 medium-6 columns">
+                                  <label>Alter</label>
+                                  <input type="text" placeholder="Alter" name="age" value="<%=age %>"/>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="large-6 medium-6 columns">
+                                  <label>Alter zwischen</label>
+                                  <input type="text" placeholder="minimum Alter" name="minAge" value="<%=minAge %>"/>
+                                </div>
+                                <div class="large-6 medium-6 columns">
+                                  <label>und</label>
+                                  <input type="text" placeholder="maximum Alter"  name="maxAge" value="<%=maxAge %>"/>
+                                </div>
+                        </div>                
                         <div class="row">
                                 <div class="large-12 columns">
                                         <input class="small round button" type="submit" value="Speichern" />
@@ -104,40 +132,8 @@ String profilePic = image.getProfilePic();%>
 
                                 </div>
                         </div>
-				
+	
 		</form>
-                <form> 
-                    <h3>Einstellungen für Anzeigen</h3>
-                    <div class="row">
-                            <div class="large-6 medium-6 columns">
-                              <label>Interessiert an</label>
-                              <input type="radio" name="Frauen" value="Frauen" id="f"/>
-                              <label for="f">Frauen</label>
-                              <input type="radio" name="Maenner" value="Maenner" id="m"/>
-                              <label for="m">Männer</label>
-                            </div>
-                            <div class="large-6 medium-6 columns">
-                              <label>Alter</label>
-                              <input type="text" placeholder="Alter" />
-                            </div>
-                    </div>
-                    <div class="row">
-                            <div class="large-6 medium-6 columns">
-                              <label>Alter zwischen</label>
-                              <input type="text" placeholder="minimum Alter" />
-                            </div>
-                            <div class="large-6 medium-6 columns">
-                              <label>und</label>
-                              <input type="text" placeholder="maximum Alter" />
-                            </div>
-                    </div>
-                    <div class="row">
-                            <div class="large-12 columns">
-                             <a href="#" class="small round button">Speichern</a><br/> 
-                            </div>
-                    </div>
-                  </div>
-                </form>
 	</div>   
 	
 	<div class="row">   

@@ -200,6 +200,10 @@ public class Student extends User {
      * @param department
      * @param studium
      * @param about
+     * @param interest
+     * @param age
+     * @param minAge
+     * @param maxAge
      */
     public void editUserProfile(
             int userId,
@@ -208,10 +212,14 @@ public class Student extends User {
             String gender,
             String department,
             String studium,
-            String about
+            String about,
+            String interest,
+            int age,
+            int minAge,
+            int maxAge
     ) {
 
-        profile.editUserProfile(userId, firstname, lastname, gender, department, studium, about);
+        profile.editUserProfile(userId, firstname, lastname, gender, department, studium, about, interest, age, minAge, maxAge);
     }
 
     /**
@@ -273,7 +281,40 @@ public class Student extends User {
     public String getGender(int userId) {
         return profile.getGender(userId);
     }
+    
+    /**
+     * @param userId
+     * @return interest (woman/man)
+     */
+    public String getInterest(int userId) {
+        return profile.getInterest(userId);
+    }
 
+
+    /**
+     * @param userId
+     * @return user age
+     */
+    public int getAge(int userId) {
+        return profile.getAge(userId);
+    }
+    
+    /**
+     * @param userId
+     * @return min age for filter
+     */
+    public int getMinAge(int userId) {
+        return profile.getMinAge(userId);
+    }
+    
+    /**
+     * @param userId
+     * @return the max age for filter
+     */
+    public int getMaxAge(int userId) {
+        return profile.getMaxAge(userId);
+    }
+    
     /**
      * @return the registrated
      */
@@ -505,20 +546,6 @@ public class Student extends User {
 
     public ArrayList<Candidate> getCandidateList() {
         return (ArrayList<Candidate>) candidateList;
-    }
-
-    /**
-     * @return the birthday
-     */
-    public Integer getAge() {
-        return age;
-    }
-
-    /**
-     * @param age
-     */
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public ArrayList<Integer> checkLikedStudent() {
