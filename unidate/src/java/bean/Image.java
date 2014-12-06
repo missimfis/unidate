@@ -33,7 +33,7 @@ import javax.servlet.http.Part;
 				 maxRequestSize=1024*1024*50)	// 50MB
 public class Image extends HttpServlet{
 
-    private String imagepath;
+
     private String description;
     private String fileNameOutput;
     private String relativePath;
@@ -72,7 +72,7 @@ public class Image extends HttpServlet{
      * the web application directory.
      */
     private static final String SAVE_DIR = "uploadFiles";
-    private final String path = "F:\\project\\unidate\\unidate\\unidate\\build\\web\\uploadFiles\\";
+    private final String path = "H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles\\";
     /**
      * handles file upload
      * @param request
@@ -134,8 +134,8 @@ public class Image extends HttpServlet{
             }
     }
     
-        /**
-     * create txt
+    /**
+     * create textfile to save userID, which is necessary to upload picture into the right folder
      * @param id
      * @throws java.io.FileNotFoundException
      * @throws java.io.UnsupportedEncodingException
@@ -165,6 +165,9 @@ public class Image extends HttpServlet{
 	
     }
     
+    /**
+     * Read ID to upload the picture into to right folder
+     */
     public void readTXT(){
     BufferedReader br = null;
 
@@ -188,7 +191,9 @@ public class Image extends HttpServlet{
         }
     }
             
-
+    /**
+     * prepare HTML for profil.jsp to display all picture from a specific user
+     */
     public void prepareHTML(int id){
         
         relativePath = "uploadFiles/" + id +"/";  
@@ -225,6 +230,10 @@ public class Image extends HttpServlet{
         }
     }
     
+    /**
+     * display Message and Picture from matched student
+     * @param id
+     */
     public void displayMessage(int id){
         String defaultPic ="default-user-image.png";  
         String fileName = "";
@@ -232,31 +241,34 @@ public class Image extends HttpServlet{
         webLayoutBegin  = "<div class=\"row\">" + "<a href=\"chatset?match=" +id+ "\">" +  "<div class=\"large-2 medium-2 columns\">" + "<div class=\"mediumpicture\">";
         //Image between
         webLayoutEnd    = "</div>" + "</div>" + "<div class=\"large-10 medium-10 columns panel\">" + "<p>test</p>" + "</div>" +  "</a>" +"</div>";
+        //create Folder if not exists
         createDirectory(path + id);
         
         File f;
         f = new File(path + id);    
         File[] list = f.listFiles();    
         
-        fileNameOutput =  
-         webLayoutBegin 
-        + "<img src=\"" + "uploadFiles/"+ defaultPic  + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">"  
-        + webLayoutEnd;   
-        
+        //Display default picutre of no picutre is uploaded
+        fileNameOutput = webLayoutBegin 
+                        + "<img src=\"" + "uploadFiles/"+ defaultPic  + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">"  
+                        + webLayoutEnd;   
+        //display picture of user
         for (File jpg : list) {
             
             fileName = jpg.getName();
             if(fileName != null){
-                fileNameOutput =  
-                        
-                        webLayoutBegin 
-                        + "<img src=\"" + relativePath + fileName + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">"  
-                        + webLayoutEnd;           
+                fileNameOutput = webLayoutBegin 
+                                + "<img src=\"" + relativePath + fileName + "\"" + "width=\"150\"" + "height=\"150\"" + "alt=\"profile\"" + ">"  
+                                + webLayoutEnd;           
             }
 
         }
     }
-        
+    
+    /**
+     * Display picture on profil
+     * @param id
+     */
     public void setProfilePic(int id){
 
         createDirectory(path + id);    
@@ -269,7 +281,7 @@ public class Image extends HttpServlet{
         relativePath = "uploadFiles/";  
         createDirectory(path + id);  
         
-        //check if file exists
+        //check if file exists in a folder
         if(inBounds){
             fileName = list[0].getName();
             relativePath = "uploadFiles/" + id +"/";  
@@ -284,10 +296,19 @@ public class Image extends HttpServlet{
         
     }
     
+    /**
+     * return the profilPic as String for html
+     * @return profilPic 
+     */
     public String getProfilePic(){
         return profilPic;
     }
     
+    /**
+     * Delete picture in profile
+     * @param name
+     * @param id
+     */
     public void deleteImage(String name, int id){
         try{
 
@@ -304,15 +325,26 @@ public class Image extends HttpServlet{
    
     }
     
+    /**
+     * Return name of the file
+     * @return fileNameOutput 
+     */
     public String getOutput(){
         return fileNameOutput;   
     }
     
+    /**
+     * reset nameOutput necessary for message to display matched Student in message
+     * @return fileNameOutput 
+     */
     public String resetOutput(){
             fileNameOutput = "";
         return fileNameOutput;   
     }
     
+    /**
+     * @return personID 
+     */
     public String getPersonID(){
         return personID;   
     }
