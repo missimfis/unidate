@@ -4,22 +4,22 @@
 
 <%Image image = new Image(); %>
 <%  image.readTXT();
-    int test = student.getId();
+    int id = student.getId();
 %>
 
 
-<% String firstname = student.getFirstname(test);%>
-<% String lastname = student.getLastname(test);%>
-<% String department = student.getDepartment(test);%>
-<% String studium = student.getStudium(test);%>
-<% String about = student.getAbout(test);%>
-<% String gender = student.getGender(test);%>
-<% String interest = student.getInterest(test);%>
-<% int age = student.getAge(test);%>
-<% int minAge = student.getMinAge(test);%>
-<% int maxAge = student.getMaxAge(test);%>
+<% String firstname = student.getFirstname(id);%>
+<% String lastname = student.getLastname(id);%>
+<% String department = student.getDepartment(id);%>
+<% String studium = student.getStudium(id);%>
+<% String about = student.getAbout(id);%>
+<% String gender = student.getGender(id);%>
+<% String interest = student.getInterest(id);%>
+<% int age = student.getAge(id);%>
+<% int minAge = student.getMinAge(id);%>
+<% int maxAge = student.getMaxAge(id);%>
 
-<% image.setProfilePic(test);
+<% image.setProfilePic(id);
 String profilePic = image.getProfilePic();%>
 
 
@@ -27,12 +27,11 @@ String profilePic = image.getProfilePic();%>
     <div class="row">
       <div class="large-12 columns">
 	        <h2>Profil</h2>
-                <%=test%>
     <% 
             if(request.getParameter("submit") != null) {
     %>
             <%String value = request.getParameter("submit"); 
-            image.deleteImage(value, test);%>
+            image.deleteImage(value, id);%>
     <%
             }
     %> 
@@ -138,7 +137,7 @@ String profilePic = image.getProfilePic();%>
 	
 	<div class="row">   
             <%   
-                image.prepareHTML(test);
+                image.prepareHTML(id);
                 if(image.getOutput()!=null){
                     out.println(image.getOutput());
                 }
@@ -146,7 +145,6 @@ String profilePic = image.getProfilePic();%>
             %>               
         <div class="large-2 medium-2 columns">
             <div class="mediumepicture right">
-                <%--<img src="icons/plus13.png" alt="profile">--%>
                 <form method="post" action="Image" enctype="multipart/form-data" >
                     
                     <div class="image-upload">
@@ -154,9 +152,11 @@ String profilePic = image.getProfilePic();%>
                             <img src="icons/plus13.png" style="margin-top:45px;" />
                         </label>
                         
-                        <input style=" display: none;"  id="file-input" type="file" name="file" accept="image/x-png, image/gif, image/jpeg" onchange="this.form.submit();"/>
+                        <input style=" display: none;"  id="file-input" 
+                               type="file" name="file" accept="image/x-png, image/gif, 
+                               image/jpeg" onchange="this.form.submit();"/>
                     </div> 
-                    <%image.createTXT(test);%>
+                    <%image.createTXT(id);%>
                 </form>
                 
             </div>
