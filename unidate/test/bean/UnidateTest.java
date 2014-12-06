@@ -44,6 +44,8 @@ public class UnidateTest {
     public void testRegister() {
         System.out.println("register");
         Unidate instance = new Unidate();
+        Student student = new Student();
+        instance.setStudent(student);
         boolean expResult = false;
         boolean result = instance.register();
         assertEquals(expResult, result);
@@ -84,11 +86,11 @@ public class UnidateTest {
     public void testLogin() {
         System.out.println("login");
         Unidate instance = new Unidate();
+        Student student = new Student();
+        instance.setStudent(student);
         boolean expResult = false;
         boolean result = instance.login();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
