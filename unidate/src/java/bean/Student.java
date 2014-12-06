@@ -141,7 +141,7 @@ public class Student extends User {
                 try (ResultSet rs = pstmt.executeQuery()) {
                     boolean status = rs.next();
                     if (status) {
-                        result = rs.getInt("P");
+                        result = rs.getInt("s");
                     }
                 }
             } catch (SQLException ex) {

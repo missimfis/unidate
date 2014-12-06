@@ -1,7 +1,7 @@
 <%@page import="bean.TextFileReader"%>
 <%
     if ("TRUE".equals(session.getAttribute("session"))) {
-        response.sendRedirect("dashboard");
+        response.sendRedirect("anzeigen");
     }
 %>
 <div class="row">

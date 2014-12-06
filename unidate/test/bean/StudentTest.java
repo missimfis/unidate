@@ -70,7 +70,7 @@ public class StudentTest {
     @Test
     public void testGetUserInfos() {
         System.out.println("getUserInfos");
-        int userId = 0;
+        int userId = 1;
         Student instance = new Student();
         Student expResult = null;
         Student result = instance.getUserInfos(userId);
@@ -102,9 +102,9 @@ public class StudentTest {
     @Test
     public void testGetFirstname() {
         System.out.println("getFirstname");
-        int userId = 0;
+        int userId = 1;
         Student instance = new Student();
-        String expResult = "";
+        String expResult = "Brianna";
         String result = instance.getFirstname(userId);
         assertEquals(expResult, result);
     }
@@ -115,9 +115,9 @@ public class StudentTest {
     @Test
     public void testGetLastname() {
         System.out.println("getLastname");
-        int userId = 0;
+        int userId = 1;
         Student instance = new Student();
-        String expResult = "";
+        String expResult = "Fraser";
         String result = instance.getLastname(userId);
         assertEquals(expResult, result);
     }
@@ -128,7 +128,7 @@ public class StudentTest {
     @Test
     public void testGetDepartment_int() {
         System.out.println("getDepartment");
-        int userId = 0;
+        int userId = 1;
         Student instance = new Student();
         String expResult = "";
         String result = instance.getDepartment(userId);
@@ -173,13 +173,11 @@ public class StudentTest {
     @Test
     public void testGetGender() {
         System.out.println("getGender");
-        int userId = 0;
+        int userId = 4;
         Student instance = new Student();
         String expResult = "";
         String result = instance.getGender(userId);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -236,11 +234,9 @@ public class StudentTest {
     public void testCheckNewMessage() {
         System.out.println("checkNewMessage");
         Student instance = new Student();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.checkNewMessage();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -250,11 +246,9 @@ public class StudentTest {
     public void testCheckNewLikes() {
         System.out.println("checkNewLikes");
         Student instance = new Student();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.checkNewLikes();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -263,13 +257,11 @@ public class StudentTest {
     @Test
     public void testBlockStudent() {
         System.out.println("blockStudent");
-        int candidateID = 0;
+        int candidateID = 1;
         Student instance = new Student();
         boolean expResult = false;
         boolean result = instance.blockStudent(candidateID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -278,13 +270,11 @@ public class StudentTest {
     @Test
     public void testLike() {
         System.out.println("like");
-        int candidateID = 0;
+        int candidateID = 1;
         Student instance = new Student();
         boolean expResult = false;
         boolean result = instance.like(candidateID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -293,7 +283,7 @@ public class StudentTest {
     @Test
     public void testDislike() {
         System.out.println("dislike");
-        int candidateID = 0;
+        int candidateID = 1;
         Student instance = new Student();
         boolean expResult = false;
         boolean result = instance.dislike(candidateID);
@@ -439,30 +429,6 @@ public class StudentTest {
     }
 
     /**
-     * Test of clearMatchedStudentList method, of class Student.
-     */
-    @Test
-    public void testClearMatchedStudentList() {
-        System.out.println("clearMatchedStudentList");
-        Student instance = new Student();
-        //instance.clearMatchedStudentList();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of init method, of class Student.
-     */
-    @Test
-    public void testInit() {
-        System.out.println("init");
-        Student instance = new Student();
-        //instance.init();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of createNewMatch method, of class Student.
      */
     @Test
@@ -471,8 +437,6 @@ public class StudentTest {
         int userID = 0;
         Student instance = new Student();
         instance.createNewMatch(userID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

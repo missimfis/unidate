@@ -58,11 +58,9 @@ public class UnidateTest {
     public void testSendConfirmationMail() {
         System.out.println("sendConfirmationMail");
         Unidate instance = new Unidate();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.sendConfirmationMail();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,11 +70,10 @@ public class UnidateTest {
     public void testUnlockProfil() {
         System.out.println("unlockProfil");
         Unidate instance = new Unidate();
-        boolean expResult = false;
+        boolean expResult = true;
+        instance.setStudent(new Student());
         boolean result = instance.unlockProfil();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,6 +84,8 @@ public class UnidateTest {
         System.out.println("login");
         Unidate instance = new Unidate();
         Student student = new Student();
+        student.setUsername("test");
+        student.setPassword("testtest5");
         instance.setStudent(student);
         boolean expResult = false;
         boolean result = instance.login();
@@ -100,11 +99,9 @@ public class UnidateTest {
     public void testLogout() {
         System.out.println("logout");
         Unidate instance = new Unidate();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.logout();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -116,8 +113,6 @@ public class UnidateTest {
         Student student = null;
         Unidate instance = new Unidate();
         instance.setStudent(student);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
