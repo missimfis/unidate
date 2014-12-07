@@ -57,6 +57,7 @@ public class MatchedStudentTest {
      */
     @Test
     public void testSizeOfMatched() {
+        DBConnectionPool.initaliseForJUnitTests();
         System.out.println("test Size");
            
         List<Candidate> candidateList = new ArrayList<>();
@@ -69,7 +70,7 @@ public class MatchedStudentTest {
         int expResult = 3;
         int result = student.getCandidateList().size();
         assertEquals(expResult, result);
-
+        DBConnectionPool.closeCon();
     }
     
     /**
@@ -77,7 +78,7 @@ public class MatchedStudentTest {
      * it should.
      */
     @Test
-    public void systemTest() {
+    public void testMatch() {
         DBConnectionPool.initaliseForJUnitTests();
         MatchedStudent match = new MatchedStudent();
         ArrayList<MatchedStudent> matchList = new ArrayList<>();
