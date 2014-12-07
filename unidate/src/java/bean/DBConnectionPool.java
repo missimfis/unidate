@@ -29,7 +29,13 @@ public class DBConnectionPool {
     
     public static void initaliseForJUnitTests() {
         testing = true;
-        ds = new SimpleDataSource(connection_url + ":" + port + "/" + db,"unidate","unidatepw");
+        loadParameters();
+        try {
+            Class.forName(driver);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DBConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ds = new SimpleDataSource(connection_url + ":" + port + "/" + db,username,password);
         try {
             ds.getConnection().prepareStatement("DROP DATABASE unidate").execute();
         } catch (SQLException ex) {
@@ -48,7 +54,7 @@ public class DBConnectionPool {
         } catch (InterruptedException ex) {
             Logger.getLogger(DBConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ds = new SimpleDataSource(connection_url + ":" + port + "/" + db,"unidate","unidatepw");
+        ds = new SimpleDataSource(connection_url + ":" + port + "/" + db,username,password);
     }
     
     public static void initalise() {
