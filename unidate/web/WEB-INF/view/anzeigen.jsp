@@ -16,7 +16,7 @@
     </script>
    <div>
     <% 
-        if(candidateList.size()==0)out.println("es konnten keine potenzielle Kandidatengefunden werden.");
+        if(candidateList.size()==0)out.println("es konnten keine potenzielle Kandidaten gefunden werden.");
         for (int i=0;i<candidateList.size();i++){
         id=candidateList.get(i).getId();
         int nextID=candidateList.get(0).getId();

@@ -3,7 +3,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% int id = student2.getId();%>
 <nav>
-<div class="littlepicture right">
+
+
+<div class="littlepicture right" onclick="window.open('profil','_self')" style="cursor:pointer">
     <!--<img src="img/Bild3.jpg" alt="profile">-->
     <% 
         Image image = new Image();
@@ -13,12 +15,15 @@
         }
                  
         %>
+    
     <div class="littlemask">
 	<img src="img/littlecircle.png"/>
     </div>
     <div class="littleline">&nbsp;</div>
+    
 </div>
-    <a href="nachrichten.jsp">
+
+    <a href="nachrichten">
         <div class="messages comment right">
             <img src="icons/comments16.png" alt="messages" >
         </div>

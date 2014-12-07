@@ -384,7 +384,7 @@ public class Student extends User {
         } else {
             addLikedStudent(candidateID);
         }
-        int index = 999999;
+        int index = 0;
         for (int i = 0; i < candidateList.size(); i++) {
             if (candidateList.get(i).getId() == candidateID) {
                 index = i;
