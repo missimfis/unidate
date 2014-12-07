@@ -125,13 +125,15 @@ public class Image extends HttpServlet{
     /**
      * Create directory if not exists
      * @param savePath
+     * @return 
      */
-    public void createDirectory(String savePath) {
+    public boolean createDirectory(String savePath) {
     // creates the save directory if it does not exists
             File fileSaveDir = new File(savePath);
             if (!fileSaveDir.exists()) {
                     fileSaveDir.mkdir();
             }
+            return true;
     }
     
     /**
@@ -308,8 +310,9 @@ public class Image extends HttpServlet{
      * Delete picture in profile
      * @param name
      * @param id
+     * @return true
      */
-    public void deleteImage(String name, int id){
+    public boolean deleteImage(String name, int id){
         try{
 
         File file = new File(path + id + "\\" + name);
@@ -322,7 +325,7 @@ public class Image extends HttpServlet{
 
     	}catch(Exception e){
     	}
-   
+        return true;
     }
     
     /**

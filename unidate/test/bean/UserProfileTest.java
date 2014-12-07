@@ -60,9 +60,6 @@ public class UserProfileTest {
     @Test
     public void testEditUserProfile() {
         DBConnectionPool.initaliseForJUnitTests();
-        //Prepare variables
-
-
         // create a test student        
         student = new Student(1, "Hans", "Muster", "mustehan@students.zhaw", "admin", "admin", true, true);       
         student.editUserProfile(student.getId(), student.getFirstname(), student.getSurname(), "men", "G", "Physio", "bla", "sandwich", 20, 20, 30);

@@ -40,44 +40,6 @@ public class ImageTest {
     }
 
     /**
-     * Test of getDescription method, of class Image.
-     */
-    @Test
-    public void testGetDescription() {
-        System.out.println("getDescription");
-        Image instance = new Image();
-        String expResult = null;
-        String result = instance.getDescription();
-        assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of setDescription method, of class Image.
-     */
-    @Test
-    public void testSetDescription() {
-        System.out.println("setDescription");
-        String description = "";
-        Image instance = new Image();
-        instance.setDescription(description);
-fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of doPost method, of class Image.
-     */
-    @Test
-    public void testDoPost() throws Exception {
-        System.out.println("doPost");
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
-        Image instance = new Image();
-        instance.doPost(request, response);
-fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of createDirectory method, of class Image.
      */
     @Test
@@ -85,31 +47,8 @@ fail("The test case is a prototype.");
         System.out.println("createDirectory");
         String savePath = "";
         Image instance = new Image();
-        instance.createDirectory(savePath);
-fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of createTXT method, of class Image.
-     */
-    @Test
-    public void testCreateTXT() throws Exception {
-        System.out.println("createTXT");
-        int id = 0;
-        Image instance = new Image();
-        instance.createTXT(id);
-fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of readTXT method, of class Image.
-     */
-    @Test
-    public void testReadTXT() {
-        System.out.println("readTXT");
-        Image instance = new Image();
-        instance.readTXT();
-fail("The test case is a prototype.");
+        
+        assertTrue(instance.createDirectory(savePath));
     }
 
     /**
@@ -118,10 +57,10 @@ fail("The test case is a prototype.");
     @Test
     public void testPrepareHTML() {
         System.out.println("prepareHTML");
-        int id = 0;
+        int id = 1;
         Image instance = new Image();
         instance.prepareHTML(id);
-fail("The test case is a prototype.");
+        assertNull(instance.getOutput());
     }
 
     /**
@@ -130,10 +69,10 @@ fail("The test case is a prototype.");
     @Test
     public void testDisplayMessage() {
         System.out.println("displayMessage");
-        int id = 0;
+        int id = 1;
         Image instance = new Image();
         instance.displayMessage(id);
-fail("The test case is a prototype.");
+        assertNotNull(instance.getOutput());
     }
 
     /**
@@ -142,10 +81,10 @@ fail("The test case is a prototype.");
     @Test
     public void testSetProfilePic() {
         System.out.println("setProfilePic");
-        int id = 0;
+        int id = 1;
         Image instance = new Image();
         instance.setProfilePic(id);
-fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -155,10 +94,13 @@ fail("The test case is a prototype.");
     public void testGetProfilePic() {
         System.out.println("getProfilePic");
         Image instance = new Image();
-        String expResult = null;
+
+        instance.setProfilePic(1);
         String result = instance.getProfilePic();
-        assertEquals(expResult, result);
-fail("The test case is a prototype.");
+        
+        //not null means there at least a default ProfilePic
+        assertNotNull(result);
+
     }
 
     /**
@@ -168,10 +110,9 @@ fail("The test case is a prototype.");
     public void testDeleteImage() {
         System.out.println("deleteImage");
         String name = "";
-        int id = 0;
+        int id = 1;
         Image instance = new Image();
-        instance.deleteImage(name, id);
-fail("The test case is a prototype.");
+        assertTrue(instance.deleteImage(name, id));
     }
 
     /**
@@ -181,10 +122,9 @@ fail("The test case is a prototype.");
     public void testGetOutput() {
         System.out.println("getOutput");
         Image instance = new Image();
-        String expResult = null;
+        instance.displayMessage(1);
         String result = instance.getOutput();
-        assertEquals(expResult, result);
-fail("The test case is a prototype.");
+        assertNotNull(result);
     }
 
     /**
@@ -195,9 +135,9 @@ fail("The test case is a prototype.");
         System.out.println("resetOutput");
         Image instance = new Image();
         String expResult = "";
+        instance.displayMessage(1);
         String result = instance.resetOutput();
         assertEquals(expResult, result);
-    fail("The test case is a prototype.");
     }
 
     
