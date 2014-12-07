@@ -46,11 +46,10 @@ public class ImageTest {
     public void testGetDescription() {
         System.out.println("getDescription");
         Image instance = new Image();
-        String expResult = "";
+        String expResult = null;
         String result = instance.getDescription();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -62,23 +61,7 @@ public class ImageTest {
         String description = "";
         Image instance = new Image();
         instance.setDescription(description);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of upload method, of class Image.
-     */
-    @Test
-    public void testUpload() {
-        System.out.println("upload");
-        HttpServletRequest request = null;
-        Image instance = new Image();
-        boolean expResult = false;
-        boolean result = instance.upload(request);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -91,8 +74,7 @@ public class ImageTest {
         HttpServletResponse response = null;
         Image instance = new Image();
         instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -104,8 +86,7 @@ public class ImageTest {
         String savePath = "";
         Image instance = new Image();
         instance.createDirectory(savePath);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -117,8 +98,7 @@ public class ImageTest {
         int id = 0;
         Image instance = new Image();
         instance.createTXT(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -129,8 +109,7 @@ public class ImageTest {
         System.out.println("readTXT");
         Image instance = new Image();
         instance.readTXT();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -142,8 +121,7 @@ public class ImageTest {
         int id = 0;
         Image instance = new Image();
         instance.prepareHTML(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -155,8 +133,7 @@ public class ImageTest {
         int id = 0;
         Image instance = new Image();
         instance.displayMessage(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -168,8 +145,7 @@ public class ImageTest {
         int id = 0;
         Image instance = new Image();
         instance.setProfilePic(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -179,11 +155,10 @@ public class ImageTest {
     public void testGetProfilePic() {
         System.out.println("getProfilePic");
         Image instance = new Image();
-        String expResult = "";
+        String expResult = null;
         String result = instance.getProfilePic();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -196,8 +171,7 @@ public class ImageTest {
         int id = 0;
         Image instance = new Image();
         instance.deleteImage(name, id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -207,11 +181,10 @@ public class ImageTest {
     public void testGetOutput() {
         System.out.println("getOutput");
         Image instance = new Image();
-        String expResult = "";
+        String expResult = null;
         String result = instance.getOutput();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+fail("The test case is a prototype.");
     }
 
     /**
@@ -224,22 +197,8 @@ public class ImageTest {
         String expResult = "";
         String result = instance.resetOutput();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getPersonID method, of class Image.
-     */
-    @Test
-    public void testGetPersonID() {
-        System.out.println("getPersonID");
-        Image instance = new Image();
-        String expResult = "";
-        String result = instance.getPersonID();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }

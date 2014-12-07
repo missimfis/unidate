@@ -5,6 +5,8 @@
  */
 package bean;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,27 +45,33 @@ public class MatchedStudentTest {
     @Test
     public void testGetCandidateID() {
         System.out.println("getCandidateID");
-        MatchedStudent instance = null;
-        int expResult = 0;
+        MatchedStudent instance = new MatchedStudent();
+        instance.setCandidateID(5);
+        int expResult = 5;
         int result = instance.getCandidateID();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
-
+    
     /**
-     * Test of getCandidateName method, of class MatchedStudent.
-     */
+     * Test if the size of liked student in match is correct
+     
     @Test
-    public void testGetCandidateName() {
-        System.out.println("getCandidateName");
-        MatchedStudent instance = null;
-        String expResult = "";
-        String result = instance.getCandidateName();
+    public void testSizeOfMatched() {
+        System.out.println("test Size");
+           
+        List<Candidate> candidateList = new ArrayList<>();
+        Student student = new Student();
+        student.init();
+        student.createNewMatch(1);
+        candidateList = student.getCandidateList();
+        
+        int expResult = 3;
+        int result = student.getCandidateList().size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+
+    }*/
 
     /**
      * Test of addMatchToDatabase method, of class MatchedStudent.
@@ -82,20 +90,4 @@ public class MatchedStudentTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of checkMatch method, of class MatchedStudent.
-     */
-    @Test
-    public void testCheckMatch() {
-        System.out.println("checkMatch");
-        int Person1 = 0;
-        int Person2 = 0;
-        MatchedStudent instance = null;
-        int expResult = 0;
-        int result = instance.checkMatch(Person1, Person2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
