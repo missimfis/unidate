@@ -5,6 +5,9 @@
  */
 package bean;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -12,12 +15,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
+//import static org.mockito.Mockito.*;
+//import org.powermock.api.mockito.*;
+//import org.powermock.core.classloader.annotations.PrepareForTest;
+//import org.powermock.modules.junit4.PowerMockRunner;
 /**
  *
  * @author Thomas
  */
-public class FilterCriteriaTest {
+public class FilterCriteriaTest{
     
     public FilterCriteriaTest() {
     }
@@ -45,11 +51,10 @@ public class FilterCriteriaTest {
     public void testGetMinAge() {
         System.out.println("getMinAge");
         FilterCriteria instance = new FilterCriteria();
-        int expResult = 0;
+        int expResult = 20;
+        instance.setMinAge(20);
         int result = instance.getMinAge();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,11 +63,9 @@ public class FilterCriteriaTest {
     @Test
     public void testSetMinAge() {
         System.out.println("setMinAge");
-        int minAge = 0;
+        int minAge = 20;
         FilterCriteria instance = new FilterCriteria();
         instance.setMinAge(minAge);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,11 +75,10 @@ public class FilterCriteriaTest {
     public void testGetMaxAge() {
         System.out.println("getMaxAge");
         FilterCriteria instance = new FilterCriteria();
-        int expResult = 0;
+        int expResult = 30;
+        instance.setMaxAge(expResult);
         int result = instance.getMaxAge();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -88,8 +90,6 @@ public class FilterCriteriaTest {
         int maxAge = 0;
         FilterCriteria instance = new FilterCriteria();
         instance.setMaxAge(maxAge);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -99,11 +99,10 @@ public class FilterCriteriaTest {
     public void testGetGender() {
         System.out.println("getGender");
         FilterCriteria instance = new FilterCriteria();
-        String expResult = "";
+        String expResult = "women";
+        instance.setGender(expResult);
         String result = instance.getGender();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -115,8 +114,6 @@ public class FilterCriteriaTest {
         String gender = "";
         FilterCriteria instance = new FilterCriteria();
         instance.setGender(gender);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -125,27 +122,27 @@ public class FilterCriteriaTest {
     @Test
     public void testChangeCriteria() {
         System.out.println("changeCriteria");
-        int minAge = 0;
-        int maxAge = 0;
-        String gender = "";
+        int minAge = 20;
+        int maxAge = 30;
+        String gender = "women";
         FilterCriteria instance = new FilterCriteria();
         instance.changeCriteria(minAge, maxAge, gender);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of createCandidateList method, of class FilterCriteria.
      */
     @Test
-    public void testCreateCandidateList() {
-        System.out.println("createCandidateList");
+    public void testCreateCandidateList(){
+        DBConnectionPool.initaliseForJUnitTests();
+        ArrayList<Candidate> expResult = new ArrayList<>();
+        expResult.add(new Candidate(4,"Henna","Frau","something interesting about me","Physio","Technikum",false));
         FilterCriteria instance = new FilterCriteria();
-        ArrayList<Candidate> expResult = null;
+        instance.changeCriteria(20, 23, "women");
+                
         ArrayList<Candidate> result = instance.createCandidateList();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult.get(0).getFirstname(), result.get(0).getFirstname());
+        DBConnectionPool.closeCon();
     }
     
 }
