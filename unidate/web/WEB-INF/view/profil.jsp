@@ -9,6 +9,7 @@
 <% String department = student.getDepartment(id);%>
 <% String studium = student.getStudium(id);%>
 <% String about = student.getAbout(id);%>
+<% int age = student.getAge(id);%>
 
 <%Image image = new Image();%>
 <% image.setProfilePic(id);
@@ -41,8 +42,9 @@ String profilePic = image.getProfilePic();%>
 	  </div>
 	  <div class="large-8 medium-8 columns">
 		<h3 class="blue"><%out.println(firstname + " " + lastname);%></h3>
-			<p>24 Jahre<br/>
-			<%out.println(studium);%><br/></p>
+			<p><%out.println(age);%><br/>
+			<%out.println(studium);%><br/>
+                        <%out.println(department);%><br/></p></p>
 			<%out.println(about);%>
 			
 	  </div>
