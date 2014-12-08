@@ -346,11 +346,11 @@ public class Student extends User {
     public boolean checkNewMessage() {
         return true;
     }
-
-    public boolean checkNewLikes() {
-        return true;
-    }
-
+    /**
+     * It blocks the candidate with the given ID for this student.
+     * @param candidateID
+     * @return 
+     */
     public boolean blockStudent(int candidateID) {
         blockedStudent.add(candidateID);
         int index = 0;
@@ -377,7 +377,12 @@ public class Student extends User {
         }
         return true;
     }
-
+    /**
+     * It adds a the candidate with the given id to the liked list of the student
+     * or if there is a match it starts the process of generating a new match.
+     * @param candidateID
+     * @return 
+     */
     public boolean like(int candidateID) {
         if (matchCheck(this.getId(), candidateID)) {
             createNewMatch(candidateID);
@@ -393,12 +398,23 @@ public class Student extends User {
         candidateList.remove(index);
         return true;
     }
-
+    
+    /**
+     * The method starts the blockStudent process for the given candidateID
+     * @param candidateID
+     * @return 
+     */
     public boolean dislike(int candidateID) {
         blockStudent(candidateID);
         return true;
     }
 
+    /**
+     * This method checks if the two students have a match or not
+     * @param studentID
+     * @param candidateID
+     * @return 
+     */
     public boolean matchCheck(int studentID, int candidateID) {
         boolean result = false;
         stmt = "SELECT COUNT(`studentid`) FROM `likedstudent` WHERE `studentid`=" + candidateID + " AND `likedstudentid`=" + studentID;
@@ -408,13 +424,11 @@ public class Student extends User {
                 while (rs.next()) {
                     if (rs.getInt(1) == 1) {
                         result = true;
-                        //candidateList.stream().filter((candidate) -> (candidate.getId() == candidateID)).forEach((candidate) -> {
                         for(Candidate candidate: candidateList){
                             if(candidate.getId()==candidateID){
                                 candidate.setCandidateLike();
                             }
                         }
-                        //});
                     }
                 }
             }
@@ -428,6 +442,10 @@ public class Student extends User {
         return result;
     }
 
+    /**
+     * It generates a new FilterCriteria object with db data
+     * @return 
+     */
     public final boolean createFilterCriteria() {
         stmt = "SELECT "
                 + "st.interests,"
@@ -451,6 +469,10 @@ public class Student extends User {
         return true;
     }
 
+    /**
+     * It creates the blockedStudentList with db data.
+     * @return 
+     */
     public final boolean createBlockedStudentList() {
         blockedStudent.clear();
         stmt = "SELECT "
@@ -473,6 +495,10 @@ public class Student extends User {
         return true;
     }
 
+    /**
+     * It creates the likedStudentList with db data.
+     * @return 
+     */
     public final boolean createLikedStudentList() {
         likedStudent.clear();
         stmt = "SELECT "
@@ -495,6 +521,11 @@ public class Student extends User {
         return true;
     }
     
+    /**
+     * It creates the candidateList with calling the FilterCriteria object and doing
+     * some redundance checks.
+     * @return 
+     */
     public boolean createCandidateList() {
         candidateList.clear();
         ArrayList<Candidate> temp = filterCriteria.createCandidateList();
@@ -543,11 +574,14 @@ public class Student extends User {
         }
         return true;
     }
-
+    /**
+     * It delivers the hole candidateList
+     * @return 
+     */
     public ArrayList<Candidate> getCandidateList() {
         return (ArrayList<Candidate>) candidateList;
     }
-
+    
     public ArrayList<Integer> checkLikedStudent() {
         return (ArrayList<Integer>) likedStudent;
     }
@@ -592,6 +626,10 @@ public class Student extends User {
         }
     }
 
+    /**
+     * It adds a canidate to the likedLost of a student.
+     * @param candidateID 
+     */
     public void addLikedStudent(int candidateID) {
         likedStudent.add(candidateID);
         try {
@@ -604,7 +642,7 @@ public class Student extends User {
 
         } catch (SQLException ex) {
             Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to insert blockedstudents on DB", ex);
+                    Level.SEVERE, "Failure while trying to insert likedstudents on DB", ex);
         } finally {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
