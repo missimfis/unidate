@@ -70,7 +70,7 @@ public class Unidate {
                         return false;
                     }
                 }
-                stmt = "INSERT INTO student (username,firstname,lastname,email,password,age,interests,registrated,completedProfile,minage,maxage) VALUES (?,?,?,?,?,?,?,?,?)";
+                stmt = "INSERT INTO student (username,firstname,lastname,email,password,age,interests,registrated,completedProfile,minage,maxage) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                 pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
 
                 pstmt.setString(1, student.getUsername());
