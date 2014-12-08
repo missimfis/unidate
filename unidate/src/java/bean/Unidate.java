@@ -70,7 +70,7 @@ public class Unidate {
                         return false;
                     }
                 }
-                stmt = "INSERT INTO student (username,firstname,lastname,email,password,age,interests,registrated,completedProfile) VALUES (?,?,?,?,?,?,?,?,?)";
+                stmt = "INSERT INTO student (username,firstname,lastname,email,password,age,interests,registrated,completedProfile,minage,maxage) VALUES (?,?,?,?,?,?,?,?,?)";
                 pstmt = DBConnectionPool.getStmtWithKey(stmt, Statement.RETURN_GENERATED_KEYS);
 
                 pstmt.setString(1, student.getUsername());
@@ -84,6 +84,9 @@ public class Unidate {
                 pstmt.setString(7, "");
                 pstmt.setBoolean(8, false);
                 pstmt.setBoolean(9, false);
+                // Minage und Maxage mal initialisieren, werden später überschrieben
+                pstmt.setInt(10, 0);
+                pstmt.setInt(11, 100);
 
                 pstmt.executeUpdate();
                 try (ResultSet rs = pstmt.getGeneratedKeys()) {
