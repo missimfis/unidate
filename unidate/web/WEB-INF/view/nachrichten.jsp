@@ -1,13 +1,15 @@
 <%@ page import="bean.*"%> 
-<jsp:useBean id="userinfo" class="bean.Student" scope="session"/>
+<jsp:useBean id="student" class="bean.Student" scope="session"/>
 <jsp:useBean id="message" class="bean.Message" scope="session"/>
 <jsp:setProperty property="*" name="student"/>  
 <%@ page import="java.util.*" %>
 
 <%Image image = new Image(); %>
 <%  
-    int id = userinfo.getId();
-    ArrayList<MatchedStudent> matchedStudent = userinfo.checkMatchedStudent(id);
+    int id = student.getId();
+    //student.init();
+    student.createNewMatch(id);
+    ArrayList<MatchedStudent> matchedStudent = student.checkMatchedStudent(id);
 
 %>
     
