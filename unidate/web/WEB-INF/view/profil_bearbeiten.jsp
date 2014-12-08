@@ -66,9 +66,9 @@ String profilePic = image.getProfilePic();%>
                         <div class="row">
                                 <div class="large-6 medium-6 columns">
                                   <label>Geschlecht</label>
-                                  <input type="radio" <%if ("frau".equals(gender)) {%> checked="checked" <%}%>name="geschlecht" value="frau" id="f"/>
+                                  <input type="radio" <%if ("women".equals(gender)) {%> checked="checked" <%}%>name="geschlecht" value="women" id="f"/>
                                   <label for="f">Frau</label>
-                                  <input type="radio" <%if ("mann".equals(gender)) {%> checked="checked" <%}%> name="geschlecht" value="mann" id="m"/>
+                                  <input type="radio" <%if ("men".equals(gender)) {%> checked="checked" <%}%> name="geschlecht" value="men" id="m"/>
                                   <label for="m">Mann</label>
                                 </div>
                         </div>    
