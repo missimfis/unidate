@@ -11,6 +11,15 @@
 	<div class="large-2 medium-2 small-2 columns">
 	    <div class="mediumpicture">
 		<img src="img/bild2.jpg" alt="profile">
+                 <% 
+                int friendid = message.getMatchedStudent();%>
+                Image image = new Image();
+                image.setProfilePic(friendid);
+                if(image.getProfilePic()!=null){
+                    out.println(image.getProfilePic());
+                }
+
+                %>
 		<div class="smallmask">
                     <img alt="imagemask" src="img/bigcircle.png"/>
 		</div>
@@ -55,7 +64,16 @@
         </div>
 	<div class="large-2 medium-2 small-2 columns">
 	    <div class="mediumpicture right">
-		<img src="img/Bild1.png" alt="profile">
+		<!--<img src="img/Bild1.png" alt="profile">-->
+                <% 
+                int id = student.getId();%>
+                Image image = new Image();
+                image.setProfilePic(id);
+                if(image.getProfilePic()!=null){
+                    out.println(image.getProfilePic());
+                }
+
+                %>
 		<div class="smallmask">
                     <img alt="imagemask" src="img/bigcircle.png"/>
 		</div>

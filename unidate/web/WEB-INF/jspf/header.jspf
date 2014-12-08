@@ -17,7 +17,12 @@
     <div class="row">
       <div class="large-4 medium-4 small-4 columns">
 		<div class="logo">
-			<img src="img/logo_v2_1.jpg" alt="Unidate">
+                    <%
+                        if ("TRUE".equals(session.getAttribute("session"))) { %>
+                        <a href="anzeigen" ><img src="img/logo_v2_1.jpg" alt="Unidate"></a>
+                    <%  } else { %>
+                        <img src="img/logo_v2_1.jpg" alt="Unidate">
+                    <% }%>
 		</div>
 	</div>
         <div class="large-8 medium-8 small-8 columns">
