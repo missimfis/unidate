@@ -8,9 +8,8 @@
                             
 
 <%  
-    int receiverId = 42;
     message.setText(request.getParameter("text"));
-    message.sendMessage(message.getText(), student.getId(), receiverId);
+    message.sendMessage(message.getText(), student.getId(), message.getMatchedStudent());
     response.sendRedirect("chat");
         
 %>

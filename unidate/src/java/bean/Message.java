@@ -241,7 +241,6 @@ public class Message {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
         }
-        setId(id);
         return messages;
     }
     

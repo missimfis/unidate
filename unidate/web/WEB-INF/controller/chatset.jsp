@@ -9,9 +9,6 @@
                             
 
 <%  
-    int receiverId = 42;
-   // message.setMatchedStudent(Integer.parseInt(request.getParameter("id")));
-   out.println("id " + receiverId);
    message.setMatchedStudent(Integer.parseInt(request.getParameter("match")));
    response.sendRedirect("chat");
         

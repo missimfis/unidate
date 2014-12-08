@@ -237,12 +237,16 @@ public class Image extends HttpServlet{
      * @param id
      */
     public void displayMessage(int id){
+        Message message = new Message();
+        Student student = new Student();
+        message.loadLastMessage(student.getId(), id);
+        String text = message.getText();
         String defaultPic ="default-user-image.png";  
         String fileName = "";
         relativePath = "uploadFiles/" + id +"/";        
         webLayoutBegin  = "<div class=\"row\">" + "<a href=\"chatset?match=" +id+ "\">" +  "<div class=\"large-2 medium-2 columns\">" + "<div class=\"mediumpicture\">";
         //Image between
-        webLayoutEnd    = "</div>" + "</div>" + "<div class=\"large-10 medium-10 columns panel\">" + "<p>test</p>" + "</div>" +  "</a>" +"</div>";
+        webLayoutEnd    = "</div>" + "</div>" + "<div class=\"large-10 medium-10 columns panel\">" + "<p>"+ text +"</p>" + "</div>" +  "</a>" +"</div>";
         //create Folder if not exists
         createDirectory(path + id);
         
