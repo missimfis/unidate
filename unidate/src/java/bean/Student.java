@@ -25,16 +25,16 @@ public class Student extends User {
     private PreparedStatement pstmt;
 
     /**
-     * Creates a new User Object
+     * Creates a new Student Object
      *
-     * @param userId identification id of the user
-     * @param firstname firstname of the user
-     * @param surname surname of the user
-     * @param email email of the user
-     * @param password pw of the user
-     * @param username username of the user
+     * @param userId identification id of the student
+     * @param firstname firstname of the student
+     * @param surname surname of the student
+     * @param email email of the student
+     * @param password pw of the student
+     * @param username username of the student
      * @param registrated registration
-     * @param completedProfile  profile of the user
+     * @param completedProfile  profile of the student
      */
     public Student(int userId, String firstname, String surname, String email,
             String password, String username, boolean registrated, boolean completedProfile) {
@@ -59,7 +59,7 @@ public class Student extends User {
     }
 
     /**
-     * empty constructor of new user. Creates new User Object
+     * empty constructor of new student. Creates new Student Object
      */
     public Student() {
         super();
@@ -73,7 +73,7 @@ public class Student extends User {
     }
 
     /**
-     * Get email of an User
+     * Get email of a Student
      *
      * @return Email
      */
@@ -82,16 +82,16 @@ public class Student extends User {
     }
 
     /**
-     * Set Email of an User
+     * Set Email of a Student
      *
-     * @param email set email address of the user
+     * @param email set email address of the student
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * Get the Password of an User
+     * Get the Password of a Student
      *
      * @return password
      */
@@ -102,7 +102,7 @@ public class Student extends User {
     /**
      * Set Password
      *
-     * @param password set password of the user
+     * @param password set password of the student
      */
     public void setPassword(String password) {
         this.password = password;
@@ -120,14 +120,14 @@ public class Student extends User {
     /**
      * Set Username
      *
-     * @param username set username of the user
+     * @param username set username of the student
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * Returns the identity number of the User with a given username.
+     * Returns the identity number of the Student with a given username.
      *
      * @return userId
      * @param username to identify the person
@@ -146,7 +146,7 @@ public class Student extends User {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Student.class.getName()).log(
-                        Level.SEVERE, "Failure while trying to get the id from a user", ex);
+                        Level.SEVERE, "Failure while trying to get the id from a student", ex);
             } finally {
                 DBConnectionPool.closeStmt(pstmt);
                 DBConnectionPool.closeCon();
@@ -159,10 +159,10 @@ public class Student extends User {
      * Returns the UserInfos from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an student object.
      */
     public Student getUserInfos(int userId) {
-        Student user = new Student();
+        Student student = new Student();
         stmt = "SELECT "
                 + "st.Pusername,"
                 + "st.firstname,"
@@ -173,35 +173,35 @@ public class Student extends User {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    user.setUsername(rs.getString(1));
-                    user.setFirstname(rs.getString(2));
-                    user.setSurname(rs.getString(3));
-                    user.setEmail(rs.getString(4));
+                    student.setUsername(rs.getString(1));
+                    student.setFirstname(rs.getString(2));
+                    student.setSurname(rs.getString(3));
+                    student.setEmail(rs.getString(4));
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+                    Level.SEVERE, "Failure while trying to get student infos from DB", ex);
         } finally {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
         }
-        return user;
+        return student;
     }
 
     /**
-     * Edits the user data in the database but only if the input is not an empty
+     * Edits the student data in the database but only if the input is not an empty
      * string or null.
      *
-     * @param userId identification of the user
-     * @param firstname firstname of the user
-     * @param lastname lastname of the user
-     * @param gender gender of the user
-     * @param department department of the user
-     * @param studium studium of the user
-     * @param about about of the user
-     * @param interest interest of the user
-     * @param age age of the user
+     * @param userId identification of the student
+     * @param firstname firstname of the student
+     * @param lastname lastname of the student
+     * @param gender gender of the student
+     * @param department department of the student
+     * @param studium studium of the student
+     * @param about about of the student
+     * @param interest interest of the student
+     * @param age age of the student
      * @param minAge minimum age of the candidate
      * @param maxAge maximum age of the candidate
      */
@@ -226,7 +226,7 @@ public class Student extends User {
      * Returns the UserInfos firstname from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return a student object.
      */
     public String getFirstname(int userId) {
         return profile.getFirstname(userId);
@@ -236,7 +236,7 @@ public class Student extends User {
      * Returns the UserInfos lastname from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return a student object.
      */
     public String getLastname(int userId) {
         return profile.getLastname(userId);
@@ -246,7 +246,7 @@ public class Student extends User {
      * Returns the UserInfos from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an student object.
      */
     public String getDepartment(int userId) {
         return profile.getDepartment(userId);
@@ -256,7 +256,7 @@ public class Student extends User {
      * Returns the UserInfos studium from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an student object.
      */
     public String getStudium(int userId) {
         return profile.getStudium(userId);
@@ -266,7 +266,7 @@ public class Student extends User {
      * Returns the UserInfos about from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an student object.
      */
     public String getAbout(int userId) {
         return profile.getAbout(userId);
@@ -276,14 +276,14 @@ public class Student extends User {
      * Returns the UserInfos about from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an student object.
      */
     public String getGender(int userId) {
         return profile.getGender(userId);
     }
     
     /**
-     * @param userId identification of the user
+     * @param userId identification of the student
      * @return interest (woman/man)
      */
     public String getInterest(int userId) {
@@ -292,15 +292,15 @@ public class Student extends User {
 
 
     /**
-     * @param userId identification of the user
-     * @return user age
+     * @param userId identification of the student
+     * @return student age
      */
     public int getAge(int userId) {
         return profile.getAge(userId);
     }
     
     /**
-     * @param userId identification of the user
+     * @param userId identification of the student
      * @return min age for filter
      */
     public int getMinAge(int userId) {
@@ -308,7 +308,7 @@ public class Student extends User {
     }
     
     /**
-     * @param userId identification of the user
+     * @param userId identification of the student
      * @return the max age for filter
      */
     public int getMaxAge(int userId) {
@@ -381,7 +381,7 @@ public class Student extends User {
      * It adds a the candidate with the given id to the liked list of the student
      * or if there is a match it starts the process of generating a new match.
      * @param candidateID identification of the candidate
-     * @return true if user perform like
+     * @return true if student perform like
      */
     public boolean like(int candidateID) {
         if (matchCheck(this.getId(), candidateID)) {
@@ -402,7 +402,7 @@ public class Student extends User {
     /**
      * The method starts the blockStudent process for the given candidateID
      * @param candidateID identification of the candidate
-     * @return true if user perform dislike
+     * @return true if student perform dislike
      */
     public boolean dislike(int candidateID) {
         blockStudent(candidateID);
@@ -411,7 +411,7 @@ public class Student extends User {
 
     /**
      * This method checks if the two students have a match or not
-     * @param studentID identification of the user
+     * @param studentID identification of the student
      * @param candidateID identification of the candidate
      * @return true if match check succeed
      */
@@ -434,7 +434,7 @@ public class Student extends User {
             }
         } catch (SQLException ex) {
             Logger.getLogger(Student.class.getName()).log(
-                    Level.SEVERE, "Failure while trying to get user infos from DB", ex);
+                    Level.SEVERE, "Failure while trying to get student infos from DB", ex);
         } finally {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
@@ -594,7 +594,7 @@ public class Student extends User {
     /**
      * check match in the list of studentmatches
      *
-     * @param id identification of the user
+     * @param id identification of the student
      * @return an arrayList of matched Student
      */
     public ArrayList<MatchedStudent> checkMatchedStudent(int id) {
@@ -619,7 +619,7 @@ public class Student extends User {
     /**
      * create new matches for student
      *
-     * @param userID identification of the user
+     * @param userID identification of the student
      */
     public void createNewMatch(int userID) {
     MatchedStudent match = new MatchedStudent();

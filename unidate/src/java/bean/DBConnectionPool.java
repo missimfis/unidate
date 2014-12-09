@@ -42,7 +42,7 @@ public class DBConnectionPool {
             Logger.getLogger(DBConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
         }
         String cmd1 = "mysql --user=" + username + " --password=" + password + " <web\\" + File.separator + "sql\\" + File.separator + "createDatabase.sql";
-        String cmd2 = "mysql --user=" + username + " --password=" + password + " " + db + " <web\\" + File.separator + "sql\\" + File.separator + "insertsForDatabse.sql";
+        String cmd2 = "mysql --user=" + username + " --password=" + password + " " + db + " <web\\" + File.separator + "sql\\" + File.separator + "insertsForDatabase.sql";
 
         try {
             Process child = Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"" + cmd1 + " && " + cmd2 + " && exit");
