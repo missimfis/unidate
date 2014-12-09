@@ -80,27 +80,23 @@ public class MatchedStudentTest {
     @Test
     public void testMatch() {
         DBConnectionPool.initaliseForJUnitTests();
-        MatchedStudent match = new MatchedStudent();
         ArrayList<MatchedStudent> matchList = new ArrayList<>();
         // create a male test student
-        Student student = new Student(10, "Hans", "Muster", "mustehan@students.zhaw", "admin", "admin", true, true);
-        student.editUserProfile(student.getId(), student.getFirstname(), student.getSurname(), "men", "T", "Wirtschafts Infromatiker", "Bin de bescht, wos git!", "everything", 20, 19, 21);
-        // create a female test student
-        Student student2 = new Student(11, "Anna", "Beispiel", "beispann@students.zhaw", "admin1", "admin1", true, true);
-        student2.editUserProfile(student2.getId(), student2.getFirstname(), student2.getSurname(), "women", "G", "Ergotherapeutin", "Bin di bescht, wos git!", "guys", 20, 19, 21);
-        //Register both students
-        Unidate instance = new Unidate();
-        instance.setStudent(student);
-        instance.register();
-        instance.setStudent(student2);
-        instance.register();
-        // like each other to create a match
-        student.like(student2.getId());
-        student2.like(student.getId());
-        // Checks if student2 is added to the matchlist by getting the ID
-        assertEquals(11, matchList.get(0).getCandidateID());
+        Student student = new Student();
+        // set id of student
+        student.setId(2);
+        student.init();
+        // id of student  is 2
+        student.createNewMatch(student.getId());
+        matchList = student.checkMatchedStudent(student.getId());
+        
+        //check the element 2 of list match
+        //result should be 4 because the the id of the candidate in element 3 is 4
+        //example: candidateList.add(new Candidate(4, "miau", "bo", "test", "physio", "ich bin bla", true));
+        assertEquals(4, matchList.get(2).getCandidateID());
         
         DBConnectionPool.closeCon();
+
 
     }
 

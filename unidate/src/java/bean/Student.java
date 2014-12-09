@@ -627,7 +627,7 @@ public class Student extends User {
         for (Candidate temp : candidateList) {
             if (temp.getCandidateLike(userID) == true) {
 
-                int candidateID = this.getId();
+                int candidateID = temp.getId();
 
                 match.addMatchToDatabase(userID, candidateID);
             }
