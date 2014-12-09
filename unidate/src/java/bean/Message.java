@@ -54,7 +54,7 @@ public class Message {
     
     /**
      * Sets the id of the message
-     * @param id
+     * @param id identification id of message
      * @return reference to this message
      */
     public Message setId(int id){
@@ -73,7 +73,7 @@ public class Message {
     /**
      * Sets the id of the sender of the message
      * 
-     * @param senderId
+     * @param senderId identification id of the candidate
      * @return reference to this message.
      */
     public Message setSender(int senderId){
@@ -175,7 +175,8 @@ public class Message {
     /**
      * Loads a specific message from the database.
      *
-     * @param matchedStudent
+     * @param studentId identification id of the user
+     * @param matchId identification id between two students
      * @return the message as a Message object
      */
     public List<Message> loadMessages(int studentId, int matchId) {
@@ -211,7 +212,8 @@ public class Message {
     /**
      * Loads a specific message from the database.
      *
-     * @param matchedStudent
+     * @param studentId identification id of the user
+     * @param matchId identification id between two students
      * @return the message as a Message object
      */
     public List<Message> loadLastMessage(int studentId, int matchId) {
@@ -248,9 +250,9 @@ public class Message {
      * Sends a message with a specified sent time to a specified User and
      * inserts the requiered fields into the database.
      *
-     * @param senderId
-     * @param receiverId
-     * @param text
+     * @param senderId identification id of the sender
+     * @param receiverId identification id of the receiver
+     * @param text message text to send
      * @return true if the message has been successfully sent
      */
     public boolean sendMessage(String text, int senderId, int receiverId) {
@@ -309,7 +311,7 @@ public class Message {
     /**
      * Checks whether a unread Message exists for a specified user or not.
      *
-     * @param userId
+     * @param userId identification id of the user
      * @return true if unread Message exists
      */
     public boolean unreadMessagesExist(int userId) {
