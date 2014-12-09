@@ -77,7 +77,7 @@ public class FilterCriteria {
      /**
      * creates a list of potential candiates for a student according to the 
      * filter criteria
-     * @return 
+     * @return a list of candidate
      */
     public ArrayList<Candidate> createCandidateList() {
         ArrayList<Candidate> candidateList = new ArrayList<Candidate>();
