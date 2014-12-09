@@ -43,9 +43,13 @@ public class Image extends HttpServlet{
     private String webLayoutEnd;
     private String personID;
     private String profilPic;
+    /**
+     * Name of the directory where uploaded files will be saved, relative to
+     * the web application directory.
+     */
+    private static final String SAVE_DIR = "uploadFiles";
+    private final String path = "H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles\\";
 
-
-    // initialize html text
     public Image() {
     }
     
@@ -63,16 +67,7 @@ public class Image extends HttpServlet{
         this.description = description;
     }
 
-    public boolean upload(HttpServletRequest request) {
-        return true;
-    }
-    
-    /**
-     * Name of the directory where uploaded files will be saved, relative to
-     * the web application directory.
-     */
-    private static final String SAVE_DIR = "uploadFiles";
-    private final String path = "H:\\ZHAW\\netbean\\unidate\\unidate\\build\\web\\uploadFiles\\";
+
     /**
      * handles file upload
      * @param request

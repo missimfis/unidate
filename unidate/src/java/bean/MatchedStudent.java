@@ -22,13 +22,8 @@ import java.util.logging.Logger;
 
 
 public final class MatchedStudent extends User {
-    private Message message;
     private int candidateID;
     private int userID;
-    private String candidateName;
-    private String candidateDepartment;
-    private String candidateStudium;
-    private String candidateAbout;
     private String stmt;
     private PreparedStatement pstmt;
 
@@ -73,12 +68,7 @@ public final class MatchedStudent extends User {
     public void setUserID(int id){
         userID = id;
     }
-    
-    public String getCandidateName(){   
-        return candidateName;
-    }
-    
-    
+   
     /**
      * Add match to database
      * @param student1
@@ -105,7 +95,7 @@ public final class MatchedStudent extends User {
         }
     }
     
-                 /**
+    /**
      * creates a list of potential candiates for a student according to the 
      * filter criteria
      * @param id
@@ -144,18 +134,5 @@ public final class MatchedStudent extends User {
         }
         return  matchedList;
     }
-    
-    
-    
-    /**
-     * Checks if Match exists
-     * @param Person1
-     * @param Person2
-     * @return ID of Match
-     */
-    public int checkMatch(int Person1, int Person2){
-        return 7;
-    }
-    
-    
+
 }

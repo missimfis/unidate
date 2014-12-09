@@ -15,8 +15,6 @@ import java.util.ArrayList;
 public class Candidate extends User {
 
     private Student candidateProfil;
-    private String stmt;
-    private PreparedStatement pstmt;
     private ArrayList<Integer> like;
     private String firstname;
     private String lastname;
@@ -46,35 +44,72 @@ public class Candidate extends User {
         this.likeTest = likeTest;
     }
 
+    /**
+     *
+     * @return true if clicked on like button
+     */
     public boolean like() {
         return true;
     }
 
+    /**
+     *
+     * @return true if clicked on dislike button
+     */
     public boolean dislike() {
         return true;
     }
-
+    
+    /**
+     *
+     * @return id of candidate
+     */
     @Override
     public int getId() {
         return userId;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String getCandidateFirstname(int id) {
         return candidateProfil.getFirstname(id);
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String getCandidateLastname(int id) {
         return candidateProfil.getLastname(id);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String getCandidateAbout(int id) {
         return candidateProfil.getFirstname(id);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String getCandidateStudium(int id) {
         return candidateProfil.getFirstname(id);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public String getCandidateDepartment(int id) {
         return candidateProfil.getFirstname(id);
     }
@@ -89,8 +124,7 @@ public class Candidate extends User {
     }
     
     /**
-     *
-     * @param
+     * setCandidate like to true    
      */
     public void setCandidateLike() {
         likeTest=true;

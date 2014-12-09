@@ -74,9 +74,8 @@ public class StudentTest {
         System.out.println("getUserInfos");
         int userId = 1;
         Student instance = new Student();
-        Student expResult = null;
         Student result = instance.getUserInfos(userId);
-        assertEquals(expResult, result);
+        assertNotNull(result);
     }
 
     /**
@@ -405,30 +404,15 @@ public class StudentTest {
     }
 
     /**
-     * Test of setAge method, of class Student.
-     */
-    @Test
-    public void testSetAge() {
-        System.out.println("setAge");
-        Integer age = 1;
-        Student instance = new Student();
-        //instance.setAge(age);
-        //assertEquals(age, instance.getAge());
-    }
-
-
-    /**
      * Test of checkMatchedStudent method, of class Student.
      */
     @Test
     public void testCheckMatchedStudent() {
         System.out.println("checkMatchedStudent");
         Student instance = new Student();
-        ArrayList<MatchedStudent> expResult = null;
-        //ArrayList<MatchedStudent> result = instance.checkMatchedStudent();
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int id=1;
+        ArrayList<MatchedStudent> result = instance.checkMatchedStudent(id);
+        assertNotNull(result);
     }
 
     /**
