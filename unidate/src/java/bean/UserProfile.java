@@ -275,6 +275,9 @@ public class UserProfile {
             DBConnectionPool.closeStmt(pstmt);
             DBConnectionPool.closeCon();
         }
+        if(dbAbout==null){
+            dbAbout="";
+        }
 
         return dbAbout;
     }

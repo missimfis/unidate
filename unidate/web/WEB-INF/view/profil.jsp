@@ -42,7 +42,7 @@ String profilePic = image.getProfilePic();%>
 	  </div>
 	  <div class="large-8 medium-8 columns">
 		<h3 class="blue"><%out.println(firstname + " " + lastname);%></h3>
-			<p><%out.println(age);%><br/>
+			<p><%if(age!=0){out.println(age);}%><br/>
 			<%out.println(studium);%><br/>
                         <%out.println(department);%><br/></p></p>
 			<%out.println(about);%>

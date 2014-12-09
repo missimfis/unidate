@@ -96,7 +96,7 @@ String profilePic = image.getProfilePic();%>
                         <div class="row">
                                 <div class="large-12 columns">
                                   <label>Über Dich</label>
-                                  <textarea style="border-radius:10px;" rows="10" name="about"><%out.println(about);%>
+                                  <textarea style="border-radius:10px;" rows="10" name="about"><%out.println(about) ;%>
                                   </textarea>
                                 </div>
                         </div>
