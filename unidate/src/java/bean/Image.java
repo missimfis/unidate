@@ -70,10 +70,10 @@ public class Image extends HttpServlet{
 
     /**
      * handles file upload
-     * @param request
-     * @param response
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
+     * @param request from client
+     * @param response from server
+     * @throws javax.servlet.ServletException if communication fails
+     * @throws java.io.IOException if file not found
      */
     @Override
     protected void doPost(HttpServletRequest request,
@@ -119,8 +119,8 @@ public class Image extends HttpServlet{
 
     /**
      * Create directory if not exists
-     * @param savePath
-     * @return 
+     * @param savePath define the path where to save
+     * @return true if directory can be created
      */
     public boolean createDirectory(String savePath) {
     // creates the save directory if it does not exists
@@ -133,9 +133,9 @@ public class Image extends HttpServlet{
     
     /**
      * create textfile to save userID, which is necessary to upload picture into the right folder
-     * @param id
-     * @throws java.io.FileNotFoundException
-     * @throws java.io.UnsupportedEncodingException
+     * @param id identifaction id of the user
+     * @throws java.io.FileNotFoundException if file not exist
+     * @throws java.io.UnsupportedEncodingException if the character Encoding is not supported.
      */
     public void createTXT(int id) throws FileNotFoundException, UnsupportedEncodingException {
         
@@ -190,6 +190,7 @@ public class Image extends HttpServlet{
             
     /**
      * prepare HTML for profil.jsp to display all picture from a specific user
+     * @param id identifaction id of the user
      */
     public void prepareHTML(int id){
         
@@ -229,7 +230,7 @@ public class Image extends HttpServlet{
     
     /**
      * display Message and Picture from matched student
-     * @param id
+     * @param id identification id from candidate
      */
     public void displayMessage(int id){
         Message message = new Message();
@@ -268,7 +269,7 @@ public class Image extends HttpServlet{
     
     /**
      * Display picture on profil
-     * @param id
+     * @param id identification id from student
      */
     public void setProfilePic(int id){
 
@@ -307,8 +308,8 @@ public class Image extends HttpServlet{
     
     /**
      * Delete picture in profile
-     * @param name
-     * @param id
+     * @param name define the filename
+     * @param id identification id of the student
      * @return true
      */
     public boolean deleteImage(String name, int id){

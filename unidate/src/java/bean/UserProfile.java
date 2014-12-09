@@ -25,17 +25,17 @@ public class UserProfile {
      * Edits the user data in the database but only if the input is not an empty
      * string or null.
      *
-     * @param userId
-     * @param firstname
-     * @param lastname
-     * @param gender
-     * @param department
-     * @param studium
-     * @param about
-     * @param interest
-     * @param age
-     * @param minAge
-     * @param maxAge
+     * @param userId from user
+     * @param firstname from user
+     * @param lastname from user
+     * @param gender from user
+     * @param department from user
+     * @param studium from user
+     * @param about from user
+     * @param interest from user
+     * @param age from user
+     * @param minAge from user
+     * @param maxAge from user
      */
     public void editUserProfile(
             int userId,

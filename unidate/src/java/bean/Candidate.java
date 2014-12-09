@@ -5,7 +5,6 @@
  */
 package bean;
 
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 /**
@@ -62,7 +61,7 @@ public class Candidate extends User {
     
     /**
      *
-     * @return id of candidate
+     * @return  id from candidate as integer
      */
     @Override
     public int getId() {
@@ -71,8 +70,8 @@ public class Candidate extends User {
 
     /**
      *
-     * @param id
-     * @return
+     * @param id identification id from candidate
+     * @return firstname from candidate as String
      */
     public String getCandidateFirstname(int id) {
         return candidateProfil.getFirstname(id);
@@ -80,8 +79,8 @@ public class Candidate extends User {
     
     /**
      *
-     * @param id
-     * @return
+     * @param id identification id from candidate
+     * @return lastname from candidate as String
      */
     public String getCandidateLastname(int id) {
         return candidateProfil.getLastname(id);
@@ -89,8 +88,8 @@ public class Candidate extends User {
 
     /**
      *
-     * @param id
-     * @return
+     * @param id identification id from candidate
+     * @return about from candidate as String 
      */
     public String getCandidateAbout(int id) {
         return candidateProfil.getFirstname(id);
@@ -98,8 +97,8 @@ public class Candidate extends User {
 
     /**
      *
-     * @param id
-     * @return
+     * @param id identification id from candidate
+     * @return studium from candidate as String
      */
     public String getCandidateStudium(int id) {
         return candidateProfil.getFirstname(id);
@@ -107,8 +106,8 @@ public class Candidate extends User {
 
     /**
      *
-     * @param id
-     * @return
+     * @param id identification id from candidate
+     * @return department from candidate as String
      */
     public String getCandidateDepartment(int id) {
         return candidateProfil.getFirstname(id);
@@ -116,8 +115,8 @@ public class Candidate extends User {
 
     /**
      *
-     * @param id
-     * @return
+     * @param id identification id from candidate
+     * @return check the like of candidate
      */
     public boolean getCandidateLike(int id) {
         return likeTest;

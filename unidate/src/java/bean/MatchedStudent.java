@@ -71,8 +71,8 @@ public final class MatchedStudent extends User {
    
     /**
      * Add match to database
-     * @param student1
-     * @param student2
+     * @param student1 define the first person to interact with
+     * @param student2 define the second person to interact with
      */
     public void addMatchToDatabase(
             int student1,
@@ -98,8 +98,8 @@ public final class MatchedStudent extends User {
     /**
      * creates a list of potential candiates for a student according to the 
      * filter criteria
-     * @param id
-     * @return 
+     * @param id identification id of the user
+     * @return a list of matches
      */
     public List<MatchedStudent> createMatchedList(int id) {
         List<MatchedStudent> matchedList = new ArrayList<>();

@@ -33,8 +33,8 @@ public class Student extends User {
      * @param email email of the user
      * @param password pw of the user
      * @param username username of the user
-     * @param registrated
-     * @param completedProfile
+     * @param registrated registration
+     * @param completedProfile  profile of the user
      */
     public Student(int userId, String firstname, String surname, String email,
             String password, String username, boolean registrated, boolean completedProfile) {
@@ -84,7 +84,7 @@ public class Student extends User {
     /**
      * Set Email of an User
      *
-     * @param email
+     * @param email set email address of the user
      */
     public void setEmail(String email) {
         this.email = email;
@@ -102,7 +102,7 @@ public class Student extends User {
     /**
      * Set Password
      *
-     * @param password
+     * @param password set password of the user
      */
     public void setPassword(String password) {
         this.password = password;
@@ -120,7 +120,7 @@ public class Student extends User {
     /**
      * Set Username
      *
-     * @param username
+     * @param username set username of the user
      */
     public void setUsername(String username) {
         this.username = username;
@@ -193,17 +193,17 @@ public class Student extends User {
      * Edits the user data in the database but only if the input is not an empty
      * string or null.
      *
-     * @param userId
-     * @param firstname
-     * @param lastname
-     * @param gender
-     * @param department
-     * @param studium
-     * @param about
-     * @param interest
-     * @param age
-     * @param minAge
-     * @param maxAge
+     * @param userId identification of the user
+     * @param firstname firstname of the user
+     * @param lastname lastname of the user
+     * @param gender gender of the user
+     * @param department department of the user
+     * @param studium studium of the user
+     * @param about about of the user
+     * @param interest interest of the user
+     * @param age age of the user
+     * @param minAge minimum age of the candidate
+     * @param maxAge maximum age of the candidate
      */
     public void editUserProfile(
             int userId,
@@ -283,7 +283,7 @@ public class Student extends User {
     }
     
     /**
-     * @param userId
+     * @param userId identification of the user
      * @return interest (woman/man)
      */
     public String getInterest(int userId) {
@@ -292,7 +292,7 @@ public class Student extends User {
 
 
     /**
-     * @param userId
+     * @param userId identification of the user
      * @return user age
      */
     public int getAge(int userId) {
@@ -300,7 +300,7 @@ public class Student extends User {
     }
     
     /**
-     * @param userId
+     * @param userId identification of the user
      * @return min age for filter
      */
     public int getMinAge(int userId) {
@@ -308,7 +308,7 @@ public class Student extends User {
     }
     
     /**
-     * @param userId
+     * @param userId identification of the user
      * @return the max age for filter
      */
     public int getMaxAge(int userId) {
@@ -348,8 +348,8 @@ public class Student extends User {
     }
     /**
      * It blocks the candidate with the given ID for this student.
-     * @param candidateID
-     * @return 
+     * @param candidateID identification of the candidate
+     * @return true if student if block succeeded
      */
     public boolean blockStudent(int candidateID) {
         blockedStudent.add(candidateID);
@@ -380,8 +380,8 @@ public class Student extends User {
     /**
      * It adds a the candidate with the given id to the liked list of the student
      * or if there is a match it starts the process of generating a new match.
-     * @param candidateID
-     * @return 
+     * @param candidateID identification of the candidate
+     * @return true if user perform like
      */
     public boolean like(int candidateID) {
         if (matchCheck(this.getId(), candidateID)) {
@@ -401,8 +401,8 @@ public class Student extends User {
     
     /**
      * The method starts the blockStudent process for the given candidateID
-     * @param candidateID
-     * @return 
+     * @param candidateID identification of the candidate
+     * @return true if user perform dislike
      */
     public boolean dislike(int candidateID) {
         blockStudent(candidateID);
@@ -411,9 +411,9 @@ public class Student extends User {
 
     /**
      * This method checks if the two students have a match or not
-     * @param studentID
-     * @param candidateID
-     * @return 
+     * @param studentID identification of the user
+     * @param candidateID identification of the candidate
+     * @return true if match check succeed
      */
     public boolean matchCheck(int studentID, int candidateID) {
         boolean result = false;
@@ -444,7 +444,7 @@ public class Student extends User {
 
     /**
      * It generates a new FilterCriteria object with db data
-     * @return 
+     * @return true if filter can be created
      */
     public final boolean createFilterCriteria() {
         stmt = "SELECT "
@@ -471,7 +471,7 @@ public class Student extends User {
 
     /**
      * It creates the blockedStudentList with db data.
-     * @return 
+     * @return true if a student is blocked
      */
     public final boolean createBlockedStudentList() {
         blockedStudent.clear();
@@ -497,7 +497,7 @@ public class Student extends User {
 
     /**
      * It creates the likedStudentList with db data.
-     * @return 
+     * @return true if liked student list can be created
      */
     public final boolean createLikedStudentList() {
         likedStudent.clear();
@@ -524,7 +524,7 @@ public class Student extends User {
     /**
      * It creates the candidateList with calling the FilterCriteria object and doing
      * some redundance checks.
-     * @return 
+     * @return true if candidate list can be created
      */
     public boolean createCandidateList() {
         candidateList.clear();
@@ -577,7 +577,7 @@ public class Student extends User {
     
     /**
      * It delivers the whole candidateList
-     * @return 
+     * @return list of candidate as
      */
     public ArrayList<Candidate> getCandidateList() {
         return (ArrayList<Candidate>) candidateList;
@@ -585,7 +585,7 @@ public class Student extends User {
     
     /**
      * It delivers the whole candidateList
-     * @return 
+     * @return list of liked student
      */
     public ArrayList<Integer> checkLikedStudent() {
         return (ArrayList<Integer>) likedStudent;
@@ -594,7 +594,7 @@ public class Student extends User {
     /**
      * check match in the list of studentmatches
      *
-     * @param id
+     * @param id identification of the user
      * @return an arrayList of matched Student
      */
     public ArrayList<MatchedStudent> checkMatchedStudent(int id) {
@@ -619,7 +619,7 @@ public class Student extends User {
     /**
      * create new matches for student
      *
-     * @param userID
+     * @param userID identification of the user
      */
     public void createNewMatch(int userID) {
     MatchedStudent match = new MatchedStudent();
@@ -636,7 +636,7 @@ public class Student extends User {
 
     /**
      * It adds a canidate to the likedLost of a student.
-     * @param candidateID 
+     * @param candidateID identification of the candidate
      */
     public void addLikedStudent(int candidateID) {
         likedStudent.add(candidateID);

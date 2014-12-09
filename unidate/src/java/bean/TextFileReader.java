@@ -16,8 +16,8 @@ public class TextFileReader {
      * Provides the FileReader
      *
      * @param filename the path to the txt File that is to be read.
-     * @throws FileNotFoundException
-     * @throws IOException
+     * @throws FileNotFoundException if file does not exist
+     * @throws IOException if I/O operation failed
      */
     public static void getReader(String filename) throws FileNotFoundException, IOException {
         reader = new BufferedReader(new FileReader(new File(filename)));
@@ -28,8 +28,8 @@ public class TextFileReader {
      *
      * @param meineDatei the path to the textfile.
      * @return A String of the content of the textfile
-     * @throws FileNotFoundException
-     * @throws IOException
+     * @throws FileNotFoundException if file does not exist
+     * @throws IOException if I/O operation failed
      */
     public static String parse(String meineDatei) throws FileNotFoundException, IOException {
 
