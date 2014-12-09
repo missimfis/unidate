@@ -145,18 +145,23 @@ public class Unidate {
         return status;
     }
 
+    /**
+     * Placeholder for a mail to send (Implemented in one of the next releases)
+     * @return state of the mail as boolean
+     */
     public boolean sendConfirmationMail() {
         return true;
     }
 
+    /**
+     * Unlockes the Profile for propper use after confimationlink
+     * @return 
+     */
     public boolean unlockProfil() {
         student.setRegistrated(true);
         return true;
     }
 
-    public boolean logout() {
-        return true;
-    }
 
     /**
      * @param student the student to set

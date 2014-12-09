@@ -27,6 +27,9 @@ public class DBConnectionPool {
     private static String port;
     private static boolean testing;
     
+    /**
+     * Initialise the values and resets the Database for the JUnit Tests
+     */
     public static void initaliseForJUnitTests() {
         testing = true;
         loadParameters();
@@ -57,6 +60,9 @@ public class DBConnectionPool {
         ds = new SimpleDataSource(connection_url + ":" + port + "/" + db,username,password);
     }
     
+    /**
+     * initialise the Object for the productiv environement
+     */
     public static void initalise() {
         testing = false;
         loadParameters();

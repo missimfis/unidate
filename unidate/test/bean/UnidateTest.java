@@ -93,18 +93,6 @@ public class UnidateTest {
     }
 
     /**
-     * Test of logout method, of class Unidate.
-     */
-    @Test
-    public void testLogout() {
-        System.out.println("logout");
-        Unidate instance = new Unidate();
-        boolean expResult = true;
-        boolean result = instance.logout();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of setStudent method, of class Unidate.
      */
     @Test
