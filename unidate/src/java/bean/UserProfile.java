@@ -134,10 +134,10 @@ public class UserProfile {
 
 
     /**
-     * Returns the UserInfos from the database
+     * Returns the firstname from the database
      *
      * @param userId to identify the relevant person
-     * @return an user Name as String.
+     * @return an user firstname as String.
      */
     public String getFirstname(int userId) {
         String dbFirstname = "";
@@ -163,7 +163,7 @@ public class UserProfile {
     }
     
         /**
-     * Returns the UserInfos from the database
+     * Returns the lastname from the database
      *
      * @param userId to identify the relevant person
      * @return an user Name as String.
@@ -192,10 +192,10 @@ public class UserProfile {
     }
 
     /**
-     * Returns the UserInfos from the database
+     * Returns the department from the database
      *
      * @param userId to identify the relevant person
-     * @return an user Department as String.
+     * @return an user department as String.
      */
     public String getDepartment(int userId) {
         String dbDepartment = "";
@@ -221,10 +221,10 @@ public class UserProfile {
     }
 
     /**
-     * Returns the UserInfos from the database
+     * Returns the studium from the database
      *
      * @param userId to identify the relevant person
-     * @return an user Department as String.
+     * @return an user studium as String.
      */
     public String getStudium(int userId) {
         String dbStudium = "";
@@ -251,10 +251,10 @@ public class UserProfile {
 
 
     /**
-     * Returns the UserInfos from the database
+     * Returns the about from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an user about as String.
      */
     public String getAbout(int userId) {
         String dbAbout = "";
@@ -282,11 +282,11 @@ public class UserProfile {
         return dbAbout;
     }
     
-        /**
-     * Returns the UserInfos from the database
+    /**
+     * Returns the gender from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an user gender as String.
      */
     public String getGender(int userId) {
         String dbGender = "";
@@ -311,11 +311,11 @@ public class UserProfile {
         return dbGender;
     }
     
-            /**
-     * Returns the UserInfos from the database
+    /**
+     * Returns the interest from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an user interest as String.
      */
     public String getInterest(int userId) {
         String dbInterest = "";
@@ -341,10 +341,10 @@ public class UserProfile {
     }
     
     /**
-     * Returns the UserInfos from the database
+     * Returns the age from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an user age as int.
      */
     public int getAge(int userId) {
         int dbAge = 0;
@@ -369,11 +369,11 @@ public class UserProfile {
         return dbAge;
     }
     
-            /**
-     * Returns the UserInfos from the database
+    /**
+     * Returns the minimum age from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an candidate minimum age as int.
      */
     public int getMinAge(int userId) {
         int dbMinAge = 0;
@@ -398,11 +398,11 @@ public class UserProfile {
         return dbMinAge;
     }
     
-                /**
-     * Returns the UserInfos from the database
+    /**
+     * Returns the maximum Age from the database
      *
      * @param userId to identify the relevant person
-     * @return an user object.
+     * @return an candidate maximum age as String.
      */
     public int getMaxAge(int userId) {
         int dbMaxAge = 0;

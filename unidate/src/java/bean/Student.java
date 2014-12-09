@@ -574,23 +574,28 @@ public class Student extends User {
         }
         return true;
     }
+    
     /**
-     * It delivers the hole candidateList
+     * It delivers the whole candidateList
      * @return 
      */
     public ArrayList<Candidate> getCandidateList() {
         return (ArrayList<Candidate>) candidateList;
     }
     
+    /**
+     * It delivers the whole candidateList
+     * @return 
+     */
     public ArrayList<Integer> checkLikedStudent() {
         return (ArrayList<Integer>) likedStudent;
     }
 
     /**
-     * check matches in the list of studentmatches
+     * check match in the list of studentmatches
      *
      * @param id
-     * @return arraylist of matched Student
+     * @return an arrayList of matched Student
      */
     public ArrayList<MatchedStudent> checkMatchedStudent(int id) {
         MatchedStudent match = new MatchedStudent();
@@ -601,7 +606,10 @@ public class Student extends User {
         return (ArrayList<MatchedStudent>) matchList;
     }
 
-    //initialize candidateList for tests
+    /**
+     * initialize candidateList for tests
+     *
+     */
     public void init() {
         candidateList.add(new Candidate(1, "Thomas", "Huynh", "test", "physio", "ich bin bla", true));
         candidateList.add(new Candidate(3, "David", "wa", "test", "physio", "ich bin bla", true));
