@@ -71,6 +71,7 @@ public class ImageTest {
         System.out.println("displayMessage");
         int id = 1;
         Image instance = new Image();
+        
         instance.displayMessage(id);
         assertNotNull(instance.getOutput());
     }
@@ -117,14 +118,15 @@ public class ImageTest {
 
     /**
      * Test of getOutput method, of class Image.
+     * the output should be null because theres no File
      */
     @Test
     public void testGetOutput() {
         System.out.println("getOutput");
         Image instance = new Image();
-        instance.displayMessage(1);
+        instance.prepareHTML(1);
         String result = instance.getOutput();
-        assertNotNull(result);
+        assertNull(result);
     }
 
     /**
@@ -135,7 +137,7 @@ public class ImageTest {
         System.out.println("resetOutput");
         Image instance = new Image();
         String expResult = "";
-        instance.displayMessage(1);
+        instance.prepareHTML(1);
         String result = instance.resetOutput();
         assertEquals(expResult, result);
     }
