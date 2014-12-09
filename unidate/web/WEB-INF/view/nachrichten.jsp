@@ -19,7 +19,7 @@
                         for (MatchedStudent match : matchedStudent) {                       
                             int matchid = match.getCandidateID();
                             image.resetOutput();
-                            image.displayMessage(matchid); 
+                            image.displayMessage(matchid, student.getId()); 
                             if(image.getOutput()!=null){
                                 
                                 out.println(image.getOutput());

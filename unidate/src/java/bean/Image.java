@@ -232,10 +232,9 @@ public class Image extends HttpServlet{
      * display Message and Picture from matched student
      * @param id identification id from candidate
      */
-    public void displayMessage(int id){
+   public void displayMessage(int id, int studentId){
         Message message = new Message();
-        Student student = new Student();
-        message.loadLastMessage(student.getId(), id);
+        message.loadLastMessage(studentId, id);
         String text = message.getText();
         String defaultPic ="default-user-image.png";  
         String fileName = "";
