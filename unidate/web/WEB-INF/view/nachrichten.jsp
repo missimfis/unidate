@@ -23,10 +23,10 @@
                             if(image.getOutput()!=null){
                                 
                                 out.println(image.getOutput());
-                                
                             }                            
                         }                      
-                        %>   		
+                        %> 
+                        
 		</div>	  
     </div>
     <script src="js/vendor/jquery.js"></script>

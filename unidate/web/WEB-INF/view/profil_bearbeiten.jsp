@@ -135,11 +135,13 @@ String profilePic = image.getProfilePic();%>
 		</form>
 	</div>   
 	
-	<div class="row">   
+	<div class="row" style="margin-top:20px;">   
             <%   
-                image.prepareHTML(id);
-                if(image.getOutput()!=null){
-                    out.println(image.getOutput());
+                int id2 = student.getId();
+                Image image2 = new Image();
+                image2.setProfilePic(id2);
+                if(image2.getProfilePic()!=null){
+                    out.println(image2.getProfilePic());
                 }
                  
             %>               
