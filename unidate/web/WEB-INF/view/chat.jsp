@@ -12,9 +12,9 @@
 	    <div class="mediumpicture">
 		
                  <% 
-                int friendid = message.getMatchedStudent();
+                 int id = student.getId();
                 Image image = new Image();
-                image.setProfilePic(friendid);
+                image.setProfilePic(id);
                 if(image.getProfilePic()!=null){
                     out.println(image.getProfilePic());
                 }
@@ -66,9 +66,10 @@
 	    <div class="mediumpicture right">
 		<!--<img src="img/Bild1.png" alt="profile">-->
                 <% 
-                int id = student.getId();
+                int friendid = message.getMatchedStudent();
+               
                 Image image2 = new Image();
-                image2.setProfilePic(id);
+                image2.setProfilePic(friendid);
                 if(image2.getProfilePic()!=null){
                     out.println(image2.getProfilePic());
                 }
