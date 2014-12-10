@@ -214,6 +214,14 @@ select {
    
    .smallmask{
 	visibility:hidden;
+        width:0px;
+        height:0px;
+	}
+        
+    .mediummask{
+	visibility:hidden;
+        width:0px;
+        height:0px;
 	}
   
   .mask{
@@ -536,6 +544,9 @@ select {
 	.smallmask{
 		visibility:hidden;
 	  }
+        .mediummask{
+		visibility:hidden;
+	  }
 	  
 	 .icon img{
 		height:40px;
@@ -571,6 +582,10 @@ select {
 	  .smallmask{
 		visibility:hidden;
 	  }
+          
+          .mediummask{
+		visibility:hidden;
+	  }
 	  
 	  .circle
 	{
@@ -589,12 +604,14 @@ select {
 
 @media only screen and (min-width: 35em) /*mobile landscape*/{
 	  .smallmask{
-		visibility:visible;
-		position:relative;
-		margin-top:-130%;
-		margin-left:0px;
-		width:104%;
-		height:auto;
+		visibility:hidden;
+                width:0px;
+                height:0px;
+	  }
+          .mediummask{
+		visibility:hidden;
+                width:0px;
+                height:0px;
 	  }
 }
 
@@ -617,7 +634,16 @@ select {
     .smallmask{
 		visibility:visible;
 		position:relative;
-		margin-top:-120%;
+		margin-top:-127%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+    
+    .mediummask{
+		visibility:visible;
+		position:relative;
+		margin-top:-114%;
 		margin-left:0px;
 		width:104%;
 		height:auto;
@@ -1029,6 +1055,75 @@ select {
     position: relative;
     right: 91.66667%;
     left: auto; } }
+
+@media only screen and (min-width: 44.0em) {
+	
+	  
+	 .smallmask{
+		visibility:visible;
+		position:relative;
+		margin-top:-126%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+          
+    
+    .mediummask{
+		visibility:visible;
+		position:relative;
+		margin-top:-110%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+}
+
+@media only screen and (min-width: 47.0em) {
+	
+	  
+	 .smallmask{
+		visibility:visible;
+		position:relative;
+		margin-top:-121%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+          
+    
+    .mediummask{
+		visibility:visible;
+		position:relative;
+		margin-top:-110%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+}
+
+@media only screen and (min-width: 56.0em) {
+	
+	  
+	 .smallmask{
+		visibility:visible;
+		position:relative;
+		margin-top:-118%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+          
+    
+    .mediummask{
+		visibility:visible;
+		position:relative;
+		margin-top:-110%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+}
 @media only screen and (min-width: 64.063em) /* Computer Version*/{
   .mask{
 	position:relative;
@@ -1041,6 +1136,16 @@ select {
 		visibility:visible;
 		position:relative;
 		margin-top:-115%;
+		margin-left:0px;
+		width:104%;
+		height:auto;
+	  }
+          
+    
+    .mediummask{
+		visibility:visible;
+		position:relative;
+		margin-top:-110%;
 		margin-left:0px;
 		width:104%;
 		height:auto;
