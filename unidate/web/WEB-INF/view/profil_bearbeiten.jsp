@@ -43,10 +43,7 @@ String profilePic = image.getProfilePic();%>
       <div class="large-4 medium-4 columns">
 		<div class="bigpicture">
                         <%=profilePic%>
-			<div class="white_big_circle">
-			</div>
-			<div class="blue_big_circle">
-			</div>
+			<div class="mediummask"><img alt="imagemask" src="img/bigcircle.png"/></div>
                         
 		</div>
 	  </div>
