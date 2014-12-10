@@ -1,6 +1,6 @@
 <%@page import="bean.*"%>
 <%@page import="java.util.ArrayList"%>
-<jsp:useBean id="student" class="bean.Student" scope="session"/> 
+<jsp:useBean id="student" class="bean.Student" scope="session"/> java 
 
 
 <jsp:setProperty property="*" name="student"/>  

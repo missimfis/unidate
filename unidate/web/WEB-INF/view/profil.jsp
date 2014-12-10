@@ -1,5 +1,6 @@
 <%@ page import="bean.*"%> 
-<jsp:useBean id="student" class="bean.Student" scope="session"/> 
+
+<jsp:useBean id="student" class="bean.Student" scope="session"/>
 <%@ page import="java.util.*" %>
 
 <% int id = student.getId();%>

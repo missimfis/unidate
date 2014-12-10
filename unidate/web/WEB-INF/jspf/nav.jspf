@@ -1,7 +1,8 @@
 <%@ page import="bean.*"%> 
-<jsp:useBean id="student2" class="bean.Student" scope="session"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% int id = student2.getId();%>
+<%
+    Student student2 = (Student) session.getAttribute("userData");
+    int id = student2.getId();%>
 <nav>
     <div class="row">
      
@@ -12,15 +13,14 @@
         <div class="large-8 medium-8 small-8 columns">
             <div class="littlepicture right" onclick="window.open('profil','_self')" style="cursor:pointer">
             <!--<img src="img/Bild3.jpg" alt="profile">-->
-            <% 
+           <% 
                 Image image = new Image();
                 image.setProfilePic(id);
                 if(image.getProfilePic()!=null){
                     out.println(image.getProfilePic());
                 }
-
                 %>
-
+                
             <div class="littlemask">
                 <img src="img/littlecircle.png"/>
             </div>

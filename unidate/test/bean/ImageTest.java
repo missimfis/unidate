@@ -63,18 +63,6 @@ public class ImageTest {
         assertNull(instance.getOutput());
     }
 
-    /**
-     * Test of displayMessage method, of class Image.
-     */
-    @Test
-    public void testDisplayMessage() {
-        System.out.println("displayMessage");
-        int id = 1;
-        Image instance = new Image();
-        
-        instance.displayMessage(id);
-        assertNotNull(instance.getOutput());
-    }
 
     /**
      * Test of setProfilePic method, of class Image.
