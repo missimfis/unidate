@@ -3,29 +3,41 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% int id = student2.getId();%>
 <nav>
+    <div class="row">
+      <div class="large-2 medium-2 small-2 columns">
+          &nbsp;
+	</div>
+        <div class="large-4 medium-4 small-4 columns">
+          <a href="logout.jsp"><input class="small round button" style="margin-top:20px;" type="submit" value="Abmelden" /></a>
+	</div>
+        
+        <div class="large-6 medium-6 small-6 columns">
+            <div class="littlepicture right" onclick="window.open('profil','_self')" style="cursor:pointer">
+            <!--<img src="img/Bild3.jpg" alt="profile">-->
+            <% 
+                Image image = new Image();
+                image.setProfilePic(id);
+                if(image.getProfilePic()!=null){
+                    out.println(image.getProfilePic());
+                }
 
+                %>
 
-<div class="littlepicture right" onclick="window.open('profil','_self')" style="cursor:pointer">
-    <!--<img src="img/Bild3.jpg" alt="profile">-->
-    <% 
-        Image image = new Image();
-        image.setProfilePic(id);
-        if(image.getProfilePic()!=null){
-            out.println(image.getProfilePic());
-        }
-                 
-        %>
-    
-    <div class="littlemask">
-	<img src="img/littlecircle.png"/>
-    </div>
-    <div class="littleline">&nbsp;</div>
-    
-</div>
+            <div class="littlemask">
+                <img src="img/littlecircle.png"/>
+            </div>
+            <div class="littleline">&nbsp;</div>
 
-    <a href="nachrichten">
-        <div class="messages comment right">
-            <img src="icons/comments16.png" alt="messages" >
         </div>
-    </a>
+
+            <a href="nachrichten">
+                <div class="messages comment right">
+                    <img src="icons/comments16.png" alt="messages" >
+                </div>
+            </a>
+    
+        </div>
+    </div>
+
+
 </nav>
