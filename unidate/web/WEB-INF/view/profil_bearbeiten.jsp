@@ -43,7 +43,10 @@ String profilePic = image.getProfilePic();%>
       <div class="large-4 medium-4 columns">
 		<div class="bigpicture">
                         <%=profilePic%>
-			<div class="mediummask"><img alt="imagemask" src="img/bigcircle.png"/></div>
+			<div class="white_big_circle">
+			</div>
+			<div class="blue_big_circle">
+			</div>
                         
 		</div>
 	  </div>
@@ -133,7 +136,13 @@ String profilePic = image.getProfilePic();%>
 	</div>   
 	
 	<div class="row" style="margin-top:20px;">   
-                         
+           <%   
+                image.prepareHTML(id);
+                if(image.getOutput()!=null){
+                    out.println(image.getOutput());
+                }
+                 
+            %>              
         <div class="large-2 medium-2 columns">
             <div class="mediumepicture right">
                 <form method="post" action="Image" enctype="multipart/form-data" >
