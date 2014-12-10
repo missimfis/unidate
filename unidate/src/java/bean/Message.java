@@ -230,6 +230,9 @@ public class Message {
             pstmt = DBConnectionPool.getStmt(stmt);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
+                    setId(rs.getInt(1));
+                    setText(rs.getString(2));
+                    setSender(rs.getInt(3));
                     messages.add(new Message()
                             .setId(rs.getInt(1))
                             .setText(rs.getString(2))
